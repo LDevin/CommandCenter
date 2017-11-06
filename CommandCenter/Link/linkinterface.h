@@ -31,6 +31,9 @@ public:
     virtual QByteArray          contentData() const = 0;
     virtual void                setContentData(QByteArray &content) = 0;
 
+    virtual bool                isLinkDone() const = 0;
+    virtual void                setlinkDone(bool linkDone)= 0;
+
     /*
      * @@子类必须重写这个方法：startRequest
     */

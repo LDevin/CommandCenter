@@ -1,5 +1,6 @@
 ﻿#include "slave.h"
-
+#include <windows.h>
+#include <QEventLoop>
 namespace Link {
 
 QMutex mutex;
@@ -40,25 +41,23 @@ QString Slave::callTimeOutMsg() const
 
 void Slave::slaveFinishedWork()
 {
-    _mutex.lock();
+    QMutex mutex;
+    mutex.lock();
     LinkInterface *link = (LinkInterface *)sender();
 
     emit slaveFetchLinkData(link->contentData());
-    qDebug()<<"contentData: "<<link->contentData();
-
-    link->deleteLater();
-    delete link;
-    link = Q_NULLPTR;
-
-    if (link) {
-        qDebug() << "the link is destroyed failed ";
-    } else {
-        qDebug()<<"the link is destroyed success!  ";
-    }
-    _mutex.unlock();
+    mutex.unlock();
 }
 
-void Slave::getUserInfo(const QString &authorization)
+void Slave::destroyLink(LinkInterface *link)
+{
+    link->deleteLater();
+    delete link;
+    link = NULL;
+    qDebug() << (link ? "destroy link failed! " : "destroy link success!");
+}
+
+void Slave::getUserInfo(const QString &authorization, QByteArray &ret)
 {
     if ( authorization.isEmpty() ) return;
 
@@ -73,18 +72,21 @@ void Slave::getUserInfo(const QString &authorization)
 
     LinkInterface *link = new HttpLink(config);
 
-    connect(link, &LinkInterface::finished, this, &Slave::slaveFinishedWork);
-
-    qDebug()<<"linkDataBag "<<linkDataBag.para;
+    QEventLoop eventLoop;
+    connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
 
     QJsonObject p = QJsonDocument::fromVariant(QVariant(linkDataBag.para)).object();
     p.remove("Authorization");
     p.insert("Authorization", authorization);
 
     link->startRequest(QJsonDocument(p).toJson());
+    eventLoop.exec();
+    qDebug()<<"link data: "<<link->contentData();
+    ret = link->contentData();
+    destroyLink(link);
 }
 
-void Slave::getDatalinelist(const QByteArray &para)
+void Slave::getDatalinelist(const QByteArray &para, QByteArray &ret)
 {
     Q_UNUSED(para)
 }

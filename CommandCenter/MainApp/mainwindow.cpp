@@ -1,6 +1,6 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "QDebug"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -17,6 +17,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    Link::Slave::slave()->getUserInfo(tr("5555"));
-
+    QByteArray ret;
+    Link::Slave::slave()->getUserInfo(tr("5555"), ret);
+    qDebug() << "ret " << ret;
 }

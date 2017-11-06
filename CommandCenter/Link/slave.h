@@ -40,14 +40,17 @@ private:
      * 获取http接口api的任务，让Slave这个实例去干
     */
 public:
-    void            getUserInfo(const QString &authorization);
-    void            getDatalinelist(const QByteArray &para);
+    void            getUserInfo(const QString &authorization, QByteArray &ret);
+    void            getDatalinelist(const QByteArray &para, QByteArray &ret);
 
 public slots:
     void            slaveFinishedWork();
 
 Q_SIGNALS:
     void            slaveFetchLinkData(const QByteArray &data);
+
+private:
+    void            destroyLink(LinkInterface* link);
 };
 }
 

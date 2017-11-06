@@ -1,7 +1,7 @@
 ﻿#include "httplink.h"
 
 
-HttpLink::HttpLink(HttpConfiguration *config)
+HttpLink::HttpLink(HttpConfiguration *config) : _linkDone(false)
 {
     Q_ASSERT(_config != NULL);
     _config = config;
@@ -147,4 +147,14 @@ void HttpLink::linkTimeOutReply()
         setContentData(QByteArray().append(_config->timeOutMsg()));
         emit readFinished(QByteArray().append(_config->timeOutMsg()));
     }
+}
+
+void HttpLink::setlinkDone(bool linkDone)
+{
+    _linkDone = linkDone;
+}
+
+bool HttpLink::isLinkDone() const
+{
+    return _linkDone;
 }

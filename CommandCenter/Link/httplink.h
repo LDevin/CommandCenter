@@ -38,6 +38,9 @@ public:
 
     void                startRequest(const QByteArray &requestData) Q_DECL_OVERRIDE;
 
+    bool                isLinkDone() const Q_DECL_OVERRIDE;
+    void                setlinkDone(bool linkDone) Q_DECL_OVERRIDE;
+
 public slots:
     void                linkFinished();
     void                linkTimeOutReply();
@@ -48,11 +51,12 @@ protected:
     void                timerEvent(QTimerEvent *event) Q_DECL_OVERRIDE;
 
 private:
-    HttpConfiguration *_config;
-    QNetworkAccessManager qam;
-    QNetworkRequest req;
+    HttpConfiguration       *_config;
+    QNetworkAccessManager   qam;
+    QNetworkRequest         req;
 
-    QByteArray _content;
+    QByteArray              _content;
+    bool                    _linkDone;
 
 
 };
