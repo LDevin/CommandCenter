@@ -143,7 +143,7 @@ void HttpLink::setContentData(QByteArray &content)
 void HttpLink::linkTimeOutReply()
 {
     if ( _config ) {
-        setContentData(QByteArray());
+        setContentData(QByteArray().append(_config->timeOutMsg()));
         emit readFinished(QByteArray().append(_config->timeOutMsg()));
     }
 }

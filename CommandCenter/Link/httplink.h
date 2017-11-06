@@ -36,7 +36,7 @@ public:
 
     void                startHttpRequest(const QByteArray &data);
 
-    void                startRequest(const QByteArray &data) Q_DECL_OVERRIDE;
+    void                startRequest(const QByteArray &requestData) Q_DECL_OVERRIDE;
 
 public slots:
     void                linkFinished();

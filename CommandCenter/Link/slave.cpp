@@ -44,6 +44,7 @@ void Slave::slaveFinishedWork()
     LinkInterface *link = (LinkInterface *)sender();
 
     emit slaveFetchLinkData(link->contentData());
+    qDebug()<<"contentData: "<<link->contentData();
 
     link->deleteLater();
     delete link;
