@@ -55,7 +55,7 @@ void Slave::slaveFinishedWork()
     _mutex.unlock();
 }
 
-void Slave::getUserInfo(QString &authorization)
+void Slave::getUserInfo(const QString &authorization)
 {
     HttpConfiguration *config = new HttpConfiguration();
 
@@ -73,7 +73,7 @@ void Slave::getUserInfo(QString &authorization)
     link->startRequest(QByteArray().append(authorization));
 }
 
-void Slave::getDatalinelist(QByteArray &para)
+void Slave::getDatalinelist(const QByteArray &para)
 {
     Q_UNUSED(para)
 }
