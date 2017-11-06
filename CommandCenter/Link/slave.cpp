@@ -60,6 +60,8 @@ void Slave::slaveFinishedWork()
 
 void Slave::getUserInfo(const QString &authorization)
 {
+    if ( authorization.isEmpty() ) return;
+
     HttpConfiguration *config = new HttpConfiguration();
 
     Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[LINK_ROOT_API_USER][LINK_API_USERINFO];
@@ -73,7 +75,13 @@ void Slave::getUserInfo(const QString &authorization)
 
     connect(link, &LinkInterface::finished, this, &Slave::slaveFinishedWork);
 
-    link->startRequest(QByteArray().append(authorization));
+    qDebug()<<"linkDataBag "<<linkDataBag.para;
+
+    QJsonObject p = QJsonDocument::fromVariant(QVariant(linkDataBag.para)).object();
+    p.remove("Authorization");
+    p.insert("Authorization", authorization);
+
+    link->startRequest(QJsonDocument(p).toJson());
 }
 
 void Slave::getDatalinelist(const QByteArray &para)

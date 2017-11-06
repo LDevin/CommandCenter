@@ -10,6 +10,7 @@ HttpLink::HttpLink(HttpConfiguration *config)
 
 HttpLink::~HttpLink()
 {
+    _content.clear();
     setQuit(true);
     quit();
     wait();
