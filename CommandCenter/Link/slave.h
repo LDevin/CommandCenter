@@ -45,6 +45,9 @@ public:
 
 public slots:
     void            slaveFinishedWork();
+
+Q_SIGNALS:
+    void            slaveFetchLink(LinkInterface*);
 };
 }
 

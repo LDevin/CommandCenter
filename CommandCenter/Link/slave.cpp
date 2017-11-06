@@ -43,6 +43,8 @@ void Slave::slaveFinishedWork()
     _mutex.lock();
     LinkInterface *link = (LinkInterface *)sender();
 
+    emit slaveFetchLink(link);
+
     link->deleteLater();
     delete link;
     link = Q_NULLPTR;
