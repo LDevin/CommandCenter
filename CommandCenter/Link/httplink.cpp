@@ -50,9 +50,9 @@ void HttpLink::setContentType(HttpConfiguration::RequestContentType type)
 
 }
 
-void HttpLink::startRequest(const QByteArray &data)
+void HttpLink::startRequest(const QByteArray &requestData)
 {
-    startHttpRequest(data);
+    startHttpRequest(requestData);
 }
 
 void HttpLink::startHttpRequest(const QByteArray &data)

@@ -34,7 +34,7 @@ public:
     /*
      * @@子类必须重写这个方法：startRequest
     */
-    virtual void                startRequest(const QByteArray &data) = 0;
+    virtual void                startRequest(const QByteArray &requestData) = 0;
 
     int                         waitTimeOut() const { return _waitTimeout; }
     int                         timerOutId() const { return _timerOutId; }
