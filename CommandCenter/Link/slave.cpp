@@ -89,6 +89,7 @@ void Slave::getUserInfo(const QString &authorization, QByteArray &ret)
 void Slave::getDatalinelist(const QByteArray &para, QByteArray &ret)
 {
     Q_UNUSED(para)
+    Q_UNUSED(ret)
 }
 
 }

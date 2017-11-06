@@ -7,8 +7,8 @@
 
     "token":[
         {"api":"token", "href":"/oauth/token","req":2,"para":{"userName":"","password":"","clientId":"","clientSecret":"","grantType":""}},
-        {},
-        {},
-        {}
+        {"api":"refreshToken", "href":"/oauth/refreshToken","req":2,"para":{"refreshToken":"","clientId":"","clientSecret":""}},
+        {"api":"code", "href":"/oauth/code","req":2,"para":{"code":"","clientId":"","clientSecret":"","redirectUri":""}},
+        {"api":"checkToken", "href":"/oauth/checkToken","req":2,"para":{"token":""}}
     ]
 }
