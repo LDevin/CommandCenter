@@ -1,0 +1,14 @@
+﻿{
+    "root": "http://192.168.1.226:8766",
+    "user":[
+        {"api":"userInfo", "href":"/user/userInfo","req":2,"para":{"Authorization":""}},
+        {"api":"datalinelist", "href":"/user/datalinelist","req":1,"Parameter":{}}
+    ],
+
+    "token":[
+        {"api":"token", "href":"/oauth/token","req":2,"para":{"userName":"","password":"","clientId":"","clientSecret":"","grantType":""}},
+        {},
+        {},
+        {}
+    ]
+}

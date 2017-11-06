@@ -1,0 +1,7 @@
+﻿{
+    "httpOverTimeMsg": {
+        "timeout": {
+            "code":-200,"msg":"operation is time out!","success":false,"fail":true
+        }
+    }
+}
