@@ -47,7 +47,7 @@ public slots:
     void            slaveFinishedWork();
 
 Q_SIGNALS:
-    void            slaveFetchLink(LinkInterface*);
+    void            slaveFetchLinkData(const QByteArray &data);
 };
 }
 
