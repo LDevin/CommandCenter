@@ -57,9 +57,11 @@ void Slave::destroyLink(LinkInterface *link)
     qDebug() << (link ? "destroy link failed! " : "destroy link success!");
 }
 
-void Slave::getUserInfo(const QString &authorization, QByteArray &ret)
+bool Slave::getUserInfo(const QString &authorization, QByteArray &ret)
 {
-    if ( authorization.isEmpty() ) return;
+    if ( authorization.isEmpty() ) {
+        return false;
+    }
 
     HttpConfiguration *config = new HttpConfiguration();
 
@@ -84,12 +86,16 @@ void Slave::getUserInfo(const QString &authorization, QByteArray &ret)
     qDebug()<<"link data: "<<link->contentData();
     ret = link->contentData();
     destroyLink(link);
+
+    return true;
 }
 
-void Slave::getDatalinelist(const QByteArray &para, QByteArray &ret)
+bool Slave::getDatalinelist(const QByteArray &para, QByteArray &ret)
 {
     Q_UNUSED(para)
     Q_UNUSED(ret)
+
+    return true;
 }
 
 }

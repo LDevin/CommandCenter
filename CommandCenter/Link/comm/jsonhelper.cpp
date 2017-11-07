@@ -42,20 +42,24 @@ bool JsonHelper::isValid(const QByteArray &data)
     return isObject(data) || isArray(data);
 }
 
-void JsonHelper::toObject(const QString &source, QJsonObject &des)
+bool JsonHelper::toObject(const QString &source, QJsonObject &des)
 {
     if (isObject(source)) {
         QByteArray data;
         data.append(source);
         des = QJsonDocument::fromJson(data).object();
+        return true;
     }
+    return false;
 }
 
-void JsonHelper::toObject(const QByteArray &source, QJsonObject &des)
+bool JsonHelper::toObject(const QByteArray &source, QJsonObject &des)
 {
     if (isObject(source)) {
         des = QJsonDocument::fromJson(source).object();
+        return true;
     }
+    return false;
 }
 
 

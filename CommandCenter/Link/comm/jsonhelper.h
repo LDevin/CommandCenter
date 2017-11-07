@@ -24,8 +24,8 @@ public:
     static bool isValid(const QString &str);
     static bool isValid(const QByteArray &data);
 
-    static void toObject(const QString &source, QJsonObject &des);
-    static void toObject(const QByteArray &source, QJsonObject &des);
+    static bool toObject(const QString &source, QJsonObject &des);
+    static bool toObject(const QByteArray &source, QJsonObject &des);
 
 };
 #endif // JSONHELPER_H

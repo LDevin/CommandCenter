@@ -24,14 +24,22 @@ Tools::Tools()
 
     if (openFile(data, LINK_URL_FILE)) {
         QJsonObject content;
-        JsonHelper::toObject(data, content);
-        loadLinkUrl(content);
+
+        if (JsonHelper::toObject(data, content)) {
+            loadLinkUrl(content);
+        } else {
+            qDebug() << "load LinkUrl.json failed, file is not json!";
+        }
+
     }
 
     if (openFile(data, LINK_TOOLS_FILE)) {
         QJsonObject content;
-        JsonHelper::toObject(data, content);
-        loadToolsJson(content);
+        if (JsonHelper::toObject(data, content)) {
+            loadToolsJson(content);
+        } else {
+            qDebug() << "load tools.json failed, file is not json!";
+        }
     }
 
 }
@@ -84,40 +92,40 @@ bool Tools::loadLinkUrl(QJsonObject &content)
 
         } else {
 
-          QJsonValue apiJsonValue = content[key];
-          if (!apiJsonValue.isArray()) {
-              return false;
-          }
+            QJsonValue apiJsonValue = content[key];
+            if (!apiJsonValue.isArray()) {
+                return false;
+            }
 
-          QJsonArray apiJsonArr = apiJsonValue.toArray();
+            QJsonArray apiJsonArr = apiJsonValue.toArray();
 
-          QMap<QString, LinkDataBag> linkDataBgMp;
+            QMap<QString, LinkDataBag> linkDataBgMp;
 
-          foreach (QJsonValue apiVal, apiJsonArr) {
+            foreach (QJsonValue apiVal, apiJsonArr) {
 
-              if (!apiVal.isObject()) return false;
+                if (!apiVal.isObject()) return false;
 
-              QJsonObject apiObj = apiVal.toObject();
-              LinkDataBag linkDataBg;
+                QJsonObject apiObj = apiVal.toObject();
+                LinkDataBag linkDataBg;
 
-              //[1]
-              linkDataBg.fullUrl = Config::config()->rootUrl() + apiObj[LINK_HREF].toString();
-              linkDataBg.api     = apiObj[LINK_API].toString();
-              linkDataBg.req     = apiObj[LINK_REQ].toInt();
+                //[1]
+                linkDataBg.fullUrl = Config::config()->rootUrl() + apiObj[LINK_HREF].toString();
+                linkDataBg.api     = apiObj[LINK_API].toString();
+                linkDataBg.req     = apiObj[LINK_REQ].toInt();
 
-              QByteArray p = QJsonDocument::fromVariant(apiObj[LINK_PARA].toVariant()).toJson();
-              linkDataBg.para    = QString(p);
+                QByteArray p = QJsonDocument::fromVariant(apiObj[LINK_PARA].toVariant()).toJson();
+                linkDataBg.para    = QString(p);
 
-              linkDataBgMp[linkDataBg.api] = linkDataBg;
-              //[1]
+                linkDataBgMp[linkDataBg.api] = linkDataBg;
+                //[1]
 
-              Config::config()->appendApiName(linkDataBg.api);
+                Config::config()->appendApiName(linkDataBg.api);
 
-          }
+            }
 
-          Config::config()->setDataBagMap(key, linkDataBgMp);
+            Config::config()->setDataBagMap(key, linkDataBgMp);
 
-          qDebug()<<Config::config()->dataBagMap().value("user").value("userInfo").fullUrl;
+            qDebug()<<Config::config()->dataBagMap().value("user").value("userInfo").fullUrl;
         }
     }
 

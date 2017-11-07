@@ -14,7 +14,10 @@
 
     "resource":[
         {"api":"building/basic/detail", "href":"/resource/building/basic/detail/","req":1,"para":{"id":""}},
-        {"api":"resource/building/search", "href":"/resource/building/search/","req":1,"para":{"name":""}}
+        {"api":"building/search", "href":"/resource/building/search/","req":1,"para":{"name":""}},
+        {"api":"enforce/add", "href":"/resource/enforce/add","req":2,"para":{"dto":{}}},
+        {"api":"enforce/detail/", "href":"/resource/enforce/detail/","req":1,"para":{"id":""}},
+        {"api":"enforce/deviceview", "href":"/resource/enforce/deviceview","req":2,"para":{"supervisorID":""}}
     ],
 
     "info":[
