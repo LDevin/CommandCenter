@@ -98,5 +98,35 @@ bool Slave::getDatalinelist(const QByteArray &para, QByteArray &ret)
     return true;
 }
 
+bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)
+{
+
+    HttpConfiguration *config = new HttpConfiguration();
+
+    Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[LINK_ROOT_API_RESOURCE][LINK_API_ENFORCE_DEVICEVIEW];
+
+    config->setRequestUrl(QUrl(linkDataBag.fullUrl));
+    config->setRequestType(static_cast<HttpConfiguration::RequestType>(linkDataBag.req));
+
+    config->setTimeOutMsg(callTimeOutMsg());
+
+    LinkInterface *link = new HttpLink(config);
+
+    QEventLoop eventLoop;
+    connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
+
+    QJsonObject p = QJsonDocument::fromVariant(QVariant(linkDataBag.para)).object();
+    p.remove("supervisorID");
+    p.insert("supervisorID", supervisorID);
+
+    link->startRequest(QJsonDocument(p).toJson());
+    eventLoop.exec();
+    qDebug()<<"link data: "<<link->contentData();
+    ret = link->contentData();
+    destroyLink(link);
+
+    return true;
+}
+
 }
 

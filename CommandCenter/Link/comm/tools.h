@@ -27,6 +27,10 @@ namespace Link {
 #define LINK_ROOT_API_USER "user"
 #define LINK_API_USERINFO  "userInfo"
 
+#define LINK_ROOT_API_RESOURCE "resource"
+#define LINK_API_ENFORCE_DEVICEVIEW  "enforce/deviceview"
+
+
 class Tools : public QObject
 {
 

@@ -1,23 +1,30 @@
 ﻿{
     "root": "http://192.168.1.226:8766",
     "user":[
-        {"api":"userInfo", "href":"/user/userInfo","req":2,"para":{"Authorization":""}},
-        {"api":"datalinelist", "href":"/user/datalinelist","req":1,"Parameter":{}}
+        {"api":"userInfo", "href":"/user/userInfo","req":2,"para":{"Authorization":""},"des": "根据token获取用户信息"},
+        {"api":"datalinelist", "href":"/user/datalinelist","req":1,"para":{},"des": "获取所有数据线"}
     ],
 
     "token":[
-        {"api":"token", "href":"/oauth/token","req":2,"para":{"userName":"","password":"","clientId":"","clientSecret":"","grantType":""}},
-        {"api":"refreshToken", "href":"/oauth/refreshToken","req":2,"para":{"refreshToken":"","clientId":"","clientSecret":""}},
-        {"api":"code", "href":"/oauth/code","req":2,"para":{"code":"","clientId":"","clientSecret":"","redirectUri":""}},
-        {"api":"checkToken", "href":"/oauth/checkToken","req":2,"para":{"token":""}}
+        {"api":"token", "href":"/oauth/token","req":2,"para":{"userName":"","password":"","clientId":"","clientSecret":"","grantType":""},"des": "获取token"},
+        {"api":"refreshToken", "href":"/oauth/refreshToken","req":2,"para":{"refreshToken":"","clientId":"","clientSecret":""},"des": "刷新token"},
+        {"api":"code", "href":"/oauth/code","req":2,"para":{"code":"","clientId":"","clientSecret":"","redirectUri":""},"des": "根据code获取用户信息"},
+        {"api":"checkToken", "href":"/oauth/checkToken","req":2,"para":{"token":""},"des": "校验token"}
     ],
 
     "resource":[
-        {"api":"building/basic/detail", "href":"/resource/building/basic/detail/","req":1,"para":{"id":""}},
-        {"api":"building/search", "href":"/resource/building/search/","req":1,"para":{"name":""}},
-        {"api":"enforce/add", "href":"/resource/enforce/add","req":2,"para":{"dto":{}}},
-        {"api":"enforce/detail/", "href":"/resource/enforce/detail/","req":1,"para":{"id":""}},
-        {"api":"enforce/deviceview", "href":"/resource/enforce/deviceview","req":2,"para":{"supervisorID":""}}
+        {"api":"building/basic/detail", "href":"/resource/building/basic/detail/","req":1,"para":{"id":""},"des": "根据楼栋ID查询楼栋信息"},
+        {"api":"building/search", "href":"/resource/building/search/","req":1,"para":{"name":""},"des": "查询楼栋名称"},
+        {"api":"enforce/add", "href":"/resource/enforce/add","req":2,"para":{"dto":{}},"des": "新增执法队伍"},
+        {"api":"enforce/detail/", "href":"/resource/enforce/detail/","req":1,"para":{"id":""},"des": "获取执法队伍详情"},
+        {"api":"enforce/deviceview", "href":"/resource/enforce/deviceview","req":2,"para":{"supervisorID":""},"des": "统计分析执法伍"},
+        {"api":"enforce/list", "href":"/resource/enforce/list","req":2,"para":{"name":"","type":"","pageNum":1},"des": "执法队伍列表"},
+        {"api":"enforce/person/list", "href":"/resource/enforce/person/list/","req":1,"para":{"enforceid":"","name":"","pageNum":1},"des": "获取执法队伍人员信息列表"},
+        {"api":"enforce/update", "href":"/resource/enforce/update","req":2,"para":{},"des": "修改执法队伍"},
+        {"api":"fireplug/add", "href":"/resource/fireplug/add","req":2,"para":{},"des": "新增消火栓"},
+        {"api":"fireplug/detail", "href":"/resource/fireplug/detail/","req":1,"para":{"id":""},"des": "获取消火栓详情"}
+
+
     ],
 
     "info":[

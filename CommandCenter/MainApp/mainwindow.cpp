@@ -21,3 +21,10 @@ void MainWindow::on_pushButton_clicked()
     Link::Slave::slave()->getUserInfo(tr("5555"), ret);
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getResEnforceDeviceView(666, ret);
+    qDebug() << "ret " << ret;
+}

@@ -59,8 +59,9 @@ public:
     /*
      * @resource-controller : 消防资源相关接口
     */
-    //![2]
 
+    //![2]
+    bool            getResEnforceDeviceView(long supervisorID, QByteArray &ret);
     //![2]
 
     /*
