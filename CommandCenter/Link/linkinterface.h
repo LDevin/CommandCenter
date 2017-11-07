@@ -38,6 +38,7 @@ public:
      * @@子类必须重写这个方法：startRequest
     */
     virtual void                startRequest(const QByteArray &requestData) = 0;
+    virtual void                setRequestHeader(const QByteArray &headerData) = 0;
 
     int                         waitTimeOut() const { return _waitTimeout; }
     int                         timerOutId() const { return _timerOutId; }

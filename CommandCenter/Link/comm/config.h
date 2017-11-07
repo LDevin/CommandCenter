@@ -12,11 +12,15 @@
 
 namespace Link {
 
+#define REQ_HEAD_SET_FLAG 1
+#define REQ_HEAD_NOT_SET_FLAG 0
+
 typedef struct {
     QString fullUrl;
     QString api; //接口名称
     int req; //get或者post方式
     QString para; //{"Authorization":""} 传参格式
+    int headFlag; // 0： 不设置request的head，1：设置
 } LinkDataBag;
 
 class Config

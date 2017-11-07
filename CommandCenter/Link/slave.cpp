@@ -81,7 +81,10 @@ bool Slave::getUserInfo(const QString &authorization, QByteArray &ret)
     p.remove("Authorization");
     p.insert("Authorization", authorization);
 
-    link->startRequest(QJsonDocument(p).toJson());
+    QByteArray sendData = QJsonDocument(p).toJson();
+    link->setRequestHeader(sendData);
+    link->startRequest(sendData);
+
     eventLoop.exec();
     qDebug()<<"link data: "<<link->contentData();
     ret = link->contentData();

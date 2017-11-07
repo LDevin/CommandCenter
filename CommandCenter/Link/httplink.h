@@ -41,7 +41,7 @@ public:
     bool                isLinkDone() const Q_DECL_OVERRIDE;
     void                setlinkDone(bool linkDone) Q_DECL_OVERRIDE;
 
-    void                setRequestHeader(const QByteArray &header);
+    void                setRequestHeader(const QByteArray &header) Q_DECL_OVERRIDE;
 
 public slots:
     void                linkFinished();

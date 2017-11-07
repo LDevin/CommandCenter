@@ -112,6 +112,7 @@ bool Tools::loadLinkUrl(QJsonObject &content)
                 linkDataBg.fullUrl = Config::config()->rootUrl() + apiObj[LINK_HREF].toString();
                 linkDataBg.api     = apiObj[LINK_API].toString();
                 linkDataBg.req     = apiObj[LINK_REQ].toInt();
+                linkDataBg.headFlag = apiObj[LINK_SET_REQ_HEAD].isUndefined() ? REQ_HEAD_NOT_SET_FLAG : apiObj[LINK_SET_REQ_HEAD].toInt();
 
                 QByteArray p = QJsonDocument::fromVariant(apiObj[LINK_PARA].toVariant()).toJson();
                 linkDataBg.para    = QString(p);

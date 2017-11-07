@@ -23,6 +23,7 @@ namespace Link {
 #define LINK_HREF "href"
 #define LINK_REQ "req"
 #define LINK_PARA "para"
+#define LINK_SET_REQ_HEAD "reqHead"
 
 #define LINK_ROOT_API_USER "user"
 #define LINK_API_USERINFO  "userInfo"

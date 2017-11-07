@@ -76,7 +76,6 @@ void HttpLink::startHttpRequest(const QByteArray &data)
         reply = qam.get(req);
     } else if (_config->requestType() == HttpConfiguration::POST) {
         setUrl(QUrl(href));
-        setRequestHeader(data);
         reply = qam.post(req, data);
     }
 
