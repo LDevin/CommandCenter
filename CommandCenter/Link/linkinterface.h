@@ -23,8 +23,8 @@ public:
     LinkInterface();
     virtual ~LinkInterface();
 
-    virtual LinkConfiguration* getLinkConfiguration() = 0;
-    virtual void               setLinkConfiguration(LinkConfiguration *cfg) = 0;
+    virtual LinkConfiguration*  getLinkConfiguration() = 0;
+    virtual void                setLinkConfiguration(LinkConfiguration *cfg) = 0;
 
     virtual QString             getName() const = 0;
 
