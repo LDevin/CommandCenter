@@ -26,7 +26,9 @@ namespace Link {
 #define LINK_SET_REQ_HEAD "reqHead"
 
 #define LINK_ROOT_API_USER "user"
+
 #define LINK_API_USERINFO  "userInfo"
+#define LINK_API_DATALINE_LIST  "datalinelist"
 
 #define LINK_ROOT_API_RESOURCE "resource"
 #define LINK_API_ENFORCE_DEVICEVIEW  "enforce/deviceview"

@@ -47,7 +47,7 @@ public:
 
     //![0]
     bool            getUserInfo(const QString &authorization, QByteArray &ret);
-    bool            getDatalinelist(const QByteArray &para, QByteArray &ret);
+    bool            getDatalinelist(const QString &token, QByteArray &ret);
     //![0]
 
 

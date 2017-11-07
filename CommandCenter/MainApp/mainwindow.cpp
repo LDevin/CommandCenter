@@ -28,3 +28,10 @@ void MainWindow::on_pushButton_2_clicked()
     Link::Slave::slave()->getResEnforceDeviceView(666, ret);
     qDebug() << "ret " << ret;
 }
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getDatalinelist(tr("c341cbe3-95d0-442c-95a0-3a61e224d21c"), ret);
+    qDebug() << "ret " << ret;
+}

@@ -93,10 +93,40 @@ bool Slave::getUserInfo(const QString &authorization, QByteArray &ret)
     return true;
 }
 
-bool Slave::getDatalinelist(const QByteArray &para, QByteArray &ret)
+bool Slave::getDatalinelist(const QString &token, QByteArray &ret)
 {
-    Q_UNUSED(para)
-    Q_UNUSED(ret)
+    if ( token.isEmpty() ) {
+        return false;
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+
+    Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[LINK_ROOT_API_USER][LINK_API_DATALINE_LIST];
+
+    config->setRequestUrl(QUrl(linkDataBag.fullUrl));
+    config->setRequestType(static_cast<HttpConfiguration::RequestType>(linkDataBag.req));
+
+    config->setTimeOutMsg(callTimeOutMsg());
+
+    LinkInterface *link = new HttpLink(config);
+
+    QEventLoop eventLoop;
+    connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
+
+    QJsonObject p = QJsonDocument::fromVariant(QVariant(linkDataBag.para)).object();
+    p.remove("Authorization");
+    p.insert("Authorization", token);
+
+    QByteArray sendData = QJsonDocument(p).toJson();
+    link->setRequestHeader(sendData);
+    link->startRequest(QByteArray());
+
+    eventLoop.exec();
+    qDebug()<<"link data: "<<link->contentData();
+    ret = link->contentData();
+    destroyLink(link);
+
+    return true;
 
     return true;
 }
