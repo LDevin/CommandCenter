@@ -1,8 +1,8 @@
 ﻿{
-    "root": "http://192.168.1.226:8766",
+    "root": "http://192.168.1.226:8800",
     "user":[
-        {"api":"userInfo", "href":"/user/userInfo","req":2,"para":{"Authorization":""},"des": "根据token获取用户信息"},
-        {"api":"datalinelist", "href":"/user/datalinelist","req":1,"para":{},"des": "获取所有数据线"}
+        {"api":"userInfo", "href":"/api/v1/user/userInfo","req":2,"para":{"Authorization":""},"des": "根据token获取用户信息"},
+        {"api":"datalinelist", "href":"/api/v1/user/datalinelist","req":1,"para":{},"des": "获取所有数据线"}
     ],
 
     "token":[

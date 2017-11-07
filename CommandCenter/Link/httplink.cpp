@@ -1,4 +1,5 @@
 ﻿#include "httplink.h"
+#include "comm/jsonhelper.h"
 
 
 HttpLink::HttpLink(HttpConfiguration *config) : _linkDone(false)
@@ -75,6 +76,7 @@ void HttpLink::startHttpRequest(const QByteArray &data)
         reply = qam.get(req);
     } else if (_config->requestType() == HttpConfiguration::POST) {
         setUrl(QUrl(href));
+        setRequestHeader(data);
         reply = qam.post(req, data);
     }
 
@@ -157,4 +159,18 @@ void HttpLink::setlinkDone(bool linkDone)
 bool HttpLink::isLinkDone() const
 {
     return _linkDone;
+}
+
+void HttpLink::setRequestHeader(const QByteArray &header)
+{
+    QJsonObject obj;
+    if (!JsonHelper::toObject(header, obj)) {
+        return;
+    }
+
+    QStringList keys = obj.keys();
+    foreach (QString key, keys) {
+        QVariant val = obj[key].toVariant();
+        req.setRawHeader(key.toLatin1(), val.toByteArray());
+    }
 }

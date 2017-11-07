@@ -41,6 +41,8 @@ public:
     bool                isLinkDone() const Q_DECL_OVERRIDE;
     void                setlinkDone(bool linkDone) Q_DECL_OVERRIDE;
 
+    void                setRequestHeader(const QByteArray &header);
+
 public slots:
     void                linkFinished();
     void                linkTimeOutReply();

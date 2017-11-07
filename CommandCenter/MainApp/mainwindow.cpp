@@ -18,7 +18,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     QByteArray ret;
-    Link::Slave::slave()->getUserInfo(tr("5555"), ret);
+    Link::Slave::slave()->getUserInfo(tr("c341cbe3-95d0-442c-95a0-3a61e224d21c"), ret);
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
 
