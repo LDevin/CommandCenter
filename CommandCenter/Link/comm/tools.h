@@ -30,8 +30,11 @@ namespace Link {
 #define LINK_API_USERINFO  "userInfo"
 #define LINK_API_DATALINE_LIST  "datalinelist"
 
-#define LINK_ROOT_API_RESOURCE "resource"
-#define LINK_API_ENFORCE_DEVICEVIEW  "enforce/deviceview"
+#define LINK_ROOT_API_RES "resource"
+#define LINK_API_RES_BUILD_BASIC_DETAIL "building/basic/detail"
+
+#define LINK_API_RES_ENFORCE_DEVICEVIEW  "enforce/deviceview"
+
 
 
 class Tools : public QObject

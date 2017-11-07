@@ -35,3 +35,10 @@ void MainWindow::on_pushButton_3_clicked()
     Link::Slave::slave()->getDatalinelist(tr("c341cbe3-95d0-442c-95a0-3a61e224d21c"), ret);
     qDebug() << "ret " << ret;
 }
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getResBuildBasicDetailById(tr("c341cbe3-95d0-442c-95a0-3a61e224d21c"), 555, ret);
+    qDebug() << "ret " << ret;
+}

@@ -49,6 +49,20 @@ void Slave::slaveFinishedWork()
     mutex.unlock();
 }
 
+void Slave::setLinkConfigurationData(LinkConfiguration *linkCfg,
+                                     const QString &root,
+                                     const QString &api)
+{
+    HttpConfiguration *config = dynamic_cast<HttpConfiguration*>(linkCfg);
+
+    Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[root][api];
+
+    config->setRequestUrl(QUrl(linkDataBag.fullUrl));
+    config->setRequestType(static_cast<HttpConfiguration::RequestType>(linkDataBag.req));
+
+    config->setTimeOutMsg(callTimeOutMsg());
+}
+
 void Slave::destroyLink(LinkInterface *link)
 {
     link->deleteLater();
@@ -57,29 +71,22 @@ void Slave::destroyLink(LinkInterface *link)
     qDebug() << (link ? "destroy link failed! " : "destroy link success!");
 }
 
-bool Slave::getUserInfo(const QString &authorization, QByteArray &ret)
+bool Slave::getUserInfo(const QString &token, QByteArray &ret)
 {
-    if ( authorization.isEmpty() ) {
+    if ( token.isEmpty() ) {
         return false;
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-
-    Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[LINK_ROOT_API_USER][LINK_API_USERINFO];
-
-    config->setRequestUrl(QUrl(linkDataBag.fullUrl));
-    config->setRequestType(static_cast<HttpConfiguration::RequestType>(linkDataBag.req));
-
-    config->setTimeOutMsg(callTimeOutMsg());
+    setLinkConfigurationData(config, LINK_ROOT_API_USER, LINK_API_USERINFO);
 
     LinkInterface *link = new HttpLink(config);
 
     QEventLoop eventLoop;
     connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
 
-    QJsonObject p = QJsonDocument::fromVariant(QVariant(linkDataBag.para)).object();
-    p.remove("Authorization");
-    p.insert("Authorization", authorization);
+    QJsonObject p;
+    p.insert("Authorization", token);
 
     QByteArray sendData = QJsonDocument(p).toJson();
     link->setRequestHeader(sendData);
@@ -100,21 +107,14 @@ bool Slave::getDatalinelist(const QString &token, QByteArray &ret)
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-
-    Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[LINK_ROOT_API_USER][LINK_API_DATALINE_LIST];
-
-    config->setRequestUrl(QUrl(linkDataBag.fullUrl));
-    config->setRequestType(static_cast<HttpConfiguration::RequestType>(linkDataBag.req));
-
-    config->setTimeOutMsg(callTimeOutMsg());
+    setLinkConfigurationData(config, LINK_ROOT_API_USER, LINK_API_DATALINE_LIST);
 
     LinkInterface *link = new HttpLink(config);
 
     QEventLoop eventLoop;
     connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
 
-    QJsonObject p = QJsonDocument::fromVariant(QVariant(linkDataBag.para)).object();
-    p.remove("Authorization");
+    QJsonObject p;
     p.insert("Authorization", token);
 
     QByteArray sendData = QJsonDocument(p).toJson();
@@ -127,6 +127,33 @@ bool Slave::getDatalinelist(const QString &token, QByteArray &ret)
     destroyLink(link);
 
     return true;
+}
+
+bool Slave::getResBuildBasicDetailById(QString &token, long id, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return false;
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_BUILD_BASIC_DETAIL);
+
+    LinkInterface *link = new HttpLink(config);
+
+    QEventLoop eventLoop;
+    connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
+
+    QJsonObject p;
+    p.insert("Authorization", token);
+
+    QByteArray sendData = QJsonDocument(p).toJson();
+    link->setRequestHeader(sendData);
+    link->startRequest(tr("%1").arg(id).toLatin1());
+
+    eventLoop.exec();
+    qDebug()<<"link data: "<<link->contentData();
+    ret = link->contentData();
+    destroyLink(link);
 
     return true;
 }
@@ -136,7 +163,7 @@ bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)
 
     HttpConfiguration *config = new HttpConfiguration();
 
-    Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[LINK_ROOT_API_RESOURCE][LINK_API_ENFORCE_DEVICEVIEW];
+    Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[LINK_ROOT_API_RES][LINK_API_RES_ENFORCE_DEVICEVIEW];
 
     config->setRequestUrl(QUrl(linkDataBag.fullUrl));
     config->setRequestType(static_cast<HttpConfiguration::RequestType>(linkDataBag.req));

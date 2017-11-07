@@ -46,7 +46,7 @@ public:
     */
 
     //![0]
-    bool            getUserInfo(const QString &authorization, QByteArray &ret);
+    bool            getUserInfo(const QString &token, QByteArray &ret);
     bool            getDatalinelist(const QString &token, QByteArray &ret);
     //![0]
 
@@ -61,6 +61,7 @@ public:
     */
 
     //![2]
+    bool            getResBuildBasicDetailById(QString &token, long id, QByteArray &ret);
     bool            getResEnforceDeviceView(long supervisorID, QByteArray &ret);
     //![2]
 
@@ -93,6 +94,9 @@ Q_SIGNALS:
 
 private:
     void            destroyLink(LinkInterface* link);
+    void            setLinkConfigurationData(LinkConfiguration *linkCfg,
+                                             const QString &root,
+                                             const QString &api);
 };
 }
 

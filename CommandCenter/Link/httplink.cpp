@@ -73,6 +73,7 @@ void HttpLink::startHttpRequest(const QByteArray &data)
 
     if ( _config->requestType() == HttpConfiguration::GET) {
         setUrl(QUrl(href.append(data)));
+        qDebug()<<"req url "<<req.url();
         reply = qam.get(req);
     } else if (_config->requestType() == HttpConfiguration::POST) {
         setUrl(QUrl(href));
