@@ -42,6 +42,7 @@ public:
     void                setlinkDone(bool linkDone) Q_DECL_OVERRIDE;
 
     void                setRequestHeader(const QByteArray &header) Q_DECL_OVERRIDE;
+    void                setRequestBody(const QByteArray &body) Q_DECL_OVERRIDE;
 
 public slots:
     void                linkFinished();
@@ -59,6 +60,9 @@ private:
 
     QByteArray              _content;
     bool                    _linkDone;
+
+private:
+   // void                setFormDataBody();
 
 
 };

@@ -56,3 +56,10 @@ void MainWindow::on_pushButton_6_clicked()
     Link::Slave::slave()->addResEnforce(tr("92262a4e-cf96-4093-a77a-373e6b256284"), "dfdsafdsf",ret);
     qDebug() << "ret " << ret;
 }
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getOauthToken("admin", "admin", "client",ret);
+    qDebug() << "ret " << ret;
+}

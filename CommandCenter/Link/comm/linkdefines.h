@@ -13,6 +13,10 @@
 #define LINK_PARA "para"
 #define LINK_SET_REQ_HEAD "reqHead"
 
+#define LINK_ROOT_API_TOKEN "token"
+#define LINK_API_OAUTH_TOKEN "token"
+#define LINK_API_REFRESH_TOKEN "refreshToken"
+
 #define LINK_ROOT_API_USER "user"
 
 #define LINK_API_USERINFO  "userInfo"

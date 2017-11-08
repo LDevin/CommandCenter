@@ -174,3 +174,31 @@ void HttpLink::setRequestHeader(const QByteArray &header)
         req.setRawHeader(key.toLatin1(), val.toByteArray());
     }
 }
+
+void HttpLink::setRequestBody(const QByteArray &body)
+{
+    switch (_config->contentType()) {
+
+    case HttpConfiguration::JsonType: {
+
+    }
+        break;
+
+    case HttpConfiguration::FormDataType: {
+
+    }
+        break;
+
+    case HttpConfiguration::XwwwType: {
+
+    }
+        break;
+
+    case HttpConfiguration::TextXmlType: {
+
+    }
+        break;
+    default:
+        break;
+    }
+}

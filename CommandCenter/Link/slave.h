@@ -58,6 +58,10 @@ public:
      * @token-controller : 授权相关接口
     */
 
+    //![1]
+    bool            getOauthToken(const QString &user, const QString &ps,
+                                  const QString &clientId, QByteArray &ret);
+    //![1]
 
     /*
      * @resource-controller : 消防资源相关接口

@@ -9,7 +9,7 @@
 #include "linkconfiguration.h"
 #include <QUrl>
 
-#define MUTILEPLE 0
+#define MUTILEPLE 1
 
 class HttpConfiguration : public LinkConfiguration
 {

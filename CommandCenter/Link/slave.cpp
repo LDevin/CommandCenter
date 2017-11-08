@@ -94,6 +94,30 @@ void Slave::destroyLink(LinkInterface *link)
 
 
 /***************各个接口******************/
+bool Slave::getOauthToken(const QString &user, const QString &ps,
+                          const QString &clientId, QByteArray &ret)
+{
+    if ( user.isEmpty() || ps.isEmpty() || clientId.isEmpty() ) {
+        return RETURN_FALSE;
+    }
+
+
+    HttpConfiguration *config = new HttpConfiguration();
+    setLinkConfigurationData(config, LINK_ROOT_API_TOKEN, LINK_API_OAUTH_TOKEN);
+    config->setContentType(HttpConfiguration::XwwwType);
+
+    LinkInterface *link = new HttpLink(config);
+
+    QJsonObject p;
+    p.insert("userName", user);
+    p.insert("password", ps);
+    p.insert("clientId", clientId);
+
+    QByteArray sendData = QJsonDocument(p).toJson();
+    QString body = tr("userName=%1&password=%2&clientId=%3").arg(user).arg(ps).arg(clientId);
+    return slaveStartLink(link, sendData, body.toLatin1(), ret);
+}
+
 bool Slave::getUserInfo(const QString &token, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
