@@ -60,7 +60,9 @@ FORMS += \
 INCLUDEPATH += $$PWD/../Link/
 
 DebugBuild {
-    LIBS += -L$${DESTDIR} -llinkd
+    LIBS += -L$${DESTDIR} -lLinkd
+    LIBS += -L$${DESTDIR} -lUid
 } else {
-    LIBS += -L$${DESTDIR} -llink
+    LIBS += -L$${DESTDIR} -lLink
+    LIBS += -L$${DESTDIR} -lUi
 }
