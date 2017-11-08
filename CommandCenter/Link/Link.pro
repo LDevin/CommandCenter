@@ -56,4 +56,5 @@ unix {
 RESOURCES += \
     config.qrc
 
+include($$PWD/helper/helper.pri)
 include($$PWD/comm/comm.pri)

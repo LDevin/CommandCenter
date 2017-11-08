@@ -4,10 +4,8 @@
 
 HEADERS += \
     $$PWD/tools.h \
-    $$PWD/config.h \
-    $$PWD/jsonhelper.h
+    $$PWD/config.h
 
 SOURCES += \
     $$PWD/tools.cpp \
-    $$PWD/config.cpp \
-    $$PWD/jsonhelper.cpp
+    $$PWD/config.cpp

@@ -12,7 +12,7 @@
 #include "link_global.h"
 #include "httplink.h"
 #include "httpconfiguration.h"
-#include "comm/jsonhelper.h"
+#include "helper/jsonhelper.h"
 #include "comm/tools.h"
 
 

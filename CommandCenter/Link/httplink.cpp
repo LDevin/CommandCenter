@@ -1,5 +1,5 @@
 ﻿#include "httplink.h"
-#include "comm/jsonhelper.h"
+#include "helper/jsonhelper.h"
 
 
 HttpLink::HttpLink(HttpConfiguration *config) : _linkDone(false)

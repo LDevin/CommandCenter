@@ -7,7 +7,7 @@
 #ifndef TOOLS_H
 #define TOOLS_H
 #include <QObject>
-#include "jsonhelper.h"
+#include "helper/jsonhelper.h"
 #include "comm/config.h"
 
 
