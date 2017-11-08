@@ -31,7 +31,8 @@ private slots:
     void on_pushButton_6_clicked();
 
     void on_pushButton_7_clicked();
-
+//----- check-controller------
+    void get_formID_clicked();
 private:
     Ui::MainWindow *ui;
 };

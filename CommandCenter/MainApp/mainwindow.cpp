@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(ui->fromID,SIGNAL(clicked(bool)),this,SLOT(get_formID_clicked()));
 }
 
 MainWindow::~MainWindow()
@@ -62,4 +63,9 @@ void MainWindow::on_pushButton_7_clicked()
     QByteArray ret;
     Link::Slave::slave()->getOauthToken("admin", "admin", "client",ret);
     qDebug() << "ret " << ret;
+}
+
+//----------get--form id------
+void MainWindow::get_formID_clicked(){
+    qDebug()<<"get formid click";
 }
