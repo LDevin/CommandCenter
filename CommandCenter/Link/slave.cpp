@@ -49,6 +49,7 @@ void Slave::slaveFinishedWork()
     mutex.unlock();
 }
 
+/*****************link 配置*******************/
 void Slave::setLinkConfigurationData(LinkConfiguration *linkCfg,
                                      const QString &root,
                                      const QString &api)
@@ -89,7 +90,10 @@ void Slave::destroyLink(LinkInterface *link)
     link = NULL;
     qDebug() << (link ? "destroy link failed! " : "destroy link success!");
 }
+/*****************link 配置*******************/
 
+
+/***************各个接口******************/
 bool Slave::getUserInfo(const QString &token, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
@@ -128,7 +132,7 @@ bool Slave::getDatalinelist(const QString &token, QByteArray &ret)
     return slaveStartLink(link, headerData, QByteArray(), ret);
 }
 
-bool Slave::getResBuildBasicDetailById(QString &token, long id, QByteArray &ret)
+bool Slave::getResBuildBasicDetailById(const QString &token, long id, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
         return RETURN_FALSE;
@@ -145,6 +149,24 @@ bool Slave::getResBuildBasicDetailById(QString &token, long id, QByteArray &ret)
     QByteArray headerData = QJsonDocument(p).toJson();
 
     return slaveStartLink(link, headerData, tr("%1").arg(id).toLatin1(), ret);
+}
+
+bool Slave::getResBuildByName(const QString &token, const QString &name, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return RETURN_FALSE;
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_BUILD_SCH_BY_NAME);
+
+    LinkInterface *link = new HttpLink(config);
+
+    QJsonObject p;
+    p.insert("Authorization", token);
+
+    QByteArray headerData = QJsonDocument(p).toJson();
+    return slaveStartLink(link, headerData, name.toLatin1(), ret);
 }
 
 bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)

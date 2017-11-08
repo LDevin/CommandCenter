@@ -4,7 +4,8 @@
 
 HEADERS += \
     $$PWD/tools.h \
-    $$PWD/config.h
+    $$PWD/config.h \
+    $$PWD/linkdefines.h
 
 SOURCES += \
     $$PWD/tools.cpp \

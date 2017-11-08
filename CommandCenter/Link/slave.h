@@ -64,7 +64,8 @@ public:
     */
 
     //![2]
-    bool            getResBuildBasicDetailById(QString &token, long id, QByteArray &ret);
+    bool            getResBuildBasicDetailById(const QString &token, long id, QByteArray &ret);
+    bool            getResBuildByName(const QString &token, const QString &name, QByteArray &ret);
     bool            getResEnforceDeviceView(long supervisorID, QByteArray &ret);
     //![2]
 

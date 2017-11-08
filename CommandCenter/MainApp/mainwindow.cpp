@@ -42,3 +42,10 @@ void MainWindow::on_pushButton_4_clicked()
     Link::Slave::slave()->getResBuildBasicDetailById(tr("c341cbe3-95d0-442c-95a0-3a61e224d21c"), 555, ret);
     qDebug() << "ret " << ret;
 }
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getResBuildByName(tr("92262a4e-cf96-4093-a77a-373e6b256284"), "fsadf", ret);
+    qDebug() << "ret " << ret;
+}
