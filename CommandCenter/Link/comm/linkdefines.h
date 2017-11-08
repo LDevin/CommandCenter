@@ -21,6 +21,7 @@
 #define LINK_ROOT_API_RES "resource"
 #define LINK_API_RES_BUILD_BASIC_DETAIL "building/basic/detail"
 #define LINK_API_RES_BUILD_SCH_BY_NAME "building/search"
+#define LINK_API_RES_ENFORCE_ADD "enforce/add"
 
 
 #define LINK_API_RES_ENFORCE_DEVICEVIEW "enforce/deviceview"

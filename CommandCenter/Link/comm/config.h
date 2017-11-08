@@ -71,6 +71,8 @@ private:
     //[1]访问接口超市的msg,从tools.json文件获取
     QString _httpOverTimeErrMsg;
     //[1]访问接口超市的msg,从tools.json文件获取
+
+
 };
 
 }

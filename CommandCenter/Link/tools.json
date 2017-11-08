@@ -3,5 +3,24 @@
         "timeout": {
             "code":-200,"msg":"operation is time out!","success":false,"fail":true
         }
+    },
+
+   "addEnforce": {
+      "actualPerson": 0,
+      "address": "string",
+      "description": "string",
+      "email": "string",
+      "id": 0,
+      "imgPath": [
+        "string"
+      ],
+      "latitude": 0,
+      "leader": "string",
+      "longitude": 0,
+      "mobile": "string",
+      "name": "string",
+      "organType": 0,
+      "standardPerson": 0,
+      "zoneCode": "string"
     }
 }
