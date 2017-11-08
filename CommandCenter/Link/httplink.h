@@ -20,8 +20,8 @@ class HttpLink : public LinkInterface
   Q_OBJECT
 
 public:
-    HttpLink(HttpConfiguration *config);
-    ~HttpLink();
+                        HttpLink(HttpConfiguration *config);
+                        ~HttpLink();
 
     LinkConfiguration*  getLinkConfiguration();
     void                setLinkConfiguration(LinkConfiguration *cfg);

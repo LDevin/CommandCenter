@@ -20,8 +20,8 @@ class LinkInterface : public QThread
   Q_OBJECT
 
 public:
-    LinkInterface();
-    virtual ~LinkInterface();
+                                LinkInterface();
+    virtual                     ~LinkInterface();
 
     virtual LinkConfiguration*  getLinkConfiguration() = 0;
     virtual void                setLinkConfiguration(LinkConfiguration *cfg) = 0;

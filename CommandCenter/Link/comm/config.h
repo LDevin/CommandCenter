@@ -58,18 +58,18 @@ protected:
     virtual ~Config();
 
 private:
-    static Config* s_config;
+    static Config*                            s_config;
 
     //[0] http 接口相关的
-    QString _rootUrl;
-    QStringList _rootKeys;
-    QStringList _allApiNames;
+    QString                                   _rootUrl;
+    QStringList                               _rootKeys;
+    QStringList                               _allApiNames;
 
     QMap<QString, QMap<QString, LinkDataBag>> _dataBgMap;
     //[0] http 接口相关的
 
     //[1]访问接口超市的msg,从tools.json文件获取
-    QString _httpOverTimeErrMsg;
+    QString                                   _httpOverTimeErrMsg;
     //[1]访问接口超市的msg,从tools.json文件获取
 
 
