@@ -66,3 +66,5 @@ DebugBuild {
     LIBS += -L$${DESTDIR} -lLink
     LIBS += -L$${DESTDIR} -lUi
 }
+
+include($$PWD/toolbox/toolbox.pri)
