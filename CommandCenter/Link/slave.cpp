@@ -63,6 +63,25 @@ void Slave::setLinkConfigurationData(LinkConfiguration *linkCfg,
     config->setTimeOutMsg(callTimeOutMsg());
 }
 
+bool Slave::slaveStartLink(LinkInterface *link,
+                           const QByteArray &headerData,
+                           const QByteArray &requestData, QByteArray &ret)
+{
+    QEventLoop eventLoop;
+    connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
+
+    link->setRequestHeader(headerData);
+    link->startRequest(requestData);
+
+    eventLoop.exec();
+    qDebug()<<"link data: "<<link->contentData();
+    ret = link->contentData();
+    destroyLink(link);
+
+    return RETURN_OK;
+}
+
+
 void Slave::destroyLink(LinkInterface *link)
 {
     link->deleteLater();
@@ -74,7 +93,7 @@ void Slave::destroyLink(LinkInterface *link)
 bool Slave::getUserInfo(const QString &token, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
-        return false;
+        return RETURN_FALSE;
     }
 
     HttpConfiguration *config = new HttpConfiguration();
@@ -82,28 +101,18 @@ bool Slave::getUserInfo(const QString &token, QByteArray &ret)
 
     LinkInterface *link = new HttpLink(config);
 
-    QEventLoop eventLoop;
-    connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
-
     QJsonObject p;
     p.insert("Authorization", token);
 
     QByteArray sendData = QJsonDocument(p).toJson();
-    link->setRequestHeader(sendData);
-    link->startRequest(sendData);
 
-    eventLoop.exec();
-    qDebug()<<"link data: "<<link->contentData();
-    ret = link->contentData();
-    destroyLink(link);
-
-    return true;
+    return slaveStartLink(link, sendData, sendData, ret);
 }
 
 bool Slave::getDatalinelist(const QString &token, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
-        return false;
+        return RETURN_FALSE;
     }
 
     HttpConfiguration *config = new HttpConfiguration();
@@ -111,28 +120,18 @@ bool Slave::getDatalinelist(const QString &token, QByteArray &ret)
 
     LinkInterface *link = new HttpLink(config);
 
-    QEventLoop eventLoop;
-    connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
-
     QJsonObject p;
     p.insert("Authorization", token);
 
-    QByteArray sendData = QJsonDocument(p).toJson();
-    link->setRequestHeader(sendData);
-    link->startRequest(QByteArray());
+    QByteArray headerData = QJsonDocument(p).toJson();
 
-    eventLoop.exec();
-    qDebug()<<"link data: "<<link->contentData();
-    ret = link->contentData();
-    destroyLink(link);
-
-    return true;
+    return slaveStartLink(link, headerData, QByteArray(), ret);
 }
 
 bool Slave::getResBuildBasicDetailById(QString &token, long id, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
-        return false;
+        return RETURN_FALSE;
     }
 
     HttpConfiguration *config = new HttpConfiguration();
@@ -140,22 +139,12 @@ bool Slave::getResBuildBasicDetailById(QString &token, long id, QByteArray &ret)
 
     LinkInterface *link = new HttpLink(config);
 
-    QEventLoop eventLoop;
-    connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
-
     QJsonObject p;
     p.insert("Authorization", token);
 
-    QByteArray sendData = QJsonDocument(p).toJson();
-    link->setRequestHeader(sendData);
-    link->startRequest(tr("%1").arg(id).toLatin1());
+    QByteArray headerData = QJsonDocument(p).toJson();
 
-    eventLoop.exec();
-    qDebug()<<"link data: "<<link->contentData();
-    ret = link->contentData();
-    destroyLink(link);
-
-    return true;
+    return slaveStartLink(link, headerData, tr("%1").arg(id).toLatin1(), ret);
 }
 
 bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)

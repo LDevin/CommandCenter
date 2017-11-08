@@ -16,6 +16,9 @@
 #include "comm/tools.h"
 
 
+#define RETURN_OK true
+#define RETURN_FALSE false
+
 namespace Link {
 
 class LINKSHARED_EXPORT Slave : public QObject
@@ -97,6 +100,13 @@ private:
     void            setLinkConfigurationData(LinkConfiguration *linkCfg,
                                              const QString &root,
                                              const QString &api);
+
+    /**************
+     *所有的接口都会走这个函数，让奴隶去做
+    **************/
+    bool            slaveStartLink(LinkInterface *link,
+                                   const QByteArray &headerData,
+                                   const QByteArray &requestData, QByteArray &ret);
 };
 }
 
