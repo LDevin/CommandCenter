@@ -177,6 +177,7 @@ void HttpLink::setRequestHeader(const QByteArray &header)
 
 void HttpLink::setRequestBody(const QByteArray &body)
 {
+    Q_UNUSED(body)
     switch (_config->contentType()) {
 
     case HttpConfiguration::JsonType: {
@@ -200,5 +201,28 @@ void HttpLink::setRequestBody(const QByteArray &body)
         break;
     default:
         break;
+    }
+}
+
+void HttpLink::setHttpMultiPart(QHttpMultiPart &part,
+                                const QByteArray &jsonBody,
+                                QHttpMultiPart::ContentType type)
+{
+    if ( type == QHttpMultiPart::FormDataType ) {
+
+        QJsonObject obj;
+        if (!JsonHelper::toObject(jsonBody, obj)) {
+            return;
+        }
+
+        part.setContentType(type);
+
+        QStringList keys = obj.keys();
+        foreach (QString key, keys) {
+            //QVariant val = obj[key].toVariant();
+            //QHttpPart textPart;
+            //textPart.setHeader();
+            //req.setRawHeader(key.toLatin1(), val.toByteArray());
+        }
     }
 }

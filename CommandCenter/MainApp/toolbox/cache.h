@@ -13,13 +13,13 @@ class Cache
 {
 
 public:
-    static Cache*                  cache();
+    static Cache*           cache();
 protected:
     Cache();
     virtual                 ~Cache();
 
 private:
-    static Cache*                  _cache;
+    static Cache*           _cache;
 
 
 public:
