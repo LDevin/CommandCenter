@@ -71,6 +71,7 @@ public:
     bool            getResBuildBasicDetailById(const QString &token, long id, QByteArray &ret);
     bool            getResBuildByName(const QString &token, const QString &name, QByteArray &ret);
     bool            addResEnforce(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResEnforceDetail(const QString &token, long id, QByteArray &ret);
 
     bool            getResEnforceDeviceView(long supervisorID, QByteArray &ret);
     //![2]

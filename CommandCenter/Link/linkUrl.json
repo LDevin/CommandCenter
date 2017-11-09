@@ -16,7 +16,7 @@
         {"api":"building/basic/detail", "href":"/api/v1/resource/building/basic/detail/","req":1,"para":{"id":""},"des": "根据楼栋ID查询楼栋信息"},
         {"api":"building/search", "href":"/api/v1/resource/building/search/","req":1,"para":{"name":""},"des": "查询楼栋名称"},
         {"api":"enforce/add", "href":"/api/v1/resource/enforce/add","req":2,"para":{"dto":{}},"des": "新增执法队伍"},
-        {"api":"enforce/detail/", "href":"/api/v1/resource/enforce/detail/","req":1,"para":{"id":""},"des": "获取执法队伍详情"},
+        {"api":"enforce/detail", "href":"/api/v1/resource/enforce/detail/","req":1,"para":{"id":""},"des": "获取执法队伍详情"},
         {"api":"enforce/deviceview", "href":"/api/v1/resource/enforce/deviceview","req":2,"para":{"supervisorID":""},"des": "统计分析执法伍"},
         {"api":"enforce/list", "href":"/api/v1/resource/enforce/list","req":2,"para":{"name":"","type":"","pageNum":1},"des": "执法队伍列表"},
         {"api":"enforce/person/list", "href":"/api/v1/resource/enforce/person/list/","req":1,"para":{"enforceid":"","name":"","pageNum":1},"des": "获取执法队伍人员信息列表"},

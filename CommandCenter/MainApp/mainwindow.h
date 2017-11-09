@@ -5,6 +5,11 @@
 #include "slave.h"
 #include <QDebug>
 
+#include "hsftestdialog.h"
+#include "zktestdialog.h"
+#include "xktestdialog.h"
+
+
 namespace Ui {
 class MainWindow;
 }
@@ -33,8 +38,21 @@ private slots:
     void on_pushButton_7_clicked();
 //----- check-controller------
     void get_formID_clicked();
+    void on_pushButton_8_clicked();
+
+    void on_pushButton_9_clicked();
+
+    void on_pushButton_10_clicked();
+
+    void on_pushButton_11_clicked();
+
 private:
     Ui::MainWindow *ui;
+
+
+    HsfTestDialog *hsfDlg;
+    ZkTestDialog *zkDlg;
+    XkTestDialog *xkDlg;
 };
 
 #endif // MAINWINDOW_H

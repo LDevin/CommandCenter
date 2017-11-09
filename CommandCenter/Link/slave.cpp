@@ -211,6 +211,25 @@ bool Slave::addResEnforce(const QString &token, const QString &jsonDto, QByteArr
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
+bool Slave::getResEnforceDetail(const QString &token, long id, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return RETURN_FALSE;
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_ADD);
+
+    LinkInterface *link = new HttpLink(config);
+
+    QJsonObject p;
+    p.insert("Authorization", token);
+
+    QByteArray headerData = QJsonDocument(p).toJson();
+    return slaveStartLink(link, headerData, tr("%1").arg(id).toLatin1(), ret);
+}
+
+
 bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)
 {
 

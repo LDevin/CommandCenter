@@ -48,13 +48,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    hsftestdialog.cpp \
+    zktestdialog.cpp \
+    xktestdialog.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    hsftestdialog.h \
+    zktestdialog.h \
+    xktestdialog.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    hsftestdialog.ui \
+    zktestdialog.ui \
+    xktestdialog.ui
 
 
 INCLUDEPATH += $$PWD/../Link/
