@@ -19,6 +19,6 @@ void HsfTestDialog::on_infoID_clicked()
 {
    qDebug()<<"get-infoID-click";
    QByteArray ret;
-   Link::Slave::slave()->getInfoDetailById(tr("92262a4e-cf96-4093-a77a-373e6b256284"), "articleId:22 ", ret);
+   Link::Slave::slave()->getInfoDetailById(tr("6bf17961-85e0-4f86-82c0-324b4f16a5f5"), 1, 11, ret);
    qDebug() << "ret " << ret;
 }

@@ -81,7 +81,7 @@ public:
     */
 
     //![3]
-    bool            getInfoDetailById(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret);
     //![3]
 
     /*

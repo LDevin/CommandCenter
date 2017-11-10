@@ -28,6 +28,7 @@
     ],
 
     "info":[
+        {"api":"info/article/detailByID", "href":"/api/v1/info/article/detailByID/","req":1,"para":{"articleId":"","userID":""},"des": "根据文章id和用户id查询文章详情"}
 
     ],
 

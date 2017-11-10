@@ -260,7 +260,7 @@ bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)
     return true;
 }
 
-bool Slave::getInfoDetailById(const QString &token,const QString &jsonDto, QByteArray &ret)
+bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
         return RETURN_FALSE;
@@ -276,6 +276,7 @@ bool Slave::getInfoDetailById(const QString &token,const QString &jsonDto, QByte
 
     QByteArray headerData = QJsonDocument(p).toJson();
 
+    QString jsonDto=QString("{userId:%1, articleId:%2}").arg(userId).arg(articleId);
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 

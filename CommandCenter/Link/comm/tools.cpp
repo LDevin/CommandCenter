@@ -127,6 +127,7 @@ bool Tools::loadLinkUrl(QJsonObject &content)
             Config::config()->setDataBagMap(key, linkDataBgMp);
 
             qDebug()<<Config::config()->dataBagMap().value("user").value("userInfo").fullUrl;
+            qDebug()<<Config::config()->dataBagMap().value("info").value("info/article/detailByID").fullUrl;
         }
     }
 
