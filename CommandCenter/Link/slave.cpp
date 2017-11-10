@@ -54,6 +54,8 @@ void Slave::setLinkConfigurationData(LinkConfiguration *linkCfg,
                                      const QString &root,
                                      const QString &api)
 {
+    Q_CHECK_PTR(linkCfg);
+
     HttpConfiguration *config = dynamic_cast<HttpConfiguration*>(linkCfg);
 
     Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[root][api];
