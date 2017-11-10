@@ -265,7 +265,6 @@ bool Slave::getBuildDevList(const QString excpetion, const QString name, int pag
     HttpConfiguration *config = new HttpConfiguration();
 
     setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDDEVLIST);
-
     LinkInterface *link = new HttpLink(config);
 
     QJsonObject p;
@@ -275,6 +274,24 @@ bool Slave::getBuildDevList(const QString excpetion, const QString name, int pag
     p.insert("selectID", selectId);
     QByteArray headerData = QJsonDocument(p).toJson();
     return slaveStartLink(link, headerData, headerData, ret);
+}
+
+bool Slave::getInfoDetailById(const QString &token,const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return RETURN_FALSE;
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_DETAIL);
+
+    LinkInterface *link = new HttpLink(config);
+    QJsonObject p;
+    p.insert("Authorization", token);
+
+    QByteArray headerData = QJsonDocument(p).toJson();
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 
 }
 

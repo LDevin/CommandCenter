@@ -80,6 +80,10 @@ public:
      * @info-controller : 资讯相关接口
     */
 
+    //![3]
+    bool            getInfoDetailById(const QString &token, const QString &jsonDto, QByteArray &ret);
+    //![3]
+
     /*
      * @device-controller : 设备相关接口
     */
