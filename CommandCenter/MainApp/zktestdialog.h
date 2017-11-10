@@ -2,6 +2,7 @@
 #define ZKTESTDIALOG_H
 
 #include <QDialog>
+#include "slave.h"
 
 namespace Ui {
 class ZkTestDialog;
@@ -14,6 +15,9 @@ class ZkTestDialog : public QDialog
 public:
     explicit ZkTestDialog(QWidget *parent = 0);
     ~ZkTestDialog();
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::ZkTestDialog *ui;

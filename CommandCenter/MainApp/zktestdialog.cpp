@@ -12,3 +12,10 @@ ZkTestDialog::~ZkTestDialog()
 {
     delete ui;
 }
+
+void ZkTestDialog::on_pushButton_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getBuildDevList("string", "string", 0, 0, ret);
+    qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
