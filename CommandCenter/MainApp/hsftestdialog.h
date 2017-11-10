@@ -1,4 +1,4 @@
-#ifndef HSFTESTDIALOG_H
+﻿#ifndef HSFTESTDIALOG_H
 #define HSFTESTDIALOG_H
 
 #include <QDialog>
@@ -14,6 +14,9 @@ class HsfTestDialog : public QDialog
 public:
     explicit HsfTestDialog(QWidget *parent = 0);
     ~HsfTestDialog();
+
+private slots:
+    void on_infoID_clicked();
 
 private:
     Ui::HsfTestDialog *ui;

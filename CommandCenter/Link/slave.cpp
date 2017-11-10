@@ -260,5 +260,24 @@ bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)
     return true;
 }
 
+bool Slave::getInfoDetailById(const QString &token,const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return RETURN_FALSE;
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_DETAIL);
+
+    LinkInterface *link = new HttpLink(config);
+
+    QJsonObject p;
+    p.insert("Authorization", token);
+
+    QByteArray headerData = QJsonDocument(p).toJson();
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
 }
 
