@@ -83,6 +83,9 @@ public:
     /*
      * @device-controller : 设备相关接口
     */
+    bool           getBuildDevList (const QString excpetion, const QString name, int pageNum, int selectId,QByteArray &ret);
+
+
 
     /*
      * @check-form-record-controller : 楼栋和单位消防检查相关接口

@@ -31,4 +31,8 @@
 
 #define LINK_API_RES_ENFORCE_DEVICEVIEW "enforce/deviceview"
 
+
+#define LINK_ROOT_API_DEV "device"
+#define LINK_API_DEV_BUILDDEVLIST "buidingdeviceList"
+
 #endif // LINKDEFINES_H
