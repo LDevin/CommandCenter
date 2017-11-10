@@ -28,12 +28,12 @@
     ],
 
     "info":[
-        {"api":"info/article/detailByID", "href":"/api/v1/info/article/detailByID/","req":1,"para":{"articleId":"","userID":""},"des": "根据文章id和用户id查询文章详情"}
+        {"api":"article/detailByID", "href":"/api/v1/info/article/detailByID/","req":1,"para":{"articleId":"","userID":""},"des": "根据文章id和用户id查询文章详情"}
 
     ],
 
     "device":[
-        {"api":"/device/buidingdeviceList", "href":"/api/v1/resource/device/buidingdeviceList","req":2,"para":{"isExcpetion": "","name": "","pageNum": 0,"selectID": 0},"des": "建筑物ID,模糊查询名称,页码,是否只显示异常设备：0否，1是"},
+        {"api":"/device/buidingdeviceList", "href":"/api/v1/resource/device/buidingdeviceList","req":2,"para":{"isExcpetion": "","name": "","pageNum": 0,"selectID": 0},"des": "建筑物ID,模糊查询名称,页码,是否只显示异常设备：0否，1是"}
 
 
 

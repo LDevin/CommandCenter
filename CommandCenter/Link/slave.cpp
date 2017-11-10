@@ -295,7 +295,7 @@ bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, Q
 
     QByteArray headerData = QJsonDocument(p).toJson();
 
-    QString jsonDto=QString("{userId:%1, articleId:%2}").arg(userId).arg(articleId);
+    QString jsonDto=QString("{articleId:%1, userID:%2}").arg(articleId).arg(userId);
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 
 }
