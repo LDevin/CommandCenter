@@ -59,7 +59,7 @@ void Slave::setLinkConfigurationData(LinkConfiguration *linkCfg,
     HttpConfiguration *config = dynamic_cast<HttpConfiguration*>(linkCfg);
 
     Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[root][api];
-
+    QString fullUrl = linkDataBag.fullUrl;
     config->setRequestUrl(QUrl(linkDataBag.fullUrl));
     config->setRequestType(static_cast<HttpConfiguration::RequestType>(linkDataBag.req));
 
@@ -263,20 +263,22 @@ bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)
 }
 
 
-bool Slave::getBuildDevList(const QString excpetion, const QString name, int pageNum, int selectId, QByteArray &ret)
+bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
+    if ( token.isEmpty() ) {
+        return RETURN_FALSE;
+    }
+
     HttpConfiguration *config = new HttpConfiguration();
 
     setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDDEVLIST);
     LinkInterface *link = new HttpLink(config);
+    QJsonObject headJson;
+    headJson.insert("Authorization", token);
 
-    QJsonObject p;
-    p.insert("isExcpetion", excpetion);
-    p.insert("name", name);
-    p.insert("pageNum", pageNum);
-    p.insert("selectID", selectId);
-    QByteArray headerData = QJsonDocument(p).toJson();
-    return slaveStartLink(link, headerData, headerData, ret);
+    QByteArray headerData = QJsonDocument(headJson).toJson();
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
 

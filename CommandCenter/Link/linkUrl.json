@@ -33,9 +33,8 @@
     ],
 
     "device":[
-        {"api":"/device/buidingdeviceList", "href":"/api/v1/resource/device/buidingdeviceList","req":2,"para":{"isExcpetion": "","name": "","pageNum": 0,"selectID": 0},"des": "建筑物ID,模糊查询名称,页码,是否只显示异常设备：0否，1是"},
 
-
+        {"api":"buidingdeviceList", "href":"/api/v1/device/buidingdeviceList","req":2,"para":{"isExcpetion": "","name": "","pageNum": 0,"selectID": 0},"des": "建筑物ID,模糊查询名称,页码,是否只显示异常设备：0否，1是"}
 
     ],
 
