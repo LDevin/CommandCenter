@@ -262,6 +262,10 @@ bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)
 
 bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
+    if ( token.isEmpty() ) {
+        return RETURN_FALSE;
+    }
+
     HttpConfiguration *config = new HttpConfiguration();
 
     setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDDEVLIST);
