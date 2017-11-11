@@ -50,26 +50,49 @@ void Slave::slaveFinishedWork()
 }
 
 /*****************link 配置*******************/
-void Slave::setLinkConfigurationData(LinkConfiguration *linkCfg,
+bool Slave::setLinkConfigurationData(LinkConfiguration *linkCfg,
                                      const QString &root,
-                                     const QString &api)
+                                     const QString &api, QByteArray &ret)
 {
-    Q_CHECK_PTR(linkCfg);
-
+    if (!linkCfg) {
+        setHttpApiOtherErrMsg("link instance is NULL!", LINK_INVOKE_CONFIG_NULL, ret);
+        return RETURN_FALSE;
+    }
     HttpConfiguration *config = dynamic_cast<HttpConfiguration*>(linkCfg);
-
     Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[root][api];
-    QString fullUrl = linkDataBag.fullUrl;
+
+    if (linkDataBag.fullUrl.isEmpty() ) {
+        setHttpApiOtherErrMsg("link url is empty!", LINK_URL_IS_EMPTY, ret);
+        return RETURN_FALSE;
+    }
+
+    if (linkDataBag.req < 1) {
+        setHttpApiOtherErrMsg("HTTP 请求方式get 或者post 有问题!", LINK_HTTP_REQ_TYPE_ERR, ret);
+        return RETURN_FALSE;
+    }
+
+    if (linkDataBag.api.isEmpty()) {
+        setHttpApiOtherErrMsg("http api的名字有误!", LINK_HTTP_API_NAME_ERR, ret);
+        return RETURN_FALSE;
+    }
+
     config->setRequestUrl(QUrl(linkDataBag.fullUrl));
     config->setRequestType(static_cast<HttpConfiguration::RequestType>(linkDataBag.req));
 
     config->setTimeOutMsg(callTimeOutMsg());
+
+    return RETURN_OK;
 }
 
 bool Slave::slaveStartLink(LinkInterface *link,
                            const QByteArray &headerData,
                            const QByteArray &requestData, QByteArray &ret)
 {
+    if ( !link ) {
+        setHttpApiOtherErrMsg("link instance is NULL!", LINK_INVOKE_CONFIG_NULL, ret);
+        return RETURN_FALSE;
+    }
+
     QEventLoop eventLoop;
     connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
 
@@ -77,20 +100,43 @@ bool Slave::slaveStartLink(LinkInterface *link,
     link->startRequest(requestData);
 
     eventLoop.exec();
-    qDebug()<<"link data: "<<link->contentData();
+    LOG("link data: " + link->contentData());
+
     ret = link->contentData();
     destroyLink(link);
 
     return RETURN_OK;
 }
 
+void Slave::setHttpApiOtherErrMsg(const QString &msg, int code, QByteArray &ret)
+{
+    if (Config::config()->httpApiOtherErrMsg().isEmpty()) {
+        LOG("httpApiOtherErrMsg from tools.json file is empty!");
+        return;
+    }
+
+    QJsonObject obj;
+    if (!JsonHelper::toObject(Config::config()->httpApiOtherErrMsg(), obj)) {
+        LOG("httpApiOtherErrMsg from tools.json file is empty!");
+        return;
+    }
+
+    obj.insert("code", code);
+    obj.insert("msg", msg);
+
+    ret = QJsonDocument(obj).toJson();
+    LOG(ret);
+}
 
 void Slave::destroyLink(LinkInterface *link)
 {
-    link->deleteLater();
-    delete link;
+    if ( link ) {
+        link->deleteLater();
+        delete link;
+    }
+
     link = NULL;
-    qDebug() << (link ? "destroy link failed! " : "destroy link success!");
+    LOG((link ? "destroy link failed! " : "destroy link success!"))
 }
 /*****************link 配置*******************/
 
@@ -100,12 +146,17 @@ bool Slave::getOauthToken(const QString &user, const QString &ps,
                           const QString &clientId, QByteArray &ret)
 {
     if ( user.isEmpty() || ps.isEmpty() || clientId.isEmpty() ) {
+        setHttpApiOtherErrMsg("参数为空", LINK_INVOKE_OTHER_ERR, ret);
         return RETURN_FALSE;
     }
 
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_TOKEN, LINK_API_OAUTH_TOKEN);
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_TOKEN, LINK_API_OAUTH_TOKEN, ret)) {
+        return RETURN_FALSE;
+    }
+
     config->setContentType(HttpConfiguration::XwwwType);
 
     LinkInterface *link = new HttpLink(config);
@@ -123,11 +174,14 @@ bool Slave::getOauthToken(const QString &user, const QString &ps,
 bool Slave::getUserInfo(const QString &token, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
+        setHttpApiOtherErrMsg("token为空", LINK_INVOKE_OTHER_ERR, ret);
         return RETURN_FALSE;
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_USER, LINK_API_USERINFO);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_USER, LINK_API_USERINFO, ret)) {
+        return RETURN_FALSE;
+    }
 
     LinkInterface *link = new HttpLink(config);
 
@@ -142,11 +196,14 @@ bool Slave::getUserInfo(const QString &token, QByteArray &ret)
 bool Slave::getDatalinelist(const QString &token, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
+        setHttpApiOtherErrMsg("token为空", LINK_INVOKE_OTHER_ERR, ret);
         return RETURN_FALSE;
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_USER, LINK_API_DATALINE_LIST);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_USER, LINK_API_DATALINE_LIST, ret)) {
+        return RETURN_FALSE;
+    }
 
     LinkInterface *link = new HttpLink(config);
 
@@ -161,11 +218,14 @@ bool Slave::getDatalinelist(const QString &token, QByteArray &ret)
 bool Slave::getResBuildBasicDetailById(const QString &token, long id, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
+        setHttpApiOtherErrMsg("token为空", LINK_INVOKE_OTHER_ERR, ret);
         return RETURN_FALSE;
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_BUILD_BASIC_DETAIL);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_BUILD_BASIC_DETAIL, ret)) {
+        return RETURN_FALSE;
+    }
 
     LinkInterface *link = new HttpLink(config);
 
@@ -180,11 +240,14 @@ bool Slave::getResBuildBasicDetailById(const QString &token, long id, QByteArray
 bool Slave::getResBuildByName(const QString &token, const QString &name, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
+        setHttpApiOtherErrMsg("token为空", LINK_INVOKE_OTHER_ERR, ret);
         return RETURN_FALSE;
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_BUILD_SCH_BY_NAME);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_BUILD_SCH_BY_NAME, ret)) {
+        return RETURN_FALSE;
+    }
 
     LinkInterface *link = new HttpLink(config);
 
@@ -198,11 +261,14 @@ bool Slave::getResBuildByName(const QString &token, const QString &name, QByteAr
 bool Slave::addResEnforce(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
+        setHttpApiOtherErrMsg("token为空", LINK_INVOKE_OTHER_ERR, ret);
         return RETURN_FALSE;
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_ADD);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_ADD, ret)) {
+        return RETURN_FALSE;
+    }
 
     LinkInterface *link = new HttpLink(config);
 
@@ -216,11 +282,14 @@ bool Slave::addResEnforce(const QString &token, const QString &jsonDto, QByteArr
 bool Slave::getResEnforceDetail(const QString &token, long id, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
+         setHttpApiOtherErrMsg("token为空", LINK_INVOKE_OTHER_ERR, ret);
         return RETURN_FALSE;
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_ADD);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_ADD, ret)) {
+        return RETURN_FALSE;
+    }
 
     LinkInterface *link = new HttpLink(config);
 
@@ -271,7 +340,7 @@ bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteA
 
     HttpConfiguration *config = new HttpConfiguration();
 
-    setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDDEVLIST);
+    setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDDEVLIST, ret);
     LinkInterface *link = new HttpLink(config);
     QJsonObject headJson;
     headJson.insert("Authorization", token);
@@ -289,7 +358,7 @@ bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, Q
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_DETAIL);
+    setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_DETAIL, ret);
 
     LinkInterface *link = new HttpLink(config);
     QJsonObject p;

@@ -112,9 +112,9 @@ Q_SIGNALS:
 
 private:
     void            destroyLink(LinkInterface* link);
-    void            setLinkConfigurationData(LinkConfiguration *linkCfg,
+    bool            setLinkConfigurationData(LinkConfiguration *linkCfg,
                                              const QString &root,
-                                             const QString &api);
+                                             const QString &api, QByteArray &ret);
 
     /**************
      *所有的接口都会走这个函数，让奴隶去做
@@ -122,6 +122,8 @@ private:
     bool            slaveStartLink(LinkInterface *link,
                                    const QByteArray &headerData,
                                    const QByteArray &requestData, QByteArray &ret);
+
+    void            setHttpApiOtherErrMsg(const QString &msg, int code, QByteArray &ret);
 };
 }
 

@@ -80,4 +80,15 @@ QString Config::httpOverTimeErrMsg() const
 {
     return _httpOverTimeErrMsg;
 }
+
+QString Config::httpApiOtherErrMsg() const
+{
+    return _httpApiOtherErrMsg;
+}
+
+void Config::setHttpApiOtherErrMsg(QString &msg)
+{
+    _httpApiOtherErrMsg = msg;
+}
+
 }

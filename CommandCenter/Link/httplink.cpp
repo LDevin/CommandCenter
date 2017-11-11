@@ -1,5 +1,6 @@
 ﻿#include "httplink.h"
 #include "helper/jsonhelper.h"
+#include "comm/linkdefines.h"
 
 
 HttpLink::HttpLink(HttpConfiguration *config) : _linkDone(false)
@@ -60,7 +61,6 @@ void HttpLink::startRequest(const QByteArray &requestData)
 void HttpLink::startHttpRequest(const QByteArray &data)
 {
     QString href = _config->urlToString();
-    qDebug()<<href;
 
     if (href.isEmpty()) return;
 
@@ -79,12 +79,13 @@ void HttpLink::startHttpRequest(const QByteArray &data)
         reply = qam.post(req, data);
     }
 
-    qDebug()<<"req url "<<req.url();
+    LOG("req url:" + req.url().toString())
+
     if ( NULL == reply )return;
 
     connect(reply, &QNetworkReply::finished, this, &LinkInterface::linkFinished);
     connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
-            [=](QNetworkReply::NetworkError code){ qDebug()<< (int)code;});
+            [=](QNetworkReply::NetworkError code){ LOG((int)code) ;});
 
     start();
 }
@@ -95,11 +96,11 @@ void HttpLink::run()
         if (timeOut()) {
             setQuit(true);
             linkTimeOutReply();
-            qDebug() << "link request time out!";
+            LOG("link request time out!")
         }
     }
 
-    qDebug() << "link thread exec!";
+    LOG("link thread exec!")
 }
 
 void HttpLink::timerEvent(QTimerEvent *event)
@@ -114,15 +115,15 @@ void HttpLink::linkFinished()
 {
     QNetworkReply *reply = (QNetworkReply *)sender();
 
-    qDebug() << reply->header(QNetworkRequest::ContentTypeHeader);
-    qDebug() << reply->rawHeaderPairs();
+    LOG(reply->header(QNetworkRequest::ContentTypeHeader))
+    LOG(reply->rawHeaderPairs())
 
     QByteArray  data = reply->readAll();
 
     setContentData(data);
     emit readFinished(data);
 
-    qDebug() << data;
+    LOG("linkFinished: " + data);
 
     reply->deleteLater();
     if (reply) {
