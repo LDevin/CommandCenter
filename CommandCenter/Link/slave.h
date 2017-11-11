@@ -124,6 +124,7 @@ private:
                                    const QByteArray &requestData, QByteArray &ret);
 
     void            setHttpApiOtherErrMsg(const QString &msg, int code, QByteArray &ret);
+    bool            returnHttpOtherErrMsg(const QString &msg, int code, QByteArray &ret);
 };
 }
 

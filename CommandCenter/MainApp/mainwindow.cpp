@@ -18,8 +18,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QByteArray ret;
-    Link::Slave::slave()->getUserInfo(tr("c341cbe3-95d0-442c-95a0-3a61e224d21c"), ret);
+    QByteArray ret;//c341cbe3-95d0-442c-95a0-3a61e224d21c
+    Link::Slave::slave()->getUserInfo(tr(""), ret);
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
 
@@ -32,8 +32,8 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    QByteArray ret;
-    Link::Slave::slave()->getDatalinelist(tr("c341cbe3-95d0-442c-95a0-3a61e224d21c"), ret);
+    QByteArray ret;//c341cbe3-95d0-442c-95a0-3a61e224d21c
+    Link::Slave::slave()->getDatalinelist(tr(""), ret);
     qDebug() << "ret " << ret;
 }
 
