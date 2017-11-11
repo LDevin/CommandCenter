@@ -63,16 +63,19 @@ bool Slave::setLinkConfigurationData(LinkConfiguration *linkCfg,
 
     if (linkDataBag.fullUrl.isEmpty() ) {
         setHttpApiOtherErrMsg("link url is empty!", LINK_URL_IS_EMPTY, ret);
+        config->deleteLater();
         return RETURN_FALSE;
     }
 
     if (linkDataBag.req < 1) {
         setHttpApiOtherErrMsg("HTTP 请求方式get 或者post 有问题!", LINK_HTTP_REQ_TYPE_ERR, ret);
+        config->deleteLater();
         return RETURN_FALSE;
     }
 
     if (linkDataBag.api.isEmpty()) {
         setHttpApiOtherErrMsg("http api的名字有误!", LINK_HTTP_API_NAME_ERR, ret);
+        config->deleteLater();
         return RETURN_FALSE;
     }
 
