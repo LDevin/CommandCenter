@@ -600,7 +600,7 @@ bool  Slave::getBuildView(const QString &token, const QString &jsonDto, QByteArr
 
     HttpConfiguration *config = new HttpConfiguration();
 
-    setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDVIEW);
+    setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDVIEW, ret);
     LinkInterface *link = new HttpLink(config);
     QJsonObject headJson;
     headJson.insert("Authorization", token);
@@ -617,7 +617,7 @@ bool Slave::getDevDetail(const QString &token, const QString &devId, QByteArray 
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DETAIL);
+    setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DETAIL, ret);
 
     LinkInterface *link = new HttpLink(config);
 
