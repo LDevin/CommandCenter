@@ -82,6 +82,7 @@ public:
 
     //![3]
     bool            getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret);
+    bool            getInfoexcellentRecommend(const QString &token, QByteArray &ret);
     //![3]
 
     /*

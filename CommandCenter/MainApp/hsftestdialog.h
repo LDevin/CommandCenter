@@ -18,6 +18,8 @@ public:
 private slots:
     void on_infoID_clicked();
 
+    void on_infoID_S_clicked();
+
 private:
     Ui::HsfTestDialog *ui;
 };
