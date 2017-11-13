@@ -48,7 +48,13 @@ void HttpLink::setContentType(HttpConfiguration::RequestContentType type)
     }
 
 #if MUTILEPLE
-    else {}
+    else if ( type == HttpConfiguration::FormDataType ) {
+        req.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("multipart/form-data"));
+    } else if ( type == HttpConfiguration::XwwwType ) {
+        req.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/x-www-form-urlencoded"));
+    } else if ( type == HttpConfiguration::TextXmlType ) {
+        req.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/xml"));
+    }
 #endif
 
 }
