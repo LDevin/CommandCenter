@@ -66,9 +66,7 @@ void HttpLink::startRequest(const QByteArray &requestData)
 
 void HttpLink::startHttpRequest(const QByteArray &data)
 {
-    QString href = _config->urlToString();
-
-    if (href.isEmpty()) return;
+    Q_ASSERT( _config != Q_NULLPTR);
 
     if (isRunning()) return;
     resetTimer();
@@ -76,6 +74,7 @@ void HttpLink::startHttpRequest(const QByteArray &data)
     setContentType(_config->contentType());
 
     QNetworkReply *reply;
+    QString href = _config->urlToString();
 
     if ( _config->requestType() == HttpConfiguration::GET) {
         setUrl(QUrl(href.append(data)));
@@ -87,11 +86,11 @@ void HttpLink::startHttpRequest(const QByteArray &data)
 
     LOG("req url:" + req.url().toString());
 
-    if ( NULL == reply )return;
-
-    connect(reply, &QNetworkReply::finished, this, &LinkInterface::linkFinished);
-    connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
-            [=](QNetworkReply::NetworkError code){ LOG((int)code) ;});
+    if ( NULL != reply ) {
+        connect(reply, &QNetworkReply::finished, this, &LinkInterface::linkFinished);
+        connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
+                [=](QNetworkReply::NetworkError code){ LOG((int)code) ;});
+    }
 
     start();
 }
