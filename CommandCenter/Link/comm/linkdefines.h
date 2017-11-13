@@ -34,6 +34,7 @@
 
 
 #define LINK_API_RES_ENFORCE_DEVICEVIEW "enforce/deviceview"
+#define LINK_API_RES_ENFORCE_LIST "enforce/list"
 
 
 

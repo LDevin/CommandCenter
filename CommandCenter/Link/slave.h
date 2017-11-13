@@ -74,6 +74,9 @@ public:
     bool            getResEnforceDetail(const QString &token, long id, QByteArray &ret);
 
     bool            getResEnforceDeviceView(const QString &token, long supervisorID, QByteArray &ret);
+
+    bool            getResEnforceList(const QString& token, const QString& name,
+                                      int type, int pageNum, QByteArray& ret);
     //![2]
 
     /*

@@ -312,6 +312,36 @@ bool Slave::getResEnforceDeviceView(const QString &token, long supervisorID, QBy
     return slaveStartLink(link, headerData, body.toLatin1(), ret);
 }
 
+bool Slave::getResEnforceList(const QString &token, const QString &name,
+                              int type, int pageNum, QByteArray &ret)
+{
+    if ( token.isEmpty() || pageNum < 1) {
+        return returnHttpOtherErrMsg("token为空 或页码错误", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_LIST, ret)) {
+        return RETURN_FALSE;
+    }
+
+    config->setContentType(HttpConfiguration::XwwwType);
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    QString body = tr("pageNum=%1").arg(pageNum);
+    if ( !name.isEmpty() ) {
+        body.append(tr("&name=%1").arg(name));
+    }
+
+    if ( type > 0 ) {
+        body.append(tr("&type=%1").arg(type));
+    }
+
+    return slaveStartLink(link, headerData, body.toLatin1(), ret);
+}
 
 bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteArray &ret)
 {

@@ -107,3 +107,11 @@ void MainWindow::on_pushButton_12_clicked()
     Link::Slave::slave()->getResEnforceDeviceView(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), 895,ret);
     qDebug() << tr("ret fdfd ").toLocal8Bit() << ret;
 }
+
+void MainWindow::on_pushButton_13_clicked()
+{
+    //执法队伍列表
+    QByteArray ret;
+    Link::Slave::slave()->getResEnforceList(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), "dfd", 1, 1,ret);
+    qDebug() << tr("ret zzzzzz ").toLocal8Bit() << ret;
+}
