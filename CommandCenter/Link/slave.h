@@ -1,12 +1,11 @@
-﻿#ifndef SLAVE_H
-#define SLAVE_H
-
-/*
+﻿/*
  * @author DevinLai
  * @email  laidawang@zds-t.com
  * @date   2017/11/06
 */
 
+#ifndef SLAVE_H
+#define SLAVE_H
 #include <QObject>
 #include <QMutex>
 #include "link_global.h"
@@ -73,7 +72,34 @@ public:
     bool            addResEnforce(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool            getResEnforceDetail(const QString &token, long id, QByteArray &ret);
 
-    bool            getResEnforceDeviceView(long supervisorID, QByteArray &ret);
+    bool            getResEnforceDeviceView(const QString &token, long supervisorID, QByteArray &ret);
+
+    bool            getResEnforceList(const QString& token, const QString& name,
+                                      int type, int pageNum, QByteArray& ret);
+
+    bool            addResEnforcePerson(const QString& token, long enforceId,
+                                        const QString &jsonDto, QByteArray& ret);
+
+    bool            getResEnforcePersonList(const QString& token, long enforceId,
+                                            const QString &name, int pageNum, QByteArray& ret);
+
+    bool            getResEnforcePersonDetail(const QString& token, long enforceid,
+                                              long personid, QByteArray& ret);
+
+    bool            updateResEnforce(const QString& token, const QString &jsonDto, QByteArray& ret);
+
+    bool            addResExtinguisher(const QString& token, const QString &jsonDto, QByteArray& ret);
+
+    bool            getResExtinguisherDetail(const QString& token, long id, QByteArray& ret);
+
+    bool            getResExtinguisherList(const QString& token, const QString& code, long relatedID,
+                                           int type, const QString& startTime, const QString& endTime,
+                                           int pageNum, QByteArray& ret);
+
+    bool            updateResExtinguisher(const QString& token, const QString& jsonDto, QByteArray& ret);
+
+    bool            addResFirePlug(const QString& token, const QString& jsonDto, QByteArray& ret);
+    bool            getResFirePlugDetail(const QString& token, long id, QByteArray& ret);
     //![2]
 
     /*
@@ -82,6 +108,8 @@ public:
 
     //![3]
     bool            getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret);
+    bool            getInfoExcellentRecommend(const QString &token, QByteArray &ret);
+    bool            getInfolist(const QString &token, const QString &jsonDto, QByteArray &ret);
     //![3]
 
     /*
@@ -114,9 +142,9 @@ Q_SIGNALS:
 
 private:
     void            destroyLink(LinkInterface* link);
-    void            setLinkConfigurationData(LinkConfiguration *linkCfg,
+    bool            setLinkConfigurationData(LinkConfiguration *linkCfg,
                                              const QString &root,
-                                             const QString &api);
+                                             const QString &api, QByteArray &ret);
 
     /**************
      *所有的接口都会走这个函数，让奴隶去做
@@ -124,6 +152,9 @@ private:
     bool            slaveStartLink(LinkInterface *link,
                                    const QByteArray &headerData,
                                    const QByteArray &requestData, QByteArray &ret);
+
+    void            setHttpApiOtherErrMsg(const QString &msg, int code, QByteArray &ret);
+    bool            returnHttpOtherErrMsg(const QString &msg, int code, QByteArray &ret);
 };
 }
 

@@ -34,6 +34,10 @@ public:
     static bool loadLinkUrl(QJsonObject &content);
 
     static bool loadToolsJson(QJsonObject &toolsData);
+
+    static bool setLinkToken(const QString &token, QJsonObject &obj);
+    static bool setLinkToken(const QString &token, QByteArray &json);
+
 };
 }
 #endif // TOOLS_H

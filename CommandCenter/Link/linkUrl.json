@@ -19,16 +19,26 @@
         {"api":"enforce/detail", "href":"/api/v1/resource/enforce/detail/","req":1,"para":{"id":""},"des": "获取执法队伍详情"},
         {"api":"enforce/deviceview", "href":"/api/v1/resource/enforce/deviceview","req":2,"para":{"supervisorID":""},"des": "统计分析执法伍"},
         {"api":"enforce/list", "href":"/api/v1/resource/enforce/list","req":2,"para":{"name":"","type":"","pageNum":1},"des": "执法队伍列表"},
-        {"api":"enforce/person/list", "href":"/api/v1/resource/enforce/person/list/","req":1,"para":{"enforceid":"","name":"","pageNum":1},"des": "获取执法队伍人员信息列表"},
         {"api":"enforce/update", "href":"/api/v1/resource/enforce/update","req":2,"para":{},"des": "修改执法队伍"},
-        {"api":"fireplug/add", "href":"/api/v1/resource/fireplug/add","req":2,"para":{},"des": "新增消火栓"},
+        {"api":"enforce/person/add", "href":"/api/v1/resource/enforce/person/add","req":2,"para":{"enforceId":"", "dto":{}},"des": "新增执法人员"},
+        {"api":"enforce/person/detail", "href":"/api/v1/resource/enforce/person/detail/","req":1,"para":{"enforceId":"", "personid":""},"des": "查询执法人员详情"},
+        {"api":"enforce/person/list", "href":"/api/v1/resource/enforce/person/list/","req":1,"para":{"enforceid":"","name":"","pageNum":1},"des": "获取执法队伍人员信息列表"},
+
+        {"api":"extinguisher/add", "href":"/api/v1/resource/extinguisher/add","req":2,"para":{"apiFireExtinguisherDTO":{}},"des": "新增灭火器"},
+        {"api":"extinguisher/detail", "href":"/api/v1/resource/extinguisher/detail/","req":1,"para":{"id":""},"des": "获取灭火器详情"},
+        {"api":"extinguisher/list", "href":"/api/v1/resource/extinguisher/list","req":2,"para":{},"des": "灭火器列表"},
+        {"api":"extinguisher/update", "href":"/api/v1/resource/extinguisher/update","req":2,"para":{"apiFireExtinguisherDTO":{}},"des": "修改灭火器"},
+        {"api":"fireplug/add", "href":"/api/v1/resource/fireplug/add","req":2,"para":{"apiFirePlugDTO":{}},"des": "新增消火栓"},
         {"api":"fireplug/detail", "href":"/api/v1/resource/fireplug/detail/","req":1,"para":{"id":""},"des": "获取消火栓详情"}
 
 
     ],
 
     "info":[
-        {"api":"info/article/detailByID", "href":"/api/v1/info/article/detailByID/","req":1,"para":{"articleId":"","userID":""},"des": "根据文章id和用户id查询文章详情"}
+        {"api":"article/detailByID", "href":"/api/v1/info/article/detailByID/","req":1,"para":{"articleId":"","userID":""},"des": "根据文章id和用户id查询文章详情"},
+        {"api":"article/excellentRecommend", "href":"/api/v1/info/article/excellentRecommend/","req":1,"para":{},"des": "查看精彩推荐"},
+
+        {"api":"article/list", "href":"/api/v1/info/article/list/","req":1,"para":{"pageNum":"", "title":"", "classifyID1":"", "classifyID2":""},"des": "根据相关分类类别获取文章列表"}
 
     ],
 

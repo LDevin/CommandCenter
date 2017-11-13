@@ -27,29 +27,32 @@ class Config
 {
 
 public:
-    static      Config* config();
+    static                                      Config* config();
 
-    void        setRootKeys(QStringList rootKeys);
-    void        setApiNames(QStringList apiNames);
+    void                                        setRootKeys(QStringList rootKeys);
+    void                                        setApiNames(QStringList apiNames);
 
-    void        appendRootKey(QString key);
-    void        appendApiName(QString name);
+    void                                        appendRootKey(QString key);
+    void                                        appendApiName(QString name);
 
-    void        setRootUrl(QString &url);
-    QString     rootUrl() const { return _rootUrl; }
+    void                                        setRootUrl(QString &url);
+    QString                                     rootUrl() const { return _rootUrl; }
 
-    QStringList rootKeys() const { return _rootKeys; }
-    QStringList allApiNames() const { return _allApiNames; }
+    QStringList                                 rootKeys() const { return _rootKeys; }
+    QStringList                                 allApiNames() const { return _allApiNames; }
 
-    void setDataBagMap(QString rootKey, QMap<QString, LinkDataBag> bagMap);
+    void                                        setDataBagMap(QString rootKey, QMap<QString, LinkDataBag> bagMap);
 
-    QMap<QString, QMap<QString, LinkDataBag>> dataBagMap() const;
-    QMap<QString, LinkDataBag> linkBagMap(QString &rootKey) const;
+    QMap<QString, QMap<QString, LinkDataBag>>   dataBagMap() const;
+    QMap<QString, LinkDataBag>                  linkBagMap(QString &rootKey) const;
 
-    LinkDataBag linkBag(QString &rootKey, QString &api) const;
+    LinkDataBag                                 linkBag(QString &rootKey, QString &api) const;
 
-    QString httpOverTimeErrMsg() const;
-    void    setHttpOverTimeErrMsg(QString msg);
+    QString                                     httpOverTimeErrMsg() const;
+    void                                        setHttpOverTimeErrMsg(QString msg);
+
+    QString                                     httpApiOtherErrMsg() const;
+    void                                        setHttpApiOtherErrMsg(QString &msg);
 
 private:
 
@@ -58,19 +61,21 @@ protected:
     virtual ~Config();
 
 private:
-    static Config*                            s_config;
+    static Config*                              s_config;
 
     //[0] http 接口相关的
-    QString                                   _rootUrl;
-    QStringList                               _rootKeys;
-    QStringList                               _allApiNames;
+    QString                                     _rootUrl;
+    QStringList                                 _rootKeys;
+    QStringList                                 _allApiNames;
 
-    QMap<QString, QMap<QString, LinkDataBag>> _dataBgMap;
+    QMap<QString, QMap<QString, LinkDataBag>>   _dataBgMap;
     //[0] http 接口相关的
 
     //[1]访问接口超市的msg,从tools.json文件获取
-    QString                                   _httpOverTimeErrMsg;
+    QString                                     _httpOverTimeErrMsg;
     //[1]访问接口超市的msg,从tools.json文件获取
+
+    QString                                     _httpApiOtherErrMsg;
 
 
 };

@@ -28,7 +28,7 @@ Tools::Tools()
         if (JsonHelper::toObject(data, content)) {
             loadLinkUrl(content);
         } else {
-            qDebug() << "load LinkUrl.json failed, file is not json!";
+            LOG("load LinkUrl.json failed, file is not json!")
         }
 
     }
@@ -38,7 +38,7 @@ Tools::Tools()
         if (JsonHelper::toObject(data, content)) {
             loadToolsJson(content);
         } else {
-            qDebug() << "load tools.json failed, file is not json!";
+            LOG("load tools.json failed, file is not json!")
         }
     }
 
@@ -75,7 +75,7 @@ bool Tools::loadLinkUrl(QJsonObject &content)
     if (content.isEmpty()) return false;
 
     QStringList rootKeys = content.keys();
-    qDebug()<<rootKeys;
+    LOG(rootKeys)
 
     if ( rootKeys.length() < 1 ) {
         return false;
@@ -125,14 +125,10 @@ bool Tools::loadLinkUrl(QJsonObject &content)
             }
 
             Config::config()->setDataBagMap(key, linkDataBgMp);
-
-            qDebug()<<Config::config()->dataBagMap().value("user").value("userInfo").fullUrl;
-            qDebug()<<Config::config()->dataBagMap().value("info").value("info/article/detailByID").fullUrl;
         }
     }
 
-    qDebug()<<"link url root keys count is: "<<Config::config()->dataBagMap().size();
-
+    LOG("link url root keys count is: " + QString::number(Config::config()->dataBagMap().size()));
     return true;
 }
 
@@ -141,7 +137,7 @@ bool Tools::loadToolsJson(QJsonObject &toolsData)
     if (toolsData.isEmpty()) return false;
 
     QStringList toolsKeys = toolsData.keys();
-    qDebug()<<toolsKeys;
+    LOG(toolsKeys);
 
     if ( toolsKeys.length() < 1 ) {
         return false;
@@ -155,6 +151,31 @@ bool Tools::loadToolsJson(QJsonObject &toolsData)
     QByteArray httpMsg = doc.toJson();
     Config::config()->setHttpOverTimeErrMsg(QString::fromLatin1(httpMsg));
 
+    QJsonValue httpApiOtherErrVal = toolsData["httpApiOtherErr"];
+
+    if (!httpApiOtherErrVal.isObject()) return false;
+
+    QJsonDocument docc(httpApiOtherErrVal.toObject());
+    QByteArray httpOtherMsg = docc.toJson();
+    Config::config()->setHttpApiOtherErrMsg(QString::fromLatin1(httpOtherMsg));
+
+    return true;
+}
+
+bool Tools::setLinkToken(const QString &token, QJsonObject &obj)
+{
+    if (token.isEmpty()) return false;
+    obj.insert(LINK_TOKEN_KEY, token);
+    return true;
+}
+
+bool Tools::setLinkToken(const QString &token, QByteArray &json)
+{
+    if (token.isEmpty()) return false;
+    QJsonObject obj;
+    obj.insert(LINK_TOKEN_KEY, token);
+
+    json = QJsonDocument(obj).toJson();
     return true;
 }
 
