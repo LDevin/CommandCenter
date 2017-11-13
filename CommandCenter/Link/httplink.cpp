@@ -85,7 +85,7 @@ void HttpLink::startHttpRequest(const QByteArray &data)
         reply = qam.post(req, data);
     }
 
-    LOG("req url:" + req.url().toString())
+    LOG("req url:" + req.url().toString());
 
     if ( NULL == reply )return;
 
@@ -122,9 +122,9 @@ void HttpLink::linkFinished()
     QNetworkReply *reply = (QNetworkReply *)sender();
 
     LOG(reply->header(QNetworkRequest::ContentTypeHeader))
-    LOG(reply->rawHeaderPairs())
+            LOG(reply->rawHeaderPairs())
 
-    QByteArray  data = reply->readAll();
+            QByteArray  data = reply->readAll();
 
     setContentData(data);
     emit readFinished(data);
