@@ -290,34 +290,26 @@ bool Slave::getResEnforceDetail(const QString &token, long id, QByteArray &ret)
 }
 
 
-bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)
+bool Slave::getResEnforceDeviceView(const QString &token, long supervisorID, QByteArray &ret)
 {
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token为空", LINK_INVOKE_OTHER_ERR, ret);
+    }
 
     HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_DEVICEVIEW, ret)) {
+        return RETURN_FALSE;
+    }
 
-    Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[LINK_ROOT_API_RES][LINK_API_RES_ENFORCE_DEVICEVIEW];
-
-    config->setRequestUrl(QUrl(linkDataBag.fullUrl));
-    config->setRequestType(static_cast<HttpConfiguration::RequestType>(linkDataBag.req));
-
-    config->setTimeOutMsg(callTimeOutMsg());
+    config->setContentType(HttpConfiguration::XwwwType);
 
     LinkInterface *link = new HttpLink(config);
 
-    QEventLoop eventLoop;
-    connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
 
-    QJsonObject p = QJsonDocument::fromVariant(QVariant(linkDataBag.para)).object();
-    p.remove("supervisorID");
-    p.insert("supervisorID", supervisorID);
-
-    link->startRequest(QJsonDocument(p).toJson());
-    eventLoop.exec();
-    qDebug()<<"link data: "<<link->contentData();
-    ret = link->contentData();
-    destroyLink(link);
-
-    return true;
+    QString body = tr("supervisorID=%1").arg(supervisorID);
+    return slaveStartLink(link, headerData, body.toLatin1(), ret);
 }
 
 

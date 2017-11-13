@@ -19,35 +19,33 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     QByteArray ret;//c341cbe3-95d0-442c-95a0-3a61e224d21c
-    Link::Slave::slave()->getUserInfo(tr("92262a4e-cf96-4093-a77a-373e6b256284"), ret);
+    Link::Slave::slave()->getUserInfo(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), ret);
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    QByteArray ret;
-    Link::Slave::slave()->getResEnforceDeviceView(666, ret);
-    qDebug() << "ret " << ret;
+
 }
 
 void MainWindow::on_pushButton_3_clicked()
 {
     QByteArray ret;//c341cbe3-95d0-442c-95a0-3a61e224d21c
-    Link::Slave::slave()->getDatalinelist(tr("92262a4e-cf96-4093-a77a-373e6b256284"), ret);
+    Link::Slave::slave()->getDatalinelist(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), ret);
     qDebug() << "ret " << ret;
 }
 
 void MainWindow::on_pushButton_4_clicked()
 {
     QByteArray ret;
-    Link::Slave::slave()->getResBuildBasicDetailById(tr("c341cbe3-95d0-442c-95a0-3a61e224d21c"), 555, ret);
+    Link::Slave::slave()->getResBuildBasicDetailById(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), 555, ret);
     qDebug() << "ret " << ret;
 }
 
 void MainWindow::on_pushButton_5_clicked()
 {
     QByteArray ret;
-    Link::Slave::slave()->getResBuildByName(tr("92262a4e-cf96-4093-a77a-373e6b256284"), "fsadf", ret);
+    Link::Slave::slave()->getResBuildByName(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), "fsadf", ret);
     qDebug() << "ret " << ret;
 }
 
@@ -100,4 +98,12 @@ void MainWindow::on_pushButton_11_clicked()
     //辛奎
     xkDlg = new XkTestDialog(this);
     xkDlg->show();
+}
+
+void MainWindow::on_pushButton_12_clicked()
+{
+    //统计分析执法伍
+    QByteArray ret;
+    Link::Slave::slave()->getResEnforceDeviceView(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), 895,ret);
+    qDebug() << tr("ret fdfd ").toLocal8Bit() << ret;
 }
