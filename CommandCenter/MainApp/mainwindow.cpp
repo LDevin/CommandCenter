@@ -115,3 +115,35 @@ void MainWindow::on_pushButton_13_clicked()
     Link::Slave::slave()->getResEnforceList(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), "dfd", 1, 1,ret);
     qDebug() << tr("ret zzzzzz ").toLocal8Bit() << ret;
 }
+
+void MainWindow::on_pushButton_14_clicked()
+{
+    //新增执法人员
+    QByteArray ret;
+    Link::Slave::slave()->addResEnforcePerson(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), 454, "{}",ret);
+    qDebug() << tr("ret fffff ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_15_clicked()
+{
+    //查询执法人员详情
+    QByteArray ret;
+    Link::Slave::slave()->getResEnforcePersonDetail(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), 454, 236,ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_16_clicked()
+{
+    //获取执法队伍人员信息列表
+    QByteArray ret;
+    Link::Slave::slave()->getResEnforcePersonList(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), 454, "236", 1,ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_17_clicked()
+{
+    //修改执法队伍
+    QByteArray ret;
+    Link::Slave::slave()->updateResEnforce(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), "{}",ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}

@@ -35,6 +35,11 @@
 
 #define LINK_API_RES_ENFORCE_DEVICEVIEW "enforce/deviceview"
 #define LINK_API_RES_ENFORCE_LIST "enforce/list"
+#define LINK_API_RES_ENFORCE_PERSON_UPDATE "enforce/update"
+
+#define LINK_API_RES_ENFORCE_PERSON_ADD "enforce/person/add"
+#define LINK_API_RES_ENFORCE_PERSON_LIST "enforce/person/list"
+#define LINK_API_RES_ENFORCE_PERSON_DETAIL "enforce/person/detail"
 
 
 
