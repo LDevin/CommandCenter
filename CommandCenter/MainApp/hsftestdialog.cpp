@@ -3,7 +3,7 @@
 #include"qdebug.h"
 #include"slave.h"
 
-#define ACCESSTOKEN "ffd7139d-26ad-4c63-99e3-66ec5bcf3745"
+#define ACCESSTOKEN "119dc22f-1280-4f15-87ca-98727a47efb5"
 
 HsfTestDialog::HsfTestDialog(QWidget *parent) :
     QDialog(parent),
@@ -29,6 +29,16 @@ void HsfTestDialog::on_infoID_S_clicked()
 {
     qDebug()<<"on_infoID_S_clicked";
     QByteArray ret;
-    Link::Slave::slave()->getInfoexcellentRecommend(tr(ACCESSTOKEN), ret);
+    Link::Slave::slave()->getInfoExcellentRecommend(tr(ACCESSTOKEN), ret);
+    qDebug() << "ret " << ret;
+}
+
+void HsfTestDialog::on_infoList_clicked()
+{
+    qDebug()<<"on_infoList_clicked";
+    QByteArray ret;
+    //QString jsonStr=QString("{pageNum:%1, title:%2, classifyID1:%3, classifyID2:%4}").arg("1").arg("").arg("").arg("");
+    QString jsonStr=QString("{pageNum:%1}").arg(1);
+    Link::Slave::slave()->getInfolist(tr(ACCESSTOKEN), jsonStr, ret);
     qDebug() << "ret " << ret;
 }

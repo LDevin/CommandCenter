@@ -360,7 +360,7 @@ bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, Q
 
 }
 
-bool Slave::getInfoexcellentRecommend(const QString &token, QByteArray &ret)
+bool Slave::getInfoExcellentRecommend(const QString &token, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
         return RETURN_FALSE;
@@ -376,6 +376,24 @@ bool Slave::getInfoexcellentRecommend(const QString &token, QByteArray &ret)
     QByteArray headerData = QJsonDocument(p).toJson();
 
     QString jsonDto="";
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::getInfolist(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return RETURN_FALSE;
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_LIST, ret);
+
+    LinkInterface *link = new HttpLink(config);
+    QJsonObject p;
+    p.insert("Authorization", token);
+
+    QByteArray headerData = QJsonDocument(p).toJson();
+
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
