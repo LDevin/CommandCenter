@@ -285,7 +285,7 @@ bool Slave::getResEnforceDetail(const QString &token, long id, QByteArray &ret)
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_ADD, ret)) {
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_DETAIL, ret)) {
         return RETURN_FALSE;
     }
 
