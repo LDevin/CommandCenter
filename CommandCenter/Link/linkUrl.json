@@ -35,7 +35,10 @@
     ],
 
     "info":[
-        {"api":"article/detailByID", "href":"/api/v1/info/article/detailByID/","req":1,"para":{"articleId":"","userID":""},"des": "根据文章id和用户id查询文章详情"}
+        {"api":"article/detailByID", "href":"/api/v1/info/article/detailByID/","req":1,"para":{"articleId":"","userID":""},"des": "根据文章id和用户id查询文章详情"},
+        {"api":"article/excellentRecommend", "href":"/api/v1/info/article/excellentRecommend/","req":1,"para":{},"des": "查看精彩推荐"},
+
+        {"api":"article/list", "href":"/api/v1/info/article/list/","req":1,"para":{"pageNum":"", "title":"", "classifyID1":"", "classifyID2":""},"des": "根据相关分类类别获取文章列表"}
 
     ],
 

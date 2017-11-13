@@ -55,7 +55,8 @@
 
 #define LINK_ROOT_API_INFO "info"
 #define LINK_API_INFO_DETAIL "article/detailByID"
-
+#define LINK_API_INFO_EXCELLENTRECOMMEND  "article/excellentRecommend"
+#define LINK_API_INFO_LIST  "article/list"
 
 
 /******

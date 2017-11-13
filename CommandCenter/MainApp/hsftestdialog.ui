@@ -67,6 +67,19 @@
      <string>get-info2</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="infoList">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>10</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>get-infolIst</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
