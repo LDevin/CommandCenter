@@ -19,8 +19,10 @@
         {"api":"enforce/detail", "href":"/api/v1/resource/enforce/detail/","req":1,"para":{"id":""},"des": "获取执法队伍详情"},
         {"api":"enforce/deviceview", "href":"/api/v1/resource/enforce/deviceview","req":2,"para":{"supervisorID":""},"des": "统计分析执法伍"},
         {"api":"enforce/list", "href":"/api/v1/resource/enforce/list","req":2,"para":{"name":"","type":"","pageNum":1},"des": "执法队伍列表"},
-        {"api":"enforce/person/list", "href":"/api/v1/resource/enforce/person/list/","req":1,"para":{"enforceid":"","name":"","pageNum":1},"des": "获取执法队伍人员信息列表"},
         {"api":"enforce/update", "href":"/api/v1/resource/enforce/update","req":2,"para":{},"des": "修改执法队伍"},
+        {"api":"enforce/person/add", "href":"/api/v1/resource/enforce/person/add","req":2,"para":{"enforceId":"", "dto":{}},"des": "新增执法人员"},
+        {"api":"enforce/person/detail", "href":"/api/v1/resource/enforce/person/detail/","req":1,"para":{"enforceId":"", "personid":""},"des": "查询执法人员详情"},
+        {"api":"enforce/person/list", "href":"/api/v1/resource/enforce/person/list/","req":1,"para":{"enforceid":"","name":"","pageNum":1},"des": "获取执法队伍人员信息列表"},
         {"api":"fireplug/add", "href":"/api/v1/resource/fireplug/add","req":2,"para":{},"des": "新增消火栓"},
         {"api":"fireplug/detail", "href":"/api/v1/resource/fireplug/detail/","req":1,"para":{"id":""},"des": "获取消火栓详情"}
 

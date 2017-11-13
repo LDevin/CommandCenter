@@ -73,7 +73,21 @@ public:
     bool            addResEnforce(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool            getResEnforceDetail(const QString &token, long id, QByteArray &ret);
 
-    bool            getResEnforceDeviceView(long supervisorID, QByteArray &ret);
+    bool            getResEnforceDeviceView(const QString &token, long supervisorID, QByteArray &ret);
+
+    bool            getResEnforceList(const QString& token, const QString& name,
+                                      int type, int pageNum, QByteArray& ret);
+
+    bool            addResEnforcePerson(const QString& token, long enforceId,
+                                        const QString &jsonDto, QByteArray& ret);
+
+    bool            getResEnforcePersonList(const QString& token, long enforceId,
+                                            const QString &name, int pageNum, QByteArray& ret);
+
+    bool            getResEnforcePersonDetail(const QString& token, long enforceid,
+                                              long personid, QByteArray& ret);
+
+    bool            updateResEnforce(const QString& token, const QString &jsonDto, QByteArray& ret);
     //![2]
 
     /*

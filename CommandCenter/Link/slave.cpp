@@ -290,36 +290,149 @@ bool Slave::getResEnforceDetail(const QString &token, long id, QByteArray &ret)
 }
 
 
-bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)
+bool Slave::getResEnforceDeviceView(const QString &token, long supervisorID, QByteArray &ret)
 {
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token为空", LINK_INVOKE_OTHER_ERR, ret);
+    }
 
     HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_DEVICEVIEW, ret)) {
+        return RETURN_FALSE;
+    }
 
-    Link::LinkDataBag linkDataBag = Link::Config::config()->dataBagMap()[LINK_ROOT_API_RES][LINK_API_RES_ENFORCE_DEVICEVIEW];
-
-    config->setRequestUrl(QUrl(linkDataBag.fullUrl));
-    config->setRequestType(static_cast<HttpConfiguration::RequestType>(linkDataBag.req));
-
-    config->setTimeOutMsg(callTimeOutMsg());
+    config->setContentType(HttpConfiguration::XwwwType);
 
     LinkInterface *link = new HttpLink(config);
 
-    QEventLoop eventLoop;
-    connect(link, &LinkInterface::finished, &eventLoop, &QEventLoop::quit);
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
 
-    QJsonObject p = QJsonDocument::fromVariant(QVariant(linkDataBag.para)).object();
-    p.remove("supervisorID");
-    p.insert("supervisorID", supervisorID);
-
-    link->startRequest(QJsonDocument(p).toJson());
-    eventLoop.exec();
-    qDebug()<<"link data: "<<link->contentData();
-    ret = link->contentData();
-    destroyLink(link);
-
-    return true;
+    QString body = tr("supervisorID=%1").arg(supervisorID);
+    return slaveStartLink(link, headerData, body.toLatin1(), ret);
 }
 
+bool Slave::getResEnforceList(const QString &token, const QString &name,
+                              int type, int pageNum, QByteArray &ret)
+{
+    if ( token.isEmpty() || pageNum < 1) {
+        return returnHttpOtherErrMsg("token为空 或页码错误", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_LIST, ret)) {
+        return RETURN_FALSE;
+    }
+
+    config->setContentType(HttpConfiguration::XwwwType);
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    QString body = tr("pageNum=%1").arg(pageNum);
+    if ( !name.isEmpty() ) {
+        body.append(tr("&name=%1").arg(name));
+    }
+
+    if ( type > 0 ) {
+        body.append(tr("&type=%1").arg(type));
+    }
+
+    return slaveStartLink(link, headerData, body.toLatin1(), ret);
+}
+
+bool Slave::addResEnforcePerson(const QString &token, long enforceId,
+                                const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() || jsonDto.isEmpty() || enforceId < 1) {
+        return returnHttpOtherErrMsg("has null parameter", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_PERSON_ADD, ret)) {
+        return RETURN_FALSE;
+    }
+
+    config->setRequestUrl(QUrl(config->urlToString() + "/" + tr("%1").arg(enforceId)));
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::getResEnforcePersonList(const QString &token, long enforceId,
+                                    const QString &name, int pageNum, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_PERSON_LIST, ret)) {
+        return RETURN_FALSE;
+    }
+
+    QString urlData = tr("%1?%2").arg(enforceId).arg(pageNum);
+
+    if ( !name.isEmpty() ) {
+        urlData += "&" + name;
+    }
+
+    config->setRequestUrl(QUrl(config->urlToString() + urlData));
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, QByteArray(), ret);
+}
+
+bool Slave::getResEnforcePersonDetail(const QString &token, long enforceid,
+                                      long personid, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_PERSON_DETAIL, ret)) {
+        return RETURN_FALSE;
+    }
+
+    config->setRequestUrl(QUrl(config->urlToString() + tr("%1/%2").arg(enforceid).arg(personid)));
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, QByteArray(), ret);
+}
+
+bool Slave::updateResEnforce(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() || jsonDto.isEmpty() ) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_PERSON_UPDATE, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
 
 bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
