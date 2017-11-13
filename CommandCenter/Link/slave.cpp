@@ -587,10 +587,8 @@ bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteA
 
     setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDDEVLIST, ret);
     LinkInterface *link = new HttpLink(config);
-    QJsonObject headJson;
-    headJson.insert("Authorization", token);
-
-    QByteArray headerData = QJsonDocument(headJson).toJson();
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
 
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
@@ -599,17 +597,18 @@ bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteA
 bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
-        return RETURN_FALSE;
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_DETAIL, ret);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_DETAIL, ret)) {
+        return RETURN_FALSE;
+    }
 
     LinkInterface *link = new HttpLink(config);
-    QJsonObject p;
-    p.insert("Authorization", token);
 
-    QByteArray headerData = QJsonDocument(p).toJson();
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
 
     QString jsonDto=QString("{articleId:%1, userID:%2}").arg(articleId).arg(userId);
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
@@ -619,17 +618,17 @@ bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, Q
 bool Slave::getInfoExcellentRecommend(const QString &token, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
-        return RETURN_FALSE;
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_EXCELLENTRECOMMEND, ret);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_EXCELLENTRECOMMEND, ret)) {
+        return RETURN_FALSE;
+    }
 
     LinkInterface *link = new HttpLink(config);
-    QJsonObject p;
-    p.insert("Authorization", token);
-
-    QByteArray headerData = QJsonDocument(p).toJson();
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
 
     QString jsonDto="";
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
@@ -637,12 +636,15 @@ bool Slave::getInfoExcellentRecommend(const QString &token, QByteArray &ret)
 
 bool Slave::getInfolist(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
-    if ( token.isEmpty() ) {
-        return RETURN_FALSE;
+    if ( token.isEmpty() || jsonDto.isEmpty() ) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
     }
 
+
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_LIST, ret);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_LIST, ret)) {
+        return RETURN_FALSE;
+    }
 
     LinkInterface *link = new HttpLink(config);
     QJsonObject p;

@@ -3,7 +3,7 @@
 #include"qdebug.h"
 #include"slave.h"
 
-#define ACCESSTOKEN "119dc22f-1280-4f15-87ca-98727a47efb5"
+#define ACCESSTOKEN "c6f3faf5-8091-49eb-a380-9397deaac790"
 
 HsfTestDialog::HsfTestDialog(QWidget *parent) :
     QDialog(parent),
