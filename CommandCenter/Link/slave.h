@@ -1,12 +1,11 @@
-﻿#ifndef SLAVE_H
-#define SLAVE_H
-
-/*
+﻿/*
  * @author DevinLai
  * @email  laidawang@zds-t.com
  * @date   2017/11/06
 */
 
+#ifndef SLAVE_H
+#define SLAVE_H
 #include <QObject>
 #include <QMutex>
 #include "link_global.h"
