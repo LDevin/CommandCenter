@@ -162,4 +162,21 @@ bool Tools::loadToolsJson(QJsonObject &toolsData)
     return true;
 }
 
+bool Tools::setLinkToken(const QString &token, QJsonObject &obj)
+{
+    if (token.isEmpty()) return false;
+    obj.insert(LINK_TOKEN_KEY, token);
+    return true;
+}
+
+bool Tools::setLinkToken(const QString &token, QByteArray &json)
+{
+    if (token.isEmpty()) return false;
+    QJsonObject obj;
+    obj.insert(LINK_TOKEN_KEY, token);
+
+    json = QJsonDocument(obj).toJson();
+    return true;
+}
+
 }

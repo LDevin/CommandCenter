@@ -188,10 +188,8 @@ bool Slave::getUserInfo(const QString &token, QByteArray &ret)
 
     LinkInterface *link = new HttpLink(config);
 
-    QJsonObject p;
-    p.insert("Authorization", token);
-
-    QByteArray sendData = QJsonDocument(p).toJson();
+    QByteArray sendData;
+    Tools::setLinkToken(token, sendData);
 
     return slaveStartLink(link, sendData, sendData, ret);
 }
@@ -209,10 +207,8 @@ bool Slave::getDatalinelist(const QString &token, QByteArray &ret)
 
     LinkInterface *link = new HttpLink(config);
 
-    QJsonObject p;
-    p.insert("Authorization", token);
-
-    QByteArray headerData = QJsonDocument(p).toJson();
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
 
     return slaveStartLink(link, headerData, QByteArray(), ret);
 }
@@ -230,10 +226,8 @@ bool Slave::getResBuildBasicDetailById(const QString &token, long id, QByteArray
 
     LinkInterface *link = new HttpLink(config);
 
-    QJsonObject p;
-    p.insert("Authorization", token);
-
-    QByteArray headerData = QJsonDocument(p).toJson();
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
 
     return slaveStartLink(link, headerData, tr("%1").arg(id).toLatin1(), ret);
 }
@@ -251,10 +245,9 @@ bool Slave::getResBuildByName(const QString &token, const QString &name, QByteAr
 
     LinkInterface *link = new HttpLink(config);
 
-    QJsonObject p;
-    p.insert("Authorization", token);
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
 
-    QByteArray headerData = QJsonDocument(p).toJson();
     return slaveStartLink(link, headerData, name.toLatin1(), ret);
 }
 
@@ -271,10 +264,9 @@ bool Slave::addResEnforce(const QString &token, const QString &jsonDto, QByteArr
 
     LinkInterface *link = new HttpLink(config);
 
-    QJsonObject p;
-    p.insert("Authorization", token);
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
 
-    QByteArray headerData = QJsonDocument(p).toJson();
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
@@ -291,10 +283,9 @@ bool Slave::getResEnforceDetail(const QString &token, long id, QByteArray &ret)
 
     LinkInterface *link = new HttpLink(config);
 
-    QJsonObject p;
-    p.insert("Authorization", token);
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
 
-    QByteArray headerData = QJsonDocument(p).toJson();
     return slaveStartLink(link, headerData, tr("%1").arg(id).toLatin1(), ret);
 }
 

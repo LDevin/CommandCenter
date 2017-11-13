@@ -5,6 +5,9 @@
 #define LINK_URL_FILE ":/link/linkUrl.json"
 #define LINK_TOOLS_FILE ":/tool/tools.json"
 
+/*******link token*******/
+#define LINK_TOKEN_KEY "Authorization"
+/*******link token*******/
 
 #define LINK_ROOT_URL_KEY "root"
 
