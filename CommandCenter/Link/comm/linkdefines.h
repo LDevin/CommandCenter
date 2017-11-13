@@ -42,6 +42,13 @@
 #define LINK_API_RES_ENFORCE_PERSON_DETAIL "enforce/person/detail"
 
 
+#define LINK_API_RES_EXTINGUISHER_ADD "extinguisher/add" //新增灭火器
+#define LINK_API_RES_EXTINGUISHER_DETAIL "extinguisher/detail" //灭火器详情
+#define LINK_API_RES_EXTINGUISHER_LIST "extinguisher/list" //灭火器列表
+#define LINK_API_RES_EXTINGUISHER_UPDATE "extinguisher/update" //修改灭火器
+
+#define LINK_API_RES_FIREPLUG_ADD "fireplug/add" //新增消火栓
+#define LINK_API_RES_FIREPLUG_DETAIL "fireplug/获取消火栓详情" //新增消火栓
 
 #define LINK_ROOT_API_DEV "device"
 #define LINK_API_DEV_BUILDDEVLIST "buidingdeviceList"

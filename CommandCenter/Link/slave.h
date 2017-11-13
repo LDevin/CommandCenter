@@ -88,6 +88,19 @@ public:
                                               long personid, QByteArray& ret);
 
     bool            updateResEnforce(const QString& token, const QString &jsonDto, QByteArray& ret);
+
+    bool            addResExtinguisher(const QString& token, const QString &jsonDto, QByteArray& ret);
+
+    bool            getResExtinguisherDetail(const QString& token, long id, QByteArray& ret);
+
+    bool            getResExtinguisherList(const QString& token, const QString& code, long relatedID,
+                                           int type, const QString& startTime, const QString& endTime,
+                                           int pageNum, QByteArray& ret);
+
+    bool            updateResExtinguisher(const QString& token, const QString& jsonDto, QByteArray& ret);
+
+    bool            addResFirePlug(const QString& token, const QString& jsonDto, QByteArray& ret);
+    bool            getResFirePlugDetail(const QString& token, long id, QByteArray& ret);
     //![2]
 
     /*

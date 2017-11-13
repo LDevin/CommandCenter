@@ -147,3 +147,35 @@ void MainWindow::on_pushButton_17_clicked()
     Link::Slave::slave()->updateResEnforce(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), "{}",ret);
     qDebug() << tr("ret tttt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
+
+void MainWindow::on_pushButton_18_clicked()
+{
+    //新增灭火器
+    QByteArray ret;
+    Link::Slave::slave()->addResExtinguisher(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), "{}",ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void MainWindow::on_pushButton_19_clicked()
+{
+    //灭火器详情
+    QByteArray ret;
+    Link::Slave::slave()->getResExtinguisherDetail(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), 456,ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void MainWindow::on_pushButton_20_clicked()
+{
+    //灭火器列表
+    QByteArray ret;
+    Link::Slave::slave()->getResExtinguisherList(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), "", -1, -1, "", "", 2, ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void MainWindow::on_pushButton_21_clicked()
+{
+    //修改灭火器
+    QByteArray ret;
+    Link::Slave::slave()->updateResExtinguisher(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), "{}", ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
