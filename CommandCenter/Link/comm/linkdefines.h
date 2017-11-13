@@ -35,6 +35,9 @@
 
 #define LINK_ROOT_API_DEV "device"
 #define LINK_API_DEV_BUILDDEVLIST "buidingdeviceList"
+#define LINK_API_DEV_BUILDVIEW "buildingview"
+#define LINK_API_DEV_DETAIL "detail"
+
 
 #define LINK_ROOT_API_INFO "info"
 #define LINK_API_INFO_DETAIL "article/detailByID"

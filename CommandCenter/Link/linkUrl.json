@@ -34,7 +34,9 @@
 
     "device":[
 
-        {"api":"buidingdeviceList", "href":"/api/v1/device/buidingdeviceList","req":2,"para":{"isExcpetion": "","name": "","pageNum": 0,"selectID": 0},"des": "建筑物ID,模糊查询名称,页码,是否只显示异常设备：0否，1是"}
+        {"api":"buidingdeviceList", "href":"/api/v1/device/buidingdeviceList","req":2,"para":{"isExcpetion":"","name":"","pageNum":0,"selectID":0},"des": "建筑物ID,模糊查询名称,页码,是否只显示异常设备：0否，1是"},
+        {"api":"buildingview", "href":"/api/v1/device/buildingview","req":1,"para":{"dataLineID":"","relatedID":"","name":"","type":0,"pageNum":0,"lat":0.0,"lng":0.0},"des": "建筑物/企业列表显示"},
+        {"api":"detail", "href":"/api/v1/device/detail/","req":1,"para":{"deviceID":""},"des": "查询设备详情"}
 
     ],
 

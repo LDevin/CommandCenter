@@ -280,7 +280,42 @@ bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteA
 
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
+bool  Slave::getBuildView(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return RETURN_FALSE;
+    }
 
+    HttpConfiguration *config = new HttpConfiguration();
+
+    setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDVIEW);
+    LinkInterface *link = new HttpLink(config);
+    QJsonObject headJson;
+    headJson.insert("Authorization", token);
+
+    QByteArray headerData = QJsonDocument(headJson).toJson();
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::getDevDetail(const QString &token, const QString &devId, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return RETURN_FALSE;
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DETAIL);
+
+    LinkInterface *link = new HttpLink(config);
+
+    QJsonObject p;
+    p.insert("Authorization", token);
+
+    QByteArray headerData = QJsonDocument(p).toJson();
+    return slaveStartLink(link, headerData, tr("%1").arg(devId).toLatin1(), ret);
+
+}
 
 bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret)
 {

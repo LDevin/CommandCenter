@@ -87,7 +87,9 @@ public:
     /*
      * @device-controller : 设备相关接口
     */
-    bool           getBuildDevList (const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool           getBuildDevList(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool           getBuildView(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool           getDevDetail(const QString &token, const QString &devId, QByteArray &ret);
 
 
 

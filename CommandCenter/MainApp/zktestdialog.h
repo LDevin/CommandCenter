@@ -19,6 +19,10 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_detail_clicked();
+
+    void on_BuildView_clicked();
+
 private:
     Ui::ZkTestDialog *ui;
 };
