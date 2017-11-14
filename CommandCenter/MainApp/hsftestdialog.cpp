@@ -40,7 +40,7 @@ void HsfTestDialog::on_infoList_clicked()
     QByteArray ret;
     //QString jsonStr=QString("{pageNum:%1, title:%2, classifyID1:%3, classifyID2:%4}").arg("1").arg("").arg("").arg("");
     QString jsonStr=QString("?pageNum=%1").arg(1);
-    Link::Slave::slave()->getInfolist(tr(ACCESSTOKEN), jsonStr, ret);
+    Link::Slave::slave()->getInfoList(tr(ACCESSTOKEN), jsonStr, ret);
     qDebug() << "ret " << ret;
 }
 
@@ -48,8 +48,7 @@ void HsfTestDialog::on_infoListID_clicked()
 {
     qDebug()<<"on_infoListID_clicked";
     QByteArray ret;
-    QString jsonStr=QString("?title=%1&classifyID1=%2").arg("12").arg("2");
-    Link::Slave::slave()->getInfolistclassifyID1(tr(ACCESSTOKEN), jsonStr, ret);
+    Link::Slave::slave()->getInfoListClassifyID1(tr(ACCESSTOKEN), 1, "", ret);
     qDebug() << "ret " << ret;
 }
 
@@ -57,6 +56,6 @@ void HsfTestDialog::on_morebyid_clicked()
 {
     qDebug()<<"on_morebyid_clicked";
     QByteArray ret;
-    Link::Slave::slave()->getInfolistMoreByID(tr(ACCESSTOKEN),2,1,"", ret);
+    Link::Slave::slave()->getInfoListMoreByID(tr(ACCESSTOKEN),2,1,"", ret);
     qDebug() << "ret " << ret;
 }
