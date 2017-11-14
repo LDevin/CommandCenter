@@ -82,6 +82,12 @@ void HttpLink::startHttpRequest(const QByteArray &data)
     } else if (_config->requestType() == HttpConfiguration::POST) {
         setUrl(QUrl(href));
         reply = qam.post(req, data);
+    } else if (_config->requestType() == HttpConfiguration::PUT) {
+        setUrl(QUrl(href));
+        reply = qam.put(req, data);
+    } else if (_config->requestType() == HttpConfiguration::DELETE) {
+        setUrl(QUrl(href.append(data)));
+        reply = qam.deleteResource(req);
     }
 
     LOG("req url:" + req.url().toString());
