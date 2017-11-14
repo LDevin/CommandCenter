@@ -22,6 +22,8 @@ private slots:
 
     void on_infoList_clicked();
 
+    void on_infoListID_clicked();
+
 private:
     Ui::HsfTestDialog *ui;
 };

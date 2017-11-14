@@ -80,6 +80,19 @@
      <string>get-infolIst</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="infoListID">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>40</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>classifyid1</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

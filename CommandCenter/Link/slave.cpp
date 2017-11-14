@@ -610,7 +610,7 @@ bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, Q
     QByteArray headerData ;
     Tools::setLinkToken(token, headerData);
 
-    QString jsonDto=QString("{articleId:%1, userID:%2}").arg(articleId).arg(userId);
+    QString jsonDto=QString("?articleId=%1&userID=%2").arg(articleId).arg(userId);
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 
 }
@@ -647,10 +647,29 @@ bool Slave::getInfolist(const QString &token, const QString &jsonDto, QByteArray
     }
 
     LinkInterface *link = new HttpLink(config);
-    QJsonObject p;
-    p.insert("Authorization", token);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
 
-    QByteArray headerData = QJsonDocument(p).toJson();
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::getInfolistclassifyID1(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() || jsonDto.isEmpty() ) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_LIST_CLASSIFYID1, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
 
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
