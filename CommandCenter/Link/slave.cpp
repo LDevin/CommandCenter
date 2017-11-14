@@ -650,7 +650,7 @@ bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, Q
     QByteArray headerData ;
     Tools::setLinkToken(token, headerData);
 
-    QString jsonDto=QString("{articleId:%1, userID:%2}").arg(articleId).arg(userId);
+    QString jsonDto=QString("?articleId=%1&userID=%2").arg(articleId).arg(userId);
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 
 }
@@ -674,7 +674,7 @@ bool Slave::getInfoExcellentRecommend(const QString &token, QByteArray &ret)
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
-bool Slave::getInfolist(const QString &token, const QString &jsonDto, QByteArray &ret)
+bool Slave::getInfoList(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
     if ( token.isEmpty() || jsonDto.isEmpty() ) {
         return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
@@ -687,13 +687,55 @@ bool Slave::getInfolist(const QString &token, const QString &jsonDto, QByteArray
     }
 
     LinkInterface *link = new HttpLink(config);
-    QJsonObject p;
-    p.insert("Authorization", token);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
 
-    QByteArray headerData = QJsonDocument(p).toJson();
 
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
+
+
+
+bool Slave::getInfoListClassifyID1(const QString &token, const int classifyID1, const QString title, QByteArray &ret)
+{
+    if ( token.isEmpty() || classifyID1<0 ) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_LIST_CLASSIFYID1, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+    QString jsonDto=QString("?title=%1&classifyID1=%2").arg(title).arg(classifyID1);
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::getInfoListMoreByID(const QString &token, const int classifyID2, const int pageNum, const QString title, QByteArray &ret)
+{
+    if ( token.isEmpty()||pageNum<0||classifyID2<0) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_LIST_MOREBYID, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    QString jsonDto=QString("?classifyID2=%1&pageNum=%2&pageNum=%3").arg(classifyID2).arg(pageNum).arg(title);
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+
 
 }
 

@@ -40,9 +40,9 @@
     "info":[
         {"api":"article/detailByID", "href":"/api/v1/info/article/detailByID/","req":1,"para":{"articleId":"","userID":""},"des": "根据文章id和用户id查询文章详情"},
         {"api":"article/excellentRecommend", "href":"/api/v1/info/article/excellentRecommend/","req":1,"para":{},"des": "查看精彩推荐"},
-
-        {"api":"article/list", "href":"/api/v1/info/article/list/","req":1,"para":{"pageNum":"", "title":"", "classifyID1":"", "classifyID2":""},"des": "根据相关分类类别获取文章列表"}
-
+        {"api":"article/list", "href":"/api/v1/info/article/list/","req":1,"para":{"pageNum":"", "title":"", "classifyID1":"", "classifyID2":""},"des": "根据相关分类类别获取文章列表"},
+        {"api":"article/listByClassifyID1", "href":"/api/v1/info/article/listByClassifyID1/","req":1,"para":{"title":"", "classifyID1":""},"des": "根据一级分类id查询文章列表显示"},
+        {"api":"article/moreByID", "href":"/api/v1/info/article/moreByID/","req":1,"para":{"classifyID2":"","pageNum":"","title":""},"des": "根据二级分类查看更多"}
     ],
 
     "device":[

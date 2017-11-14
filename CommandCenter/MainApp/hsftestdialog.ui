@@ -32,7 +32,7 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>20</x>
      <y>30</y>
      <width>371</width>
      <height>81</height>
@@ -78,6 +78,32 @@
     </property>
     <property name="text">
      <string>get-infolIst</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="infoListID">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>40</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>classifyid1</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="morebyid">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>10</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>morebyid</string>
     </property>
    </widget>
   </widget>

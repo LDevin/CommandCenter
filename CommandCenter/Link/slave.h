@@ -111,7 +111,9 @@ public:
     //![3]
     bool            getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret);
     bool            getInfoExcellentRecommend(const QString &token, QByteArray &ret);
-    bool            getInfolist(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getInfoList(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getInfoListClassifyID1(const QString &token, const int classifyID1 , const QString title, QByteArray &ret);
+    bool            getInfoListMoreByID(const QString &token,const int classifyID2,const int pageNum, const QString title, QByteArray &ret);
     //![3]
 
     /*
