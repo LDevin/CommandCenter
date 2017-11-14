@@ -1,12 +1,11 @@
-﻿#ifndef SLAVE_H
-#define SLAVE_H
-
-/*
+﻿/*
  * @author DevinLai
  * @email  laidawang@zds-t.com
  * @date   2017/11/06
 */
 
+#ifndef SLAVE_H
+#define SLAVE_H
 #include <QObject>
 #include <QMutex>
 #include "link_global.h"
@@ -101,6 +100,8 @@ public:
 
     bool            addResFirePlug(const QString& token, const QString& jsonDto, QByteArray& ret);
     bool            getResFirePlugDetail(const QString& token, long id, QByteArray& ret);
+    bool            getResFirePlugDeviceView(const QString& token, long chargerID, QByteArray& ret);
+    bool            getResFirePlugDevMac(const QString& token, long id, QByteArray& ret);
     //![2]
 
     /*
