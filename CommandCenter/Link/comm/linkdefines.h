@@ -54,6 +54,9 @@
 #define LINK_API_DEV_BUILDDEVLIST "buidingdeviceList"
 #define LINK_API_DEV_BUILDVIEW "buildingview"
 #define LINK_API_DEV_DETAIL "detail"
+#define LINK_API_DEV_DEVICEVIEW "deviceview"
+#define LINK_API_DEV_DEVTYPE  "devtype"
+#define LINK_API_DEV_DIRECTDEV  "directlydevice"
 
 
 #define LINK_ROOT_API_INFO "info"

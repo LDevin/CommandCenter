@@ -23,6 +23,12 @@ private slots:
 
     void on_BuildView_clicked();
 
+    void on_deviceview_clicked();
+
+    void on_devType_clicked();
+
+    void on_directDev_clicked();
+
 private:
     Ui::ZkTestDialog *ui;
 };

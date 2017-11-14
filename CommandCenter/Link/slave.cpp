@@ -634,6 +634,60 @@ bool Slave::getDevDetail(const QString &token, const QString &devId, QByteArray 
 
 }
 
+bool  Slave::getDevView(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DEVICEVIEW, ret)){
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+bool Slave::getDevType(const QString &token, const QString &devId, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DEVTYPE, ret)){
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, tr("%1").arg(devId).toLatin1(), ret);
+
+}
+bool Slave::getDirectDev(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DIRECTDEV, ret)){
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
 bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
