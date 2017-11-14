@@ -27,7 +27,14 @@ public:
     /*
      * http get和post请求方式
     */
-    enum RequestType{ GET = 1, POST };
+    enum RequestType {
+        HEAD,
+        GET,
+        POST,
+        PUT,
+        DELETE,
+        CUSTOM
+    };
 
     /*
      * http post 请求时 头header的Content-Type

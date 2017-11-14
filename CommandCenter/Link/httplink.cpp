@@ -82,6 +82,12 @@ void HttpLink::startHttpRequest(const QByteArray &data)
     } else if (_config->requestType() == HttpConfiguration::POST) {
         setUrl(QUrl(href));
         reply = qam.post(req, data);
+    } else if (_config->requestType() == HttpConfiguration::PUT) {
+        setUrl(QUrl(href));
+        reply = qam.put(req, data);
+    } else if (_config->requestType() == HttpConfiguration::DELETE) {
+        setUrl(QUrl(href.append(data)));
+        reply = qam.deleteResource(req);
     }
 
     LOG("req url:" + req.url().toString());
@@ -120,10 +126,10 @@ void HttpLink::linkFinished()
 {
     QNetworkReply *reply = (QNetworkReply *)sender();
 
-    LOG(reply->header(QNetworkRequest::ContentTypeHeader))
-            LOG(reply->rawHeaderPairs())
+    LOG(reply->header(QNetworkRequest::ContentTypeHeader));
+    LOG(reply->rawHeaderPairs());
 
-            QByteArray  data = reply->readAll();
+    QByteArray  data = reply->readAll();
 
     setContentData(data);
     emit readFinished(data);
