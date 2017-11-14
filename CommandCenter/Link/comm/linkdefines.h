@@ -48,7 +48,9 @@
 #define LINK_API_RES_EXTINGUISHER_UPDATE "extinguisher/update" //修改灭火器
 
 #define LINK_API_RES_FIREPLUG_ADD "fireplug/add" //新增消火栓
-#define LINK_API_RES_FIREPLUG_DETAIL "fireplug/获取消火栓详情" //新增消火栓
+#define LINK_API_RES_FIREPLUG_DETAIL "fireplug/detail" //消火栓详情
+#define LINK_API_RES_FIREPLUG_DEVICEVIEW "fireplug/deviceview" //统计分析消火栓
+#define LINK_API_RES_FIREPLUG_DEVMAC "fireplug/devmac" //获取供水压力值
 
 #define LINK_ROOT_API_DEV "device"
 #define LINK_API_DEV_BUILDDEVLIST "buidingdeviceList"
@@ -63,7 +65,13 @@
 #define LINK_API_INFO_DETAIL "article/detailByID"
 #define LINK_API_INFO_EXCELLENTRECOMMEND  "article/excellentRecommend"
 #define LINK_API_INFO_LIST  "article/list"
-
+#define LINK_API_INFO_LIST_CLASSIFYID1  "article/listByClassifyID1"
+#define LINK_API_INFO_LIST_MOREBYID  "article/moreByID"
+#define LINK_API_INFO_LIST_UPDATELIKETIMES  "article/updateLikeTimes"
+#define LINK_API_INFO_LIST_COMMENTS  "comments/list"
+#define LINK_API_INFO_LIST_CHILDLEVEL  "conf/childLevelByPar"
+#define LINK_API_INFO_LIST_FIRSTLEVEL  "conf/firstLevel"
+#define LINK_API_INFO_LIST_NAVIGATION  "conf/list"
 
 /******
  *

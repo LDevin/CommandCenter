@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>509</width>
-    <height>345</height>
+    <width>522</width>
+    <height>367</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>260</y>
+     <x>20</x>
+     <y>330</y>
      <width>341</width>
      <height>32</height>
     </rect>
@@ -32,10 +32,10 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>40</x>
      <y>30</y>
-     <width>371</width>
-     <height>81</height>
+     <width>491</width>
+     <height>141</height>
     </rect>
    </property>
    <property name="title">
@@ -78,6 +78,97 @@
     </property>
     <property name="text">
      <string>get-infolIst</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="infoListID">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>40</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>classifyid1</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="morebyid">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>10</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>morebyid</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="updateLikeTimes">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>40</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>增加点击量</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="commentList">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>10</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>留言列表</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="childlevel">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>50</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>查询子类分类配置</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="firstLevel">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>80</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>查询所有一级分类列表</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="infoNavigation">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>80</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>导航栏信息</string>
     </property>
    </widget>
   </widget>

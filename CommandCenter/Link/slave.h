@@ -100,6 +100,8 @@ public:
 
     bool            addResFirePlug(const QString& token, const QString& jsonDto, QByteArray& ret);
     bool            getResFirePlugDetail(const QString& token, long id, QByteArray& ret);
+    bool            getResFirePlugDeviceView(const QString& token, long chargerID, QByteArray& ret);
+    bool            getResFirePlugDevMac(const QString& token, long id, QByteArray& ret);
     //![2]
 
     /*
@@ -109,7 +111,15 @@ public:
     //![3]
     bool            getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret);
     bool            getInfoExcellentRecommend(const QString &token, QByteArray &ret);
-    bool            getInfolist(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getInfoList(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getInfoListClassifyID1(const QString &token, const int classifyID1 , const QString title, QByteArray &ret);
+    bool            getInfoListMoreByID(const QString &token,const int classifyID2,const int pageNum, const QString title,
+                                        QByteArray &ret);
+    bool            getInfoCommentList(const QString &token, const int articleId , const int pageNum,const int userID, QByteArray &ret);
+    bool            updateInfoLikeTimes(const QString &token,const int articleId,const int userID, QByteArray &ret);
+    bool            getInfochildLevel(const QString &token,const int relativeID, QByteArray &ret);
+    bool            getInfoFirstLevel(const QString &token, QByteArray &ret);
+    bool            getInfoNavigation(const QString &token,const int templateId,QByteArray &ret);
     //![3]
 
     /*
