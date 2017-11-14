@@ -126,10 +126,10 @@ void HttpLink::linkFinished()
 {
     QNetworkReply *reply = (QNetworkReply *)sender();
 
-    LOG(reply->header(QNetworkRequest::ContentTypeHeader))
-            LOG(reply->rawHeaderPairs())
+    LOG(reply->header(QNetworkRequest::ContentTypeHeader));
+    LOG(reply->rawHeaderPairs());
 
-            QByteArray  data = reply->readAll();
+    QByteArray  data = reply->readAll();
 
     setContentData(data);
     emit readFinished(data);
