@@ -580,12 +580,14 @@ bool Slave::getResFirePlugDetail(const QString &token, long id, QByteArray &ret)
 bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
-        return RETURN_FALSE;
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
     }
 
     HttpConfiguration *config = new HttpConfiguration();
 
-    setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDDEVLIST, ret);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDDEVLIST, ret)){
+        return RETURN_FALSE;
+    }
     LinkInterface *link = new HttpLink(config);
     QByteArray headerData ;
     Tools::setLinkToken(token, headerData);
@@ -595,17 +597,19 @@ bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteA
 bool  Slave::getBuildView(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
-        return RETURN_FALSE;
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
     }
 
     HttpConfiguration *config = new HttpConfiguration();
 
-    setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDVIEW, ret);
-    LinkInterface *link = new HttpLink(config);
-    QJsonObject headJson;
-    headJson.insert("Authorization", token);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDVIEW, ret)){
+        return RETURN_FALSE;
+    }
 
-    QByteArray headerData = QJsonDocument(headJson).toJson();
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
 
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
@@ -613,18 +617,19 @@ bool  Slave::getBuildView(const QString &token, const QString &jsonDto, QByteArr
 bool Slave::getDevDetail(const QString &token, const QString &devId, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
-        return RETURN_FALSE;
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DETAIL, ret);
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DETAIL, ret)){
+        return RETURN_FALSE;
+    }
 
     LinkInterface *link = new HttpLink(config);
 
-    QJsonObject p;
-    p.insert("Authorization", token);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
 
-    QByteArray headerData = QJsonDocument(p).toJson();
     return slaveStartLink(link, headerData, tr("%1").arg(devId).toLatin1(), ret);
 
 }
