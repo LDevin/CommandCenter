@@ -183,7 +183,7 @@ void MainWindow::on_pushButton_21_clicked()
 void MainWindow::on_pushButton_22_clicked()
 {
     //b000481f-fdd6-4877-bbcf-ec5586227008
-    QByteArray ret;
+    QByteArray ret;//tttt
     Link::Slave::slave()->getResFirePlugDeviceView(tr("b000481f-fdd6-4877-bbcf-ec5586227008"), 456, ret);
     qDebug() << tr("ret tttt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
 
