@@ -61,6 +61,11 @@
 #define LINK_API_INFO_LIST  "article/list"
 #define LINK_API_INFO_LIST_CLASSIFYID1  "article/listByClassifyID1"
 #define LINK_API_INFO_LIST_MOREBYID  "article/moreByID"
+#define LINK_API_INFO_LIST_UPDATELIKETIMES  "article/updateLikeTimes"
+#define LINK_API_INFO_LIST_COMMENTS  "comments/list"
+#define LINK_API_INFO_LIST_CHILDLEVEL  "conf/childLevelByPar"
+#define LINK_API_INFO_LIST_FIRSTLEVEL  "conf/firstLevel"
+#define LINK_API_INFO_LIST_NAVIGATION  "conf/list"
 
 /******
  *

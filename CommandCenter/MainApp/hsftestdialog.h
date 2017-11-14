@@ -26,6 +26,16 @@ private slots:
 
     void on_morebyid_clicked();
 
+    void on_updateLikeTimes_clicked();
+
+    void on_commentList_clicked();
+
+    void on_childlevel_clicked();
+
+    void on_firstLevel_clicked();
+
+    void on_infoNavigation_clicked();
+
 private:
     Ui::HsfTestDialog *ui;
 };

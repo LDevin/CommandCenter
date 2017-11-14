@@ -4,7 +4,7 @@
 #include"slave.h"
 
 
-#define ACCESSTOKEN "eb445fc8-5242-487a-866b-48043498319f"
+#define ACCESSTOKEN "4d2eca92-cf6b-43af-9732-408be89526e2"
 
 HsfTestDialog::HsfTestDialog(QWidget *parent) :
     QDialog(parent),
@@ -57,5 +57,45 @@ void HsfTestDialog::on_morebyid_clicked()
     qDebug()<<"on_morebyid_clicked";
     QByteArray ret;
     Link::Slave::slave()->getInfoListMoreByID(tr(ACCESSTOKEN),2,1,"", ret);
+    qDebug() << "ret " << ret;
+}
+
+void HsfTestDialog::on_updateLikeTimes_clicked()
+{
+    qDebug()<<"on_updateLikeTimes_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->updateInfoLikeTimes(tr(ACCESSTOKEN),2,1, ret);
+    qDebug() << "ret " << ret;
+}
+
+void HsfTestDialog::on_commentList_clicked()
+{
+    qDebug()<<"on_commentList_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->getInfoCommentList(tr(ACCESSTOKEN), 2, 1, 1, ret);
+    qDebug() << "ret " << ret;
+}
+
+void HsfTestDialog::on_childlevel_clicked()
+{
+    qDebug()<<"on_commentList_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->getInfochildLevel(tr(ACCESSTOKEN), 2, ret);
+    qDebug() << "ret " << ret;
+}
+
+void HsfTestDialog::on_firstLevel_clicked()
+{
+    qDebug()<<"on_commentList_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->getInfoFirstLevel(tr(ACCESSTOKEN), ret);
+    qDebug() << "ret " << ret;
+}
+
+void HsfTestDialog::on_infoNavigation_clicked()
+{
+    qDebug()<<"on_commentList_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->getInfoNavigation(tr(ACCESSTOKEN), 2, ret);
     qDebug() << "ret " << ret;
 }
