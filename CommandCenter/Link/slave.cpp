@@ -714,6 +714,28 @@ bool Slave::getInfolistclassifyID1(const QString &token, const QString &jsonDto,
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
+bool Slave::getInfolistMoreByID(const QString &token, const int classifyID2, const int pageNum, const QString title, QByteArray &ret)
+{
+    if ( token.isEmpty()||pageNum<0||classifyID2<0) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_LIST_MOREBYID, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    QString jsonDto=QString("?classifyID2=%1&pageNum=%2&pageNum=%3").arg(classifyID2).arg(pageNum).arg(title);
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+
+
 }
 
 

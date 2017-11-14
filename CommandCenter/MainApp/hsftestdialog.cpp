@@ -52,3 +52,11 @@ void HsfTestDialog::on_infoListID_clicked()
     Link::Slave::slave()->getInfolistclassifyID1(tr(ACCESSTOKEN), jsonStr, ret);
     qDebug() << "ret " << ret;
 }
+
+void HsfTestDialog::on_morebyid_clicked()
+{
+    qDebug()<<"on_morebyid_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->getInfolistMoreByID(tr(ACCESSTOKEN),2,1,"", ret);
+    qDebug() << "ret " << ret;
+}

@@ -60,6 +60,7 @@
 #define LINK_API_INFO_EXCELLENTRECOMMEND  "article/excellentRecommend"
 #define LINK_API_INFO_LIST  "article/list"
 #define LINK_API_INFO_LIST_CLASSIFYID1  "article/listByClassifyID1"
+#define LINK_API_INFO_LIST_MOREBYID  "article/moreByID"
 
 /******
  *
