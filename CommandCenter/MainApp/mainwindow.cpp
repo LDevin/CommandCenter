@@ -194,5 +194,5 @@ void MainWindow::on_pushButton_23_clicked()
     //b000481f-fdd6-4877-bbcf-ec5586227008
     QByteArray ret;
     Link::Slave::slave()->getResFirePlugDevMac(tr("b000481f-fdd6-4877-bbcf-ec5586227008"), 456, ret);
-    qDebug() << tr("ret tttt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+    qDebug() << tr("ret ttt ddt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
