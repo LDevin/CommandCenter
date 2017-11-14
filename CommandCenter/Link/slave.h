@@ -100,6 +100,8 @@ public:
 
     bool            addResFirePlug(const QString& token, const QString& jsonDto, QByteArray& ret);
     bool            getResFirePlugDetail(const QString& token, long id, QByteArray& ret);
+    bool            getResFirePlugDeviceView(const QString& token, long chargerID, QByteArray& ret);
+    bool            getResFirePlugDevMac(const QString& token, long id, QByteArray& ret);
     //![2]
 
     /*

@@ -29,7 +29,10 @@
         {"api":"extinguisher/list", "href":"/api/v1/resource/extinguisher/list","req":2,"para":{},"des": "灭火器列表"},
         {"api":"extinguisher/update", "href":"/api/v1/resource/extinguisher/update","req":2,"para":{"apiFireExtinguisherDTO":{}},"des": "修改灭火器"},
         {"api":"fireplug/add", "href":"/api/v1/resource/fireplug/add","req":2,"para":{"apiFirePlugDTO":{}},"des": "新增消火栓"},
-        {"api":"fireplug/detail", "href":"/api/v1/resource/fireplug/detail/","req":1,"para":{"id":""},"des": "获取消火栓详情"}
+        {"api":"fireplug/detail", "href":"/api/v1/resource/fireplug/detail/","req":1,"para":{"id":""},"des": "获取消火栓详情"},
+        {"api":"fireplug/deviceview", "href":"/api/v1/resource/fireplug/deviceview","req":2,"para":{"chargerID":""},"des": "统计分析消火栓"},
+        {"api":"fireplug/devmac", "href":"/api/v1/resource/fireplug/devmac/","req":1,"para":{"id":""},"des": "获取供水压力值"},
+        {"api":"fireplug/list", "href":"/api/v1/resource/fireplug/list","req":2,"para":{},"des": "消火栓列表"}
 
 
     ],

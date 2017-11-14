@@ -577,6 +577,46 @@ bool Slave::getResFirePlugDetail(const QString &token, long id, QByteArray &ret)
     return slaveStartLink(link, headerData, tr("%1").arg(id).toLatin1(), ret);
 }
 
+bool Slave::getResFirePlugDeviceView(const QString &token, long chargerID, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_FIREPLUG_DEVICEVIEW, ret)) {
+        return RETURN_FALSE;
+    }
+
+    config->setContentType(HttpConfiguration::XwwwType);
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, tr("{\"chargerID\":%1}").arg(chargerID).toLatin1(), ret);
+}
+
+bool Slave::getResFirePlugDevMac(const QString &token, long id, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_FIREPLUG_DEVMAC, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, tr("%1").arg(id).toLatin1(), ret);
+}
+
 bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
