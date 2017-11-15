@@ -61,6 +61,9 @@
 #define LINK_API_DEV_DIRECTDEV  "directlydevice"
 #define LINK_API_DEV_DIRECTENT   "directlyenterprise"
 #define LINK_API_DEV_ENTDEVLIST  "enterprisedeviceList"
+#define LINK_API_DEV_FIREWORKFLOW_LISTACTIVITYID  "fireWorkflow/listActivityByID"
+#define LINK_API_DEV_FIREWORKFLOW_SELENDTIMEBUSID   "fireWorkflow/selectEndTimeByBusinessId"
+
 
 #define LINK_ROOT_API_INFO "info"
 #define LINK_API_INFO_DETAIL "article/detailByID"

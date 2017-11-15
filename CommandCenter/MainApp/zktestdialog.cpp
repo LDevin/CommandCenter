@@ -27,7 +27,7 @@ void ZkTestDialog::on_pushButton_clicked()
     QString body;
     body.append(headerData);
 
-    Link::Slave::slave()->getBuildDevList(tr("a28e8022-8ba0-40a7-b871-bdf76be83423"), body, ret);
+    Link::Slave::slave()->getBuildDevList(tr("c0280f11-3dcf-43f4-8c9b-6859e808d427"), body, ret);
 
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
@@ -36,7 +36,7 @@ void ZkTestDialog::on_detail_clicked()
 {
     QByteArray ret;
 
-    Link::Slave::slave()->getDevDetail(tr("a28e8022-8ba0-40a7-b871-bdf76be83423"), "743-b10e-01e8a14d6366", ret);
+    Link::Slave::slave()->getDevDetail(tr("c0280f11-3dcf-43f4-8c9b-6859e808d427"), "366", ret);
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
 
@@ -46,7 +46,7 @@ void ZkTestDialog::on_BuildView_clicked()
 
 
     QString body= QString("dataLineID=hhh&relatedID=hhh&name=hhhhj&type=1&pageNum=1&lat=22.4555&lng=114.5555");
-    Link::Slave::slave()->getBuildView(tr("a28e8022-8ba0-40a7-b871-bdf76be83423"), body, ret);
+    Link::Slave::slave()->getBuildView(tr("c0280f11-3dcf-43f4-8c9b-6859e808d427"), body, ret);
 
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
@@ -65,7 +65,7 @@ void ZkTestDialog::on_deviceview_clicked()
     QString body;
     body.append(headerData);
 
-    Link::Slave::slave()->getDevView(tr("a28e8022-8ba0-40a7-b871-bdf76be83423"), body, ret);
+    Link::Slave::slave()->getDevView(tr("c0280f11-3dcf-43f4-8c9b-6859e808d427"), body, ret);
 
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
@@ -74,7 +74,7 @@ void ZkTestDialog::on_devType_clicked()
 {
     QByteArray ret;
 
-    Link::Slave::slave()->getDevType(tr("a28e8022-8ba0-40a7-b871-bdf76be83423"), "743-b10e-01e8a14d6366", ret);
+    Link::Slave::slave()->getDevType(tr("c0280f11-3dcf-43f4-8c9b-6859e808d427"), "743-b10e-01e8a14d6366", ret);
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
 
@@ -94,7 +94,7 @@ void ZkTestDialog::on_directDev_clicked()
     QString body;
     body.append(headerData);
 
-    Link::Slave::slave()->getDirectDev(tr("a28e8022-8ba0-40a7-b871-bdf76be83423"), body, ret);
+    Link::Slave::slave()->getDirectDev(tr("c0280f11-3dcf-43f4-8c9b-6859e808d427"), body, ret);
 
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
@@ -138,7 +138,23 @@ void ZkTestDialog::on_dirEnt_clicked()
     QString body;
     body.append(headerData);
 
-    Link::Slave::slave()->getDirectEnt(tr("a28e8022-8ba0-40a7-b871-bdf76be83423"), body, ret);
+    Link::Slave::slave()->getDirectEnt(tr("aa28e8022-8ba0-40a7-b871-bdf76be83423"), body, ret);
+
+    qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void ZkTestDialog::on_listActivByID_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getFireLstActByID(tr("a28e8022-8ba0-40a7-b871-bdf76be83423"), 556,555, ret);
+
+    qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void ZkTestDialog::on_selTimeEndID_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getFireSelEndTimeByID(tr("a28e8022-8ba0-40a7-b871-bdf76be83423"),555, ret);
 
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }

@@ -64,7 +64,11 @@
         {"api":"devtype", "href":"/api/v1/device/devtype/","req":1,"para":{"id":""},"des": "查询设备详情"},
         {"api":"directlydevice", "href":"/api/v1/device/directlydevice","req":2,"para":{"lat": "","lineID": 0,"lng": "","pageNum": 0,"queryName": "","relatedID": 0,"type": ""},"des": "直属设备数据显示"},
         {"api":"directlyenterprise", "href":"/api/v1/device/directlyenterprise","req":2,"para":{"lat": "string","lineID": 0,"lng": "string","pageNum": 0,"queryName": "string","relatedID": 0,"type": "string"},"des": "直属企业数据显示"},
-        {"api":"enterprisedeviceList", "href":"/api/v1/device/enterprisedeviceList","req":2,"para":{"devTypeID": 0,"isExcpetion": "","pageNum": 0,"selectID": 0,"systemType": ""},"des": "企业（异常）设备汇总"}
+        {"api":"enterprisedeviceList", "href":"/api/v1/device/enterprisedeviceList","req":2,"para":{"devTypeID": 0,"isExcpetion": "","pageNum": 0,"selectID": 0,"systemType": ""},"des": "企业（异常）设备汇总"},
+        {"api":"fireWorkflow/listActivityByID", "href":"/api/v1/device/fireWorkflow/listActivityByID/","req":1,"para":{"historyID":0,"userID":0},"des": "根据设备历史记录id获取工作流记录"},
+        {"api":"fireWorkflow/selectEndTimeByBusinessId", "href":"/api/v1/device/fireWorkflow/selectEndTimeByBusinessId","req":1,"para":{"historyID":0},"des": "设备异常处理完成时间显示"}
+
+
 
 
 

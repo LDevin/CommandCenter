@@ -707,13 +707,14 @@ bool Slave::getDevDetail(const QString &token, const QString &devId, QByteArray 
     if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DETAIL, ret)){
         return RETURN_FALSE;
     }
+    config->setRequestUrl(QUrl(config->urlToString() + tr("%1").arg(devId)));
 
     LinkInterface *link = new HttpLink(config);
 
     QByteArray headerData ;
     Tools::setLinkToken(token, headerData);
 
-    return slaveStartLink(link, headerData, tr("%1").arg(devId).toLatin1(), ret);
+    return slaveStartLink(link, headerData, QByteArray(), ret);
 
 }
 
@@ -780,7 +781,7 @@ bool Slave::getDevType(const QString &token, const QString &devId, QByteArray &r
     QByteArray headerData ;
     Tools::setLinkToken(token, headerData);
 
-    return slaveStartLink(link, headerData, tr("%1").arg(devId).toLatin1(), ret);
+    return slaveStartLink(link, headerData, tr("?id=%1").arg(devId).toLatin1(), ret);
 
 }
 
@@ -896,6 +897,64 @@ bool Slave::getEntDevList(const QString &token, const QString &jsonDto, QByteArr
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
+/**************************************************************************
+Description:根据设备历史记录id获取工作流记录
+Parameter Name: historyID
+Parameter Type: http path
+Data Type:long
+
+Parameter Name: userID
+Parameter Type: http query
+Data Type:long
+
+**************************************************************************/
+
+bool  Slave::getFireLstActByID(const QString &token, const long &historyID, const long &userID, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_FIREWORKFLOW_LISTACTIVITYID, ret)){
+        return RETURN_FALSE;
+    }
+
+    config->setRequestUrl(QUrl(config->urlToString() + tr("%1").arg(historyID)));
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, tr("?userID=%1").arg(userID).toLatin1(), ret);
+
+}
+
+/**************************************************************************
+Description:根据设备历史记录id获取工作流记录
+Parameter Name: historyID
+Parameter Type: http path
+Data Type:long
+
+**************************************************************************/
+bool Slave::getFireSelEndTimeByID(const QString &token, const long &historyID, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_FIREWORKFLOW_SELENDTIMEBUSID, ret)){
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, tr("?historyID=%1").arg(historyID).toLatin1(), ret);
+}
 
 bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret)
 {
@@ -1098,8 +1157,6 @@ bool Slave::getInfoNavigation(const QString &token, const int templateId, QByteA
     QString jsonDto=QString("?template=%1").arg(templateId);
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
-
-
 
 }
 

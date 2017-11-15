@@ -107,7 +107,6 @@
     <string>directlydevice</string>
    </property>
   </widget>
-
   <widget class="QPushButton" name="entDevList">
    <property name="geometry">
     <rect>
@@ -118,7 +117,6 @@
     </rect>
    </property>
    <property name="text">
-
     <string>enterprisedeviceList</string>
    </property>
   </widget>
@@ -133,7 +131,32 @@
    </property>
    <property name="text">
     <string>directlyenterprise </string>
-
+   </property>
+  </widget>
+  <widget class="QPushButton" name="listActivByID">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>180</y>
+     <width>151</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>listActivityByID</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="selTimeEndID">
+   <property name="geometry">
+    <rect>
+     <x>254</x>
+     <y>90</y>
+     <width>121</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>FireSelEndTimeByID</string>
    </property>
   </widget>
  </widget>

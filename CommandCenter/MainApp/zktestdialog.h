@@ -33,6 +33,10 @@ private slots:
 
     void on_dirEnt_clicked();
 
+    void on_listActivByID_clicked();
+
+    void on_selTimeEndID_clicked();
+
 private:
     Ui::ZkTestDialog *ui;
 };
