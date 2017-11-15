@@ -131,6 +131,8 @@ public:
     bool           getDevView(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool           getDevType(const QString &token, const QString &devId, QByteArray &ret);
     bool           getDirectDev(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool           getDirectEnt(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool           getEntDevList(const QString &token, const QString &jsonDto, QByteArray &ret);
 
 
 

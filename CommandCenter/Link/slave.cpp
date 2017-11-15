@@ -617,6 +617,19 @@ bool Slave::getResFirePlugDevMac(const QString &token, long id, QByteArray &ret)
     return slaveStartLink(link, headerData, tr("%1").arg(id).toLatin1(), ret);
 }
 
+/**************************************************************************
+Description:建筑物（异常）设备汇总
+Parameter Type: http body
+Data Type:
+{
+  "isExcpetion": "string",
+  "name": "string",
+  "pageNum": 0,
+  "selectID": 0
+}
+Description: 建筑物ID,模糊查询名称,页码,是否只显示异常设备：0否，1是
+
+**************************************************************************/
 bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
@@ -634,12 +647,32 @@ bool Slave::getBuildDevList(const QString &token, const QString &jsonDto, QByteA
 
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
+
+/**************************************************************************
+Description:查看建筑物/企业列表显示
+Parameter Type: http body
+Data Type:
+{
+    "dataLineID":"strirng",
+    "relatedID":"string",
+    "name":"string",
+    "type":0,
+    "pageNum":0,
+    "lat":0,
+    "lng":0
+}
+Description: 数据线id,关联单位id||单位类型,建筑物/企业名称,类型，必填(1:建筑物视角,2:企业视角),页码
+
+**************************************************************************/
 bool  Slave::getBuildView(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
         return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
     }
+    if ( jsonDto.isEmpty()){
+        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
 
+    }
     HttpConfiguration *config = new HttpConfiguration();
 
     if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_BUILDVIEW, ret)){
@@ -654,12 +687,22 @@ bool  Slave::getBuildView(const QString &token, const QString &jsonDto, QByteArr
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
+/**************************************************************************
+Description:查询设备详情
+Parameter Type: http query
+Data Type: string
+Description: 通过设备ID查看设备详情
+**************************************************************************/
+
 bool Slave::getDevDetail(const QString &token, const QString &devId, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
         return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
     }
+    if ( devId.isEmpty()){
+        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
 
+    }
     HttpConfiguration *config = new HttpConfiguration();
     if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DETAIL, ret)){
         return RETURN_FALSE;
@@ -674,10 +717,29 @@ bool Slave::getDevDetail(const QString &token, const QString &devId, QByteArray 
 
 }
 
+/**************************************************************************
+Description:设备视角的数据显示
+Parameter Type: http body
+Data Type:
+{
+  "buidingID": 0,
+  "itemType": "string",
+  "lineID": 0,
+  "selectID": 0,
+  "selectType": "string"
+}
+Description: 查询对象的类型，查询对象的关联单位ID，数据线ID,为0查所有，
+属于那栋建筑物ID，为0不限制，被监管单位的类型1为建筑物，2企业，3.4.5...
+**************************************************************************/
+
 bool  Slave::getDevView(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
         return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    if ( jsonDto.isEmpty()){
+        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
+
     }
 
     HttpConfiguration *config = new HttpConfiguration();
@@ -691,12 +753,23 @@ bool  Slave::getDevView(const QString &token, const QString &jsonDto, QByteArray
 
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
+
+/**************************************************************************
+Description:查看设备详细
+Parameter Type: http query
+Data Type: string
+Description: 通过设备ID查看设备类型详情
+**************************************************************************/
+
 bool Slave::getDevType(const QString &token, const QString &devId, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
         return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
     }
+    if ( devId.isEmpty()){
+        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
 
+    }
     HttpConfiguration *config = new HttpConfiguration();
     if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DEVTYPE, ret)){
         return RETURN_FALSE;
@@ -710,10 +783,31 @@ bool Slave::getDevType(const QString &token, const QString &devId, QByteArray &r
     return slaveStartLink(link, headerData, tr("%1").arg(devId).toLatin1(), ret);
 
 }
+
+/**************************************************************************
+Description:直属设备数据显示
+Parameter Type: http body
+Data Type:
+{
+  "lat": "string",
+  "lineID": 0,
+  "lng": "string",
+  "pageNum": 0,
+  "queryName": "string",
+  "relatedID": 0,
+  "type": "string"
+}
+Description: 直属设备查询时，只需传单位ID，类型
+**************************************************************************/
+
 bool Slave::getDirectDev(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
         return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    if ( jsonDto.isEmpty()){
+        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
+
     }
 
     HttpConfiguration *config = new HttpConfiguration();
@@ -727,6 +821,81 @@ bool Slave::getDirectDev(const QString &token, const QString &jsonDto, QByteArra
 
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
+
+/**************************************************************************
+Description:直属企业数据显示
+Parameter Type: http body
+Data Type:
+{
+  "lat": 0,
+  "lineID": 0,
+  "lng": 0,
+  "pageNum": 0,
+  "queryName": "string",
+  "relatedID": 0,
+  "type": "string"
+}
+Description: 领导类型,领导所属关联单位id,要查看的数据线id，要模糊查询的名称(可为空)
+**************************************************************************/
+
+bool Slave::getDirectEnt(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    if ( jsonDto.isEmpty()){
+        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
+
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DIRECTENT, ret)){
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+/**************************************************************************
+Description:企业（异常）设备汇总
+Parameter Type: http body
+Data Type:
+{
+  "devTypeID": 0,
+  "isExcpetion": "string",
+  "pageNum": 0,
+  "selectID": 0,
+  "systemType": "string"
+}
+Description: 企业ID,搜索的系统类型和设备类型,页码,是否只显示异常设备：0否，1是
+**************************************************************************/
+
+bool Slave::getEntDevList(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    if ( jsonDto.isEmpty()){
+        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
+
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_ENTDEVLIST, ret)){
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
 
 bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret)
 {

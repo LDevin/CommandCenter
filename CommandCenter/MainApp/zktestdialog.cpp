@@ -98,3 +98,47 @@ void ZkTestDialog::on_directDev_clicked()
 
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
+
+void ZkTestDialog::on_entDevList_clicked()
+{
+    QByteArray ret;
+
+    QJsonObject p;
+    p.insert("devTypeID", 0);
+    p.insert("isExcpetion", "string");
+    p.insert("pageNum", 0);
+    p.insert("selectID", 0);
+    p.insert("systemType", "string");
+
+
+    QByteArray headerData = QJsonDocument(p).toJson();
+    QString body;
+    body.append(headerData);
+
+    Link::Slave::slave()->getEntDevList(tr("a28e8022-8ba0-40a7-b871-bdf76be83423"), body, ret);
+
+    qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void ZkTestDialog::on_dirEnt_clicked()
+{
+    QByteArray ret;
+
+    QJsonObject p;
+
+       p.insert("lat", "string");
+       p.insert("lineID", 0);
+       p.insert("lng","string");
+       p.insert("pageNum", 0);
+       p.insert("queryName", "string");
+       p.insert("relatedID", 0);
+       p.insert("type","string");
+
+    QByteArray headerData = QJsonDocument(p).toJson();
+    QString body;
+    body.append(headerData);
+
+    Link::Slave::slave()->getDirectEnt(tr("a28e8022-8ba0-40a7-b871-bdf76be83423"), body, ret);
+
+    qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}

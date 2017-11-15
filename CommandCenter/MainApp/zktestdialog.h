@@ -29,6 +29,10 @@ private slots:
 
     void on_directDev_clicked();
 
+    void on_entDevList_clicked();
+
+    void on_dirEnt_clicked();
+
 private:
     Ui::ZkTestDialog *ui;
 };

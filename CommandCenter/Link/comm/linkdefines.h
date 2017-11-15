@@ -59,7 +59,8 @@
 #define LINK_API_DEV_DEVICEVIEW "deviceview"
 #define LINK_API_DEV_DEVTYPE  "devtype"
 #define LINK_API_DEV_DIRECTDEV  "directlydevice"
-
+#define LINK_API_DEV_DIRECTENT   "directlyenterprise"
+#define LINK_API_DEV_ENTDEVLIST  "enterprisedeviceList"
 
 #define LINK_ROOT_API_INFO "info"
 #define LINK_API_INFO_DETAIL "article/detailByID"
@@ -105,6 +106,8 @@ qDebug() \
 #define LINK_URL_IS_EMPTY           -302 //link url 为空字符串
 #define LINK_HTTP_REQ_TYPE_ERR      -303 //HTTP 请求方式get 或者post 有问题
 #define LINK_HTTP_API_NAME_ERR      -304 //http api的名字有误
+
+#define LINK_RS_INPUT_NULL          -3002 //输入参数为NULL
 
 
 #endif // LINKDEFINES_H
