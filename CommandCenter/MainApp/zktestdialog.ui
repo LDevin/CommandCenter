@@ -107,6 +107,7 @@
     <string>directlydevice</string>
    </property>
   </widget>
+
   <widget class="QPushButton" name="entDevList">
    <property name="geometry">
     <rect>
@@ -117,6 +118,7 @@
     </rect>
    </property>
    <property name="text">
+
     <string>enterprisedeviceList</string>
    </property>
   </widget>
@@ -131,6 +133,7 @@
    </property>
    <property name="text">
     <string>directlyenterprise </string>
+
    </property>
   </widget>
  </widget>
