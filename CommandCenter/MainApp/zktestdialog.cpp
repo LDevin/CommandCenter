@@ -36,7 +36,7 @@ void ZkTestDialog::on_detail_clicked()
 {
     QByteArray ret;
 
-    Link::Slave::slave()->getDevDetail(tr("c0280f11-3dcf-43f4-8c9b-6859e808d427"), "366", ret);
+    Link::Slave::slave()->getDevDetail(tr("c0280f11-3dcf-43f4-8c9b-6859e808d427"), 366, ret);
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
 
@@ -74,7 +74,7 @@ void ZkTestDialog::on_devType_clicked()
 {
     QByteArray ret;
 
-    Link::Slave::slave()->getDevType(tr("c0280f11-3dcf-43f4-8c9b-6859e808d427"), "743-b10e-01e8a14d6366", ret);
+    Link::Slave::slave()->getDevType(tr("c0280f11-3dcf-43f4-8c9b-6859e808d427"), 366, ret);
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
 

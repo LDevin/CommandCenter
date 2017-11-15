@@ -694,15 +694,12 @@ Data Type: string
 Description: 通过设备ID查看设备详情
 **************************************************************************/
 
-bool Slave::getDevDetail(const QString &token, const QString &devId, QByteArray &ret)
+bool Slave::getDevDetail(const QString &token, const long &devId, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
         return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
     }
-    if ( devId.isEmpty()){
-        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
 
-    }
     HttpConfiguration *config = new HttpConfiguration();
     if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DETAIL, ret)){
         return RETURN_FALSE;
@@ -762,15 +759,12 @@ Data Type: string
 Description: 通过设备ID查看设备类型详情
 **************************************************************************/
 
-bool Slave::getDevType(const QString &token, const QString &devId, QByteArray &ret)
+bool Slave::getDevType(const QString &token, const long &devId, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
         return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
     }
-    if ( devId.isEmpty()){
-        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
 
-    }
     HttpConfiguration *config = new HttpConfiguration();
     if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_DEVTYPE, ret)){
         return RETURN_FALSE;

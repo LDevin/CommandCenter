@@ -130,9 +130,9 @@ public:
     */
     bool           getBuildDevList(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool           getBuildView(const QString &token, const QString &jsonDto, QByteArray &ret);
-    bool           getDevDetail(const QString &token, const QString &devId, QByteArray &ret);
+    bool           getDevDetail(const QString &token, const long &devId, QByteArray &ret);
     bool           getDevView(const QString &token, const QString &jsonDto, QByteArray &ret);
-    bool           getDevType(const QString &token, const QString &devId, QByteArray &ret);
+    bool           getDevType(const QString &token, const long &devId, QByteArray &ret);
     bool           getDirectDev(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool           getDirectEnt(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool           getEntDevList(const QString &token, const QString &jsonDto, QByteArray &ret);
