@@ -36,6 +36,10 @@ private slots:
 
     void on_infoNavigation_clicked();
 
+    void on_addComments_clicked();
+
+    void on_delComments_clicked();
+
 private:
     Ui::HsfTestDialog *ui;
 };
