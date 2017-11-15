@@ -136,6 +136,8 @@ public:
     bool           getDirectDev(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool           getDirectEnt(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool           getEntDevList(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool           getFireLstActByID(const QString &token, const long &historyID, const long &userID, QByteArray &ret);
+    bool           getFireSelEndTimeByID(const QString &token, const long &historyID, QByteArray &ret);
 
 
 
