@@ -99,3 +99,19 @@ void HsfTestDialog::on_infoNavigation_clicked()
     Link::Slave::slave()->getInfoNavigation(tr(ACCESSTOKEN), 2, ret);
     qDebug() << "ret " << ret;
 }
+
+void HsfTestDialog::on_addComments_clicked()
+{
+    qDebug()<<"on_addComments_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->addInfoComments(tr(ACCESSTOKEN), 0,"stirngssss ", 0, ret);
+    qDebug() << "ret " << ret;
+}
+
+void HsfTestDialog::on_delComments_clicked()
+{
+    qDebug()<<"on_delComments_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->delInfoComments(tr(ACCESSTOKEN), 3, ret);
+    qDebug() << "ret " << ret;
+}

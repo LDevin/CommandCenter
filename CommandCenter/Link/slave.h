@@ -116,10 +116,13 @@ public:
     bool            getInfoListMoreByID(const QString &token,const int classifyID2,const int pageNum, const QString title,
                                         QByteArray &ret);
     bool            getInfoCommentList(const QString &token, const int articleId , const int pageNum,const int userID, QByteArray &ret);
-    bool            updateInfoLikeTimes(const QString &token,const int articleId,const int userID, QByteArray &ret);
-    bool            getInfochildLevel(const QString &token,const int relativeID, QByteArray &ret);
+    bool            updateInfoLikeTimes(const QString &token, const int articleId, const int userID, QByteArray &ret);
+    bool            getInfochildLevel(const QString &token, const int relativeID, QByteArray &ret);
     bool            getInfoFirstLevel(const QString &token, QByteArray &ret);
-    bool            getInfoNavigation(const QString &token,const int templateId,QByteArray &ret);
+    bool            getInfoNavigation(const QString &token, const int templateId,QByteArray &ret);
+    bool            addInfoComments(const QString &token, const int articleId, const QString content, const int userID,
+                                    QByteArray &ret);
+    bool            delInfoComments(const QString &token, const int id,QByteArray &ret);
     //![3]
 
     /*

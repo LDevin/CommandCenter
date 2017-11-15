@@ -49,8 +49,8 @@
         {"api":"conf/firstLevel", "href":"/api/v1/info/conf/firstLevel/","req":1,"para":{},"des": "查询所有一级分类列表"},
         {"api":"conf/list", "href":"/api/v1/info/conf/list/","req":1,"para":{"template":""},"des": "查询咨询导航栏信息"},
 
-        {"api":"comments/list", "href":"/api/v1/info/comments/list/","req":1,"para":{"articleId":"","pageNum":"","userID":""},"des": "新增留言"}
-
+        {"api":"comments/add", "href":"/api/v1/info/comments/add/","req":2,"para":{"articleId":"","content":"","createUserID":""},"des": "新增留言"},
+        {"api":"comments/del", "href":"/api/v1/info/comments/del/","req":4,"para":{"id":""},"des": "删除留言"}
 
 
     ],

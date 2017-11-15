@@ -930,6 +930,46 @@ bool Slave::getInfoNavigation(const QString &token, const int templateId, QByteA
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
+bool Slave::addInfoComments(const QString &token, const int articleId, const QString content, const int userID, QByteArray &ret)
+{
+    if ( token.isEmpty()||articleId<0||userID<0) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_COMMENTS_ADD, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    QString jsonDto=QString("{\"articleId\":\"%1\",\"content\":\"%2\",\"createUserID\":\"%3\"}").arg(articleId).arg(content).arg(userID);
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::delInfoComments(const QString &token, const int id, QByteArray &ret)
+{
+    if ( token.isEmpty()||id<0) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_INFO, LINK_API_INFO_COMMENTS_DEL, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    QString jsonDto=QString("?id=%1").arg(id);
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
 
 
 }
