@@ -241,5 +241,7 @@ bool Slave::getResEnforceDeviceView(long supervisorID, QByteArray &ret)
     return true;
 }
 
+bool Slave::
+
 }
 

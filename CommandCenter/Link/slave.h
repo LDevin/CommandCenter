@@ -91,7 +91,7 @@ public:
     /*
      * @check-controller : 检查表相关接口
     */
-
+    bool getCheckFormID(const QString &token, const QString &jsonDto, QByteArray &ret);
     /*
      * @chat-controller : 聊天互动相关接口
     */
