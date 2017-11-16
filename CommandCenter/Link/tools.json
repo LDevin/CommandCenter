@@ -1,8 +1,10 @@
 ﻿{
     "httpOverTimeMsg": {
-        "timeout": {
-            "code":-200,"msg":"operation is time out!","success":false,"fail":true
-        }
+       "code":-200,"msg":"operation is time out!","success":false,"fail":true
+    },
+
+    "httpApiOtherErr": {
+        "code":-300,"msg":"http api invoke error!","success":false,"fail":true
     },
 
    "addEnforce": {

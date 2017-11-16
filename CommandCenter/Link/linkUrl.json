@@ -16,22 +16,64 @@
         {"api":"building/basic/detail", "href":"/api/v1/resource/building/basic/detail/","req":1,"para":{"id":""},"des": "根据楼栋ID查询楼栋信息"},
         {"api":"building/search", "href":"/api/v1/resource/building/search/","req":1,"para":{"name":""},"des": "查询楼栋名称"},
         {"api":"enforce/add", "href":"/api/v1/resource/enforce/add","req":2,"para":{"dto":{}},"des": "新增执法队伍"},
-        {"api":"enforce/detail/", "href":"/api/v1/resource/enforce/detail/","req":1,"para":{"id":""},"des": "获取执法队伍详情"},
+        {"api":"enforce/detail", "href":"/api/v1/resource/enforce/detail/","req":1,"para":{"id":""},"des": "获取执法队伍详情"},
         {"api":"enforce/deviceview", "href":"/api/v1/resource/enforce/deviceview","req":2,"para":{"supervisorID":""},"des": "统计分析执法伍"},
         {"api":"enforce/list", "href":"/api/v1/resource/enforce/list","req":2,"para":{"name":"","type":"","pageNum":1},"des": "执法队伍列表"},
-        {"api":"enforce/person/list", "href":"/api/v1/resource/enforce/person/list/","req":1,"para":{"enforceid":"","name":"","pageNum":1},"des": "获取执法队伍人员信息列表"},
         {"api":"enforce/update", "href":"/api/v1/resource/enforce/update","req":2,"para":{},"des": "修改执法队伍"},
-        {"api":"fireplug/add", "href":"/api/v1/resource/fireplug/add","req":2,"para":{},"des": "新增消火栓"},
-        {"api":"fireplug/detail", "href":"/api/v1/resource/fireplug/detail/","req":1,"para":{"id":""},"des": "获取消火栓详情"}
+        {"api":"enforce/person/add", "href":"/api/v1/resource/enforce/person/add","req":2,"para":{"enforceId":"", "dto":{}},"des": "新增执法人员"},
+        {"api":"enforce/person/detail", "href":"/api/v1/resource/enforce/person/detail/","req":1,"para":{"enforceId":"", "personid":""},"des": "查询执法人员详情"},
+        {"api":"enforce/person/list", "href":"/api/v1/resource/enforce/person/list/","req":1,"para":{"enforceid":"","name":"","pageNum":1},"des": "获取执法队伍人员信息列表"},
+
+        {"api":"extinguisher/add", "href":"/api/v1/resource/extinguisher/add","req":2,"para":{"apiFireExtinguisherDTO":{}},"des": "新增灭火器"},
+        {"api":"extinguisher/detail", "href":"/api/v1/resource/extinguisher/detail/","req":1,"para":{"id":""},"des": "获取灭火器详情"},
+        {"api":"extinguisher/list", "href":"/api/v1/resource/extinguisher/list","req":2,"para":{},"des": "灭火器列表"},
+        {"api":"extinguisher/update", "href":"/api/v1/resource/extinguisher/update","req":2,"para":{"apiFireExtinguisherDTO":{}},"des": "修改灭火器"},
+        {"api":"fireplug/add", "href":"/api/v1/resource/fireplug/add","req":2,"para":{"apiFirePlugDTO":{}},"des": "新增消火栓"},
+        {"api":"fireplug/detail", "href":"/api/v1/resource/fireplug/detail/","req":1,"para":{"id":""},"des": "获取消火栓详情"},
+        {"api":"fireplug/deviceview", "href":"/api/v1/resource/fireplug/deviceview","req":2,"para":{"chargerID":""},"des": "统计分析消火栓"},
+        {"api":"fireplug/devmac", "href":"/api/v1/resource/fireplug/devmac/","req":1,"para":{"id":""},"des": "获取供水压力值"},
+        {"api":"fireplug/list", "href":"/api/v1/resource/fireplug/list","req":2,"para":{},"des": "消火栓列表"}
 
 
     ],
 
     "info":[
+        {"api":"article/detailByID", "href":"/api/v1/info/article/detailByID/","req":1,"para":{"articleId":"","userID":""},"des": "根据文章id和用户id查询文章详情"},
+        {"api":"article/excellentRecommend", "href":"/api/v1/info/article/excellentRecommend/","req":1,"para":{},"des": "查看精彩推荐"},
+        {"api":"article/list", "href":"/api/v1/info/article/list/","req":1,"para":{"pageNum":"", "title":"", "classifyID1":"", "classifyID2":""},"des": "根据相关分类类别获取文章列表"},
+        {"api":"article/listByClassifyID1", "href":"/api/v1/info/article/listByClassifyID1/","req":1,"para":{"title":"", "classifyID1":""},"des": "根据一级分类id查询文章列表显示"},
+        {"api":"article/moreByID", "href":"/api/v1/info/article/moreByID/","req":1,"para":{"classifyID2":"","pageNum":"","title":""},"des": "根据二级分类查看更多"},
+        {"api":"article/updateLikeTimes", "href":"/api/v1/info/article/updateLikeTimes/","req":3,"para":{"articleId":"","userID":""},"des": "增加点击量"},
+        {"api":"comments/list", "href":"/api/v1/info/comments/list/","req":1,"para":{"articleId":"","pageNum":"","userID":""},"des": "查询留言列表"},
+        {"api":"conf/childLevelByPar", "href":"/api/v1/info/conf/childLevelByPar/","req":1,"para":{"relativeID":""},"des": "根据父类id查询子类分类配置"},
+        {"api":"conf/firstLevel", "href":"/api/v1/info/conf/firstLevel/","req":1,"para":{},"des": "查询所有一级分类列表"},
+        {"api":"conf/list", "href":"/api/v1/info/conf/list/","req":1,"para":{"template":""},"des": "查询咨询导航栏信息"},
+
+        {"api":"comments/add", "href":"/api/v1/info/comments/add/","req":2,"para":{"articleId":"","content":"","createUserID":""},"des": "新增留言"},
+        {"api":"comments/del", "href":"/api/v1/info/comments/del/","req":4,"para":{"id":""},"des": "删除留言"}
+
 
     ],
 
     "device":[
+
+        {"api":"buidingdeviceList", "href":"/api/v1/device/buidingdeviceList","req":2,"para":{"isExcpetion":"","name":"","pageNum":0,"selectID":0},"des": "建筑物ID,模糊查询名称,页码,是否只显示异常设备：0否，1是"},
+        {"api":"buildingview", "href":"/api/v1/device/buildingview","req":1,"para":{"dataLineID":"","relatedID":"","name":"","type":0,"pageNum":0,"lat":0.0,"lng":0.0},"des": "建筑物/企业列表显示"},
+        {"api":"detail", "href":"/api/v1/device/detail/","req":1,"para":{"deviceID":""},"des": "查询设备详情"},
+        {"api":"deviceview", "href":"/api/v1/device/deviceview","req":2,"para":{ "buidingID": 0,"itemType": "","lineID": 0,"selectID": 0,"selectType": ""},"des": "设备视角的数据显示"},
+        {"api":"devtype", "href":"/api/v1/device/devtype/","req":1,"para":{"id":""},"des": "查询设备详情"},
+        {"api":"directlydevice", "href":"/api/v1/device/directlydevice","req":2,"para":{"lat": "","lineID": 0,"lng": "","pageNum": 0,"queryName": "","relatedID": 0,"type": ""},"des": "直属设备数据显示"},
+        {"api":"directlyenterprise", "href":"/api/v1/device/directlyenterprise","req":2,"para":{"lat": "string","lineID": 0,"lng": "string","pageNum": 0,"queryName": "string","relatedID": 0,"type": "string"},"des": "直属企业数据显示"},
+        {"api":"enterprisedeviceList", "href":"/api/v1/device/enterprisedeviceList","req":2,"para":{"devTypeID": 0,"isExcpetion": "","pageNum": 0,"selectID": 0,"systemType": ""},"des": "企业（异常）设备汇总"},
+        {"api":"fireWorkflow/listActivityByID", "href":"/api/v1/device/fireWorkflow/listActivityByID/","req":1,"para":{"historyID":0,"userID":0},"des": "根据设备历史记录id获取工作流记录"},
+        {"api":"fireWorkflow/selectEndTimeByBusinessId", "href":"/api/v1/device/fireWorkflow/selectEndTimeByBusinessId","req":1,"para":{"historyID":0},"des": "设备异常处理完成时间显示"}
+
+
+
+
+
+
+
 
     ],
 

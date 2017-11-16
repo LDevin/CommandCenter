@@ -13,21 +13,21 @@ class Cache
 {
 
 public:
-    static Cache*                  cache();
+    static Cache*           cache();
 protected:
     Cache();
     virtual                 ~Cache();
 
 private:
-    static Cache*                  _cache;
+    static Cache*           _cache;
 
 
 public:
-    QString accessToken() const { return _access_token; }
-    QString refreshToken() const { return _refresh_token; }
+    QString                 accessToken() const { return _access_token; }
+    QString                 refreshToken() const { return _refresh_token; }
 
-    void setAccessToken(QString &token) { _access_token = token; }
-    void setRefreshToken(QString &token) { _refresh_token = token; }
+    void                    setAccessToken(QString &token) { _access_token = token; }
+    void                    setRefreshToken(QString &token) { _refresh_token = token; }
 
 private:
     QString                 _access_token;

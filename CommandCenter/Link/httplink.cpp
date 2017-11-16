@@ -1,5 +1,6 @@
 ﻿#include "httplink.h"
 #include "helper/jsonhelper.h"
+#include "comm/linkdefines.h"
 
 
 HttpLink::HttpLink(HttpConfiguration *config) : _linkDone(false)
@@ -47,7 +48,13 @@ void HttpLink::setContentType(HttpConfiguration::RequestContentType type)
     }
 
 #if MUTILEPLE
-    else {}
+    else if ( type == HttpConfiguration::FormDataType ) {
+        req.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("multipart/form-data"));
+    } else if ( type == HttpConfiguration::XwwwType ) {
+        req.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/x-www-form-urlencoded"));
+    } else if ( type == HttpConfiguration::TextXmlType ) {
+        req.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("text/xml"));
+    }
 #endif
 
 }
@@ -59,10 +66,7 @@ void HttpLink::startRequest(const QByteArray &requestData)
 
 void HttpLink::startHttpRequest(const QByteArray &data)
 {
-    QString href = _config->urlToString();
-    qDebug()<<href;
-
-    if (href.isEmpty()) return;
+    Q_ASSERT( _config != Q_NULLPTR);
 
     if (isRunning()) return;
     resetTimer();
@@ -70,6 +74,7 @@ void HttpLink::startHttpRequest(const QByteArray &data)
     setContentType(_config->contentType());
 
     QNetworkReply *reply;
+    QString href = _config->urlToString();
 
     if ( _config->requestType() == HttpConfiguration::GET) {
         setUrl(QUrl(href.append(data)));
@@ -77,14 +82,21 @@ void HttpLink::startHttpRequest(const QByteArray &data)
     } else if (_config->requestType() == HttpConfiguration::POST) {
         setUrl(QUrl(href));
         reply = qam.post(req, data);
+    } else if (_config->requestType() == HttpConfiguration::PUT) {
+        setUrl(QUrl(href));
+        reply = qam.put(req, data);
+    } else if (_config->requestType() == HttpConfiguration::DELETE) {
+        setUrl(QUrl(href.append(data)));
+        reply = qam.deleteResource(req);
     }
 
-    qDebug()<<"req url "<<req.url();
-    if ( NULL == reply )return;
+    LOG("req url:" + req.url().toString());
 
-    connect(reply, &QNetworkReply::finished, this, &LinkInterface::linkFinished);
-    connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
-            [=](QNetworkReply::NetworkError code){ qDebug()<< (int)code;});
+    if ( NULL != reply ) {
+        connect(reply, &QNetworkReply::finished, this, &LinkInterface::linkFinished);
+        connect(reply, static_cast<void(QNetworkReply::*)(QNetworkReply::NetworkError)>(&QNetworkReply::error),
+                [=](QNetworkReply::NetworkError code){ LOG((int)code) ;});
+    }
 
     start();
 }
@@ -95,11 +107,11 @@ void HttpLink::run()
         if (timeOut()) {
             setQuit(true);
             linkTimeOutReply();
-            qDebug() << "link request time out!";
+            LOG("link request time out!")
         }
     }
 
-    qDebug() << "link thread exec!";
+    LOG("link thread exec!")
 }
 
 void HttpLink::timerEvent(QTimerEvent *event)
@@ -114,15 +126,15 @@ void HttpLink::linkFinished()
 {
     QNetworkReply *reply = (QNetworkReply *)sender();
 
-    qDebug() << reply->header(QNetworkRequest::ContentTypeHeader);
-    qDebug() << reply->rawHeaderPairs();
+    LOG(reply->header(QNetworkRequest::ContentTypeHeader));
+    LOG(reply->rawHeaderPairs());
 
     QByteArray  data = reply->readAll();
 
     setContentData(data);
     emit readFinished(data);
 
-    qDebug() << data;
+    LOG("linkFinished: " + data);
 
     reply->deleteLater();
     if (reply) {
@@ -177,6 +189,7 @@ void HttpLink::setRequestHeader(const QByteArray &header)
 
 void HttpLink::setRequestBody(const QByteArray &body)
 {
+    Q_UNUSED(body)
     switch (_config->contentType()) {
 
     case HttpConfiguration::JsonType: {
@@ -200,5 +213,28 @@ void HttpLink::setRequestBody(const QByteArray &body)
         break;
     default:
         break;
+    }
+}
+
+void HttpLink::setHttpMultiPart(QHttpMultiPart &part,
+                                const QByteArray &jsonBody,
+                                QHttpMultiPart::ContentType type)
+{
+    if ( type == QHttpMultiPart::FormDataType ) {
+
+        QJsonObject obj;
+        if (!JsonHelper::toObject(jsonBody, obj)) {
+            return;
+        }
+
+        part.setContentType(type);
+
+        QStringList keys = obj.keys();
+        foreach (QString key, keys) {
+            //QVariant val = obj[key].toVariant();
+            //QHttpPart textPart;
+            //textPart.setHeader();
+            //req.setRawHeader(key.toLatin1(), val.toByteArray());
+        }
     }
 }

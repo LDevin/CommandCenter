@@ -12,6 +12,7 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QTimerEvent>
+#include <QHttpMultiPart>
 
 
 class HttpLink : public LinkInterface
@@ -43,6 +44,13 @@ public:
 
     void                setRequestHeader(const QByteArray &header) Q_DECL_OVERRIDE;
     void                setRequestBody(const QByteArray &body) Q_DECL_OVERRIDE;
+
+    void                setHttpMultiPart(QHttpMultiPart &part,
+                                         const QByteArray &jsonBody,
+                                         QHttpMultiPart::ContentType type
+                                         = QHttpMultiPart::FormDataType
+                                         );
+    QHttpMultiPart*     httpMultiPart(QHttpMultiPart *part) const { return part; }
 
 public slots:
     void                linkFinished();

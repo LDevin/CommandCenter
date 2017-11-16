@@ -13,7 +13,7 @@ QT          -= gui
 TARGET      = Link
 TEMPLATE    = lib
 
-DEFINES     += LINK_LIBRARY
+DEFINES     += LINK_LIBRARY LINK_LOG
 
 DebugBuild {
     TARGET  = $${TARGET}d
