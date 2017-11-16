@@ -575,6 +575,7 @@ bool Slave::getResFirePlugDetail(const QString &token, long id, QByteArray &ret)
     Tools::setLinkToken(token, headerData);
 
     return slaveStartLink(link, headerData, tr("%1").arg(id).toLatin1(), ret);
+
 }
 
 bool Slave::getResFirePlugDeviceView(const QString &token, long chargerID, QByteArray &ret)
