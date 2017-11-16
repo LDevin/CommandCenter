@@ -138,6 +138,10 @@ public:
     bool           getEntDevList(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool           getFireLstActByID(const QString &token, const long &historyID, const long &userID, QByteArray &ret);
     bool           getFireSelEndTimeByID(const QString &token, const long &historyID, QByteArray &ret);
+    bool           getLeaderView(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool           getMonitorList(const QString &token, const long &deviceID, QByteArray &ret);
+    bool           getDevStateList(const QString &token, const QString &jsonDto, QByteArray &ret);
+
 
 
 

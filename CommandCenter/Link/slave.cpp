@@ -950,6 +950,114 @@ bool Slave::getFireSelEndTimeByID(const QString &token, const long &historyID, Q
     return slaveStartLink(link, headerData, tr("?historyID=%1").arg(historyID).toLatin1(), ret);
 }
 
+/**************************************************************************
+Description:领导视角数据显示
+Parameter Type: http body
+Data Type:
+{
+  "lat": "string",
+  "lineID": 0,
+  "lng": "string",
+  "pageNum": 0,
+  "queryName": "string",
+  "relatedID": 0,
+  "type": "string"
+}
+Description:领导类型,领导所属关联单位id,要查看的数据线id，要模糊查询的名称(可为空)
+**************************************************************************/
+
+bool Slave::getLeaderView(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    if ( jsonDto.isEmpty()){
+        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
+
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_LEADERVIEW, ret)){
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+/**************************************************************************
+Description:查询设备监控量列表
+Parameter Name: deviceID
+Parameter Type: http path
+Data Type:long
+
+**************************************************************************/
+
+bool Slave::getMonitorList(const QString &token, const long &deviceID, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_MONITOR_LIST, ret)){
+        return RETURN_FALSE;
+    }
+
+    config->setRequestUrl(QUrl(config->urlToString() + tr("%1").arg(deviceID)));
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, QByteArray(), ret);
+}
+
+/**************************************************************************
+Description:设备状态列表
+Parameter Type: http body
+Data Type:
+{
+  "gatewayID": "string",
+  "itemType": "string",
+  "lat": "string",
+  "lineID": 0,
+  "lng": "string",
+  "pageNum": 0,
+  "selectID": 0,
+  "selectName": "string",
+  "selectType": "string",
+  "state": "string",
+  "systemType": "string"
+}
+Description:领导类型,领导所属关联单位id,要查看的数据线id，要模糊查询的名称(可为空),系统类型
+**************************************************************************/
+
+bool Slave::getDevStateList(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    if ( jsonDto.isEmpty()){
+        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
+
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_STATE_LIST, ret)){
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
 bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret)
 {
     if ( token.isEmpty() ) {

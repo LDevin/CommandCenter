@@ -59,19 +59,17 @@
 
         {"api":"buidingdeviceList", "href":"/api/v1/device/buidingdeviceList","req":2,"para":{"isExcpetion":"","name":"","pageNum":0,"selectID":0},"des": "建筑物ID,模糊查询名称,页码,是否只显示异常设备：0否，1是"},
         {"api":"buildingview", "href":"/api/v1/device/buildingview","req":1,"para":{"dataLineID":"","relatedID":"","name":"","type":0,"pageNum":0,"lat":0.0,"lng":0.0},"des": "建筑物/企业列表显示"},
-        {"api":"detail", "href":"/api/v1/device/detail/","req":1,"para":{"deviceID":""},"des": "查询设备详情"},
+        {"api":"detail", "href":"/api/v1/device/detail/","req":1,"para":{"deviceID":0},"des": "查询设备详情"},
         {"api":"deviceview", "href":"/api/v1/device/deviceview","req":2,"para":{ "buidingID": 0,"itemType": "","lineID": 0,"selectID": 0,"selectType": ""},"des": "设备视角的数据显示"},
-        {"api":"devtype", "href":"/api/v1/device/devtype/","req":1,"para":{"id":""},"des": "查询设备详情"},
+        {"api":"devtype", "href":"/api/v1/device/devtype/","req":1,"para":{"id":0},"des": "查询设备详情"},
         {"api":"directlydevice", "href":"/api/v1/device/directlydevice","req":2,"para":{"lat": "","lineID": 0,"lng": "","pageNum": 0,"queryName": "","relatedID": 0,"type": ""},"des": "直属设备数据显示"},
         {"api":"directlyenterprise", "href":"/api/v1/device/directlyenterprise","req":2,"para":{"lat": "string","lineID": 0,"lng": "string","pageNum": 0,"queryName": "string","relatedID": 0,"type": "string"},"des": "直属企业数据显示"},
         {"api":"enterprisedeviceList", "href":"/api/v1/device/enterprisedeviceList","req":2,"para":{"devTypeID": 0,"isExcpetion": "","pageNum": 0,"selectID": 0,"systemType": ""},"des": "企业（异常）设备汇总"},
         {"api":"fireWorkflow/listActivityByID", "href":"/api/v1/device/fireWorkflow/listActivityByID/","req":1,"para":{"historyID":0,"userID":0},"des": "根据设备历史记录id获取工作流记录"},
-        {"api":"fireWorkflow/selectEndTimeByBusinessId", "href":"/api/v1/device/fireWorkflow/selectEndTimeByBusinessId","req":1,"para":{"historyID":0},"des": "设备异常处理完成时间显示"}
-
-
-
-
-
+        {"api":"fireWorkflow/selectEndTimeByBusinessId", "href":"/api/v1/device/fireWorkflow/selectEndTimeByBusinessId","req":1,"para":{"historyID":0},"des": "设备异常处理完成时间显示"},
+        {"api":"leaderview", "href":"/api/v1/device/leaderview","req":2,"para":{"lat": "string","lineID": 0,"lng": "string","pageNum": 0,"queryName": "string","relatedID": 0,"type": "string"},"des": "领导视角数据显示"},
+        {"api":"monitor/list", "href":"/api/v1/device/monitor/list/","req":1,"para":{"deviceID":0},"des": "查询设备监控量列表"},
+        {"api":"state/list", "href":"/api/v1/device/state/list","req":2,"para":{ "gatewayID": "string","itemType": "string","lat": "string","lineID": 0,"lng": "string","pageNum": 0,"selectID": 0,"selectName": "string","selectType": "string","state": "string","systemType": "string"},"des": "设备状态列表"}
 
 
 

@@ -37,6 +37,12 @@ private slots:
 
     void on_selTimeEndID_clicked();
 
+    void on_getLeaderView_clicked();
+
+    void on_getMonitorList_clicked();
+
+    void on_getdevstatelist_clicked();
+
 private:
     Ui::ZkTestDialog *ui;
 };
