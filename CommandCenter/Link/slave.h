@@ -123,6 +123,7 @@ public:
     bool            addInfoComments(const QString &token, const int articleId, const QString content, const int userID,
                                     QByteArray &ret);
     bool            delInfoComments(const QString &token, const int id,QByteArray &ret);
+    bool            updateInfoReadTimes(const QString &token, const int articleId, const int userID, QByteArray &ret);
     //![3]
 
     /*

@@ -40,6 +40,8 @@ private slots:
 
     void on_delComments_clicked();
 
+    void on_updateReadTimes_clicked();
+
 private:
     Ui::HsfTestDialog *ui;
 };

@@ -78,6 +78,7 @@
 #define LINK_API_INFO_LIST_NAVIGATION  "conf/list"
 #define LINK_API_INFO_COMMENTS_ADD  "comments/add"
 #define LINK_API_INFO_COMMENTS_DEL  "comments/del"
+#define LINK_API_INFO_LIST_UPDATEREADTIMES  "article/updateReadTimes"
 
 /******
  *
