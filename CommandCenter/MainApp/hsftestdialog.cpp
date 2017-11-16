@@ -4,7 +4,7 @@
 #include"slave.h"
 
 
-#define ACCESSTOKEN "4d2eca92-cf6b-43af-9732-408be89526e2"
+#define ACCESSTOKEN "31157be4-8493-42b2-8a55-030de7ddede7"
 
 HsfTestDialog::HsfTestDialog(QWidget *parent) :
     QDialog(parent),
@@ -114,4 +114,12 @@ void HsfTestDialog::on_delComments_clicked()
     QByteArray ret;
     Link::Slave::slave()->delInfoComments(tr(ACCESSTOKEN), 3, ret);
     qDebug() << "ret " << ret;
+}
+
+void HsfTestDialog::on_updateReadTimes_clicked()
+{
+    qDebug()<<"on_updateReadTimes_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->updateInfoReadTimes(tr(ACCESSTOKEN),2,1, ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
 }

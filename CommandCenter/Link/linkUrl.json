@@ -48,7 +48,7 @@
         {"api":"conf/childLevelByPar", "href":"/api/v1/info/conf/childLevelByPar/","req":1,"para":{"relativeID":""},"des": "根据父类id查询子类分类配置"},
         {"api":"conf/firstLevel", "href":"/api/v1/info/conf/firstLevel/","req":1,"para":{},"des": "查询所有一级分类列表"},
         {"api":"conf/list", "href":"/api/v1/info/conf/list/","req":1,"para":{"template":""},"des": "查询咨询导航栏信息"},
-
+        {"api":"article/updateReadTimes", "href":"/api/v1/info/article/updateReadTimes/","req":3,"para":{"articleId":"","userID":""},"des": " 自增文章阅读量"},
         {"api":"comments/add", "href":"/api/v1/info/comments/add/","req":2,"para":{"articleId":"","content":"","createUserID":""},"des": "新增留言"},
         {"api":"comments/del", "href":"/api/v1/info/comments/del/","req":4,"para":{"id":""},"des": "删除留言"}
 
