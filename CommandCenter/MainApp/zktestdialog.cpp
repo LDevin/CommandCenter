@@ -158,3 +158,62 @@ void ZkTestDialog::on_selTimeEndID_clicked()
 
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
+
+void ZkTestDialog::on_getLeaderView_clicked()
+{
+    QByteArray ret;
+
+    QJsonObject p;
+
+       p.insert("lat", "string");
+       p.insert("lineID", 0);
+       p.insert("lng","string");
+       p.insert("pageNum", 0);
+       p.insert("queryName", "string");
+       p.insert("relatedID", 0);
+       p.insert("type","string");
+
+
+    QByteArray headerData = QJsonDocument(p).toJson();
+    QString body;
+    body.append(headerData);
+
+    Link::Slave::slave()->getLeaderView(tr("fe2618a6-146c-4c80-9bca-cd4903d92fed"), body, ret);
+
+    qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void ZkTestDialog::on_getMonitorList_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getMonitorList(tr("fe2618a6-146c-4c80-9bca-cd4903d92fed"),555, ret);
+
+    qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void ZkTestDialog::on_getdevstatelist_clicked()
+{
+    QByteArray ret;
+
+    QJsonObject p;
+
+     p.insert("gatewayID", "string");
+     p.insert("itemType", "string");
+     p.insert("lat", "string");
+     p.insert("lineID", 0);
+     p.insert("lng", "string");
+     p.insert("pageNum", 0);
+     p.insert("selectID", 0);
+     p.insert("selectName", "string");
+     p.insert("selectType", "string");
+     p.insert("state","string");
+     p.insert("systemType", "string");
+
+    QByteArray headerData = QJsonDocument(p).toJson();
+    QString body;
+    body.append(headerData);
+
+    Link::Slave::slave()->getLeaderView(tr("fe2618a6-146c-4c80-9bca-cd4903d92fed"), body, ret);
+
+    qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
