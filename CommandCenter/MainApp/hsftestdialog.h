@@ -42,6 +42,10 @@ private slots:
 
     void on_updateReadTimes_clicked();
 
+    void on_addCheck_clicked();
+
+    void on_getCheckContentName_clicked();
+
 private:
     Ui::HsfTestDialog *ui;
 };

@@ -81,7 +81,9 @@
 
     ],
 
-    "check":[
+    "firecheck":[
+        {"api":"addCheckDangerItem", "href":"/api/v1/firecheck/addCheckDangerItem","req":2,"para":{"itemSet":"","pageNum":"","pageSize":"","startRow":"", "description":"", "id":"", "recordID":"", "itemID":"", "itemName":"", "optionID":"", "optionName":"","relatedID":"", "dangerType":"", "checkUserID":"", "superviseID":"", "checkTime":"", "status":"", "handleStatus":""},"des": "新增隐患项"},
+        {"api":"detail", "href":"/api/v1/firecheck/","req":1,"para":{"areaName":"","buildingAddress":"","createTime":"","evaluatedLevel":"", "organizerName":""},"des": "获取消防检查表内容"}
 
     ],
 

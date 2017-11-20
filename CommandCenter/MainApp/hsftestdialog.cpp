@@ -4,7 +4,7 @@
 #include"slave.h"
 
 
-#define ACCESSTOKEN "31157be4-8493-42b2-8a55-030de7ddede7"
+#define ACCESSTOKEN "b8cdecb2-6f9a-481a-8436-adbf828cd8ad"
 
 HsfTestDialog::HsfTestDialog(QWidget *parent) :
     QDialog(parent),
@@ -121,5 +121,23 @@ void HsfTestDialog::on_updateReadTimes_clicked()
     qDebug()<<"on_updateReadTimes_clicked";
     QByteArray ret;
     Link::Slave::slave()->updateInfoReadTimes(tr(ACCESSTOKEN),2,1, ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_addCheck_clicked()
+{
+    qDebug()<<"on_addCheck_clicked";
+    QByteArray ret;
+    QString jsonStr=QString("{\"itemSet\":\"\",\"pageNum\":1,\"pageSize\" :5,\"startRow\": 0, \"description\": \"test \",\"id\": \"11\","
+                            " \"recordID\": \"\",\"itemID\":\"\", \"itemName\":\"\",\"relatedID\":\"\",\"dangerType\":\"1\",\"checkUserID\":\"1\"} ");
+    Link::Slave::slave()->getFireCheckItem(tr(ACCESSTOKEN), jsonStr, ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_getCheckContentName_clicked()
+{
+    qDebug()<<"on_addCheck_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->getFireCheckForm(tr(ACCESSTOKEN), 1, "aa","", "", "", "", ret);
     qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
 }

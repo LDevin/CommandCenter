@@ -80,6 +80,9 @@
 #define LINK_API_INFO_COMMENTS_DEL  "comments/del"
 #define LINK_API_INFO_LIST_UPDATEREADTIMES  "article/updateReadTimes"
 
+#define LINK_ROOT_API_CHECK "firecheck"
+#define LINK_API_CHECK_ADDCHECKITEM "addCheckDangerItem"
+#define LINK_API_CHECK_FORMDETAIL "detail"
 /******
  *
  * LOG宏,可以定位到打印的哪个文件和哪一行

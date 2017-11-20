@@ -951,6 +951,49 @@ bool Slave::getFireSelEndTimeByID(const QString &token, const long &historyID, Q
     return slaveStartLink(link, headerData, tr("?historyID=%1").arg(historyID).toLatin1(), ret);
 }
 
+bool Slave::getFireCheckItem(const QString &token, const QString jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() || jsonDto.isEmpty()) {
+        return returnHttpOtherErrMsg("A parameter is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_CHECK, LINK_API_CHECK_ADDCHECKITEM, ret)){
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::getFireCheckForm(const QString &token, const int pageType, const QString areaName, const QString buildingAddress, const QString createTime, const QString evaluateLevel, const QString organizerName, QByteArray &ret)
+{
+    if ( token.isEmpty() ||pageType<0 ) {
+        return returnHttpOtherErrMsg("A parameter is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_CHECK, LINK_API_CHECK_FORMDETAIL, ret)){
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    QString body = tr("%1/formdetail?areaName=%2&buildingAddress=%3&createTime=%4&evaluateLevel=%5organizerName=%6").arg(pageType).arg(areaName).arg(buildingAddress).arg(createTime).arg(evaluateLevel).arg(organizerName);
+    return slaveStartLink(link, headerData, body.toLatin1(), ret);
+}
+
+
+
+
+
 bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret)
 {
     if ( token.isEmpty() ) {

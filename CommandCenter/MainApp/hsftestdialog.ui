@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>522</width>
-    <height>367</height>
+    <width>587</width>
+    <height>394</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +34,7 @@
     <rect>
      <x>40</x>
      <y>30</y>
-     <width>491</width>
+     <width>481</width>
      <height>141</height>
     </rect>
    </property>
@@ -208,6 +208,45 @@
     </property>
     <property name="text">
      <string>增加文章阅读量</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>190</y>
+     <width>481</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>info-controller</string>
+   </property>
+   <widget class="QPushButton" name="addCheck">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>新增隐患项</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="getCheckContentName">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>获取消防检查表内容</string>
     </property>
    </widget>
   </widget>
