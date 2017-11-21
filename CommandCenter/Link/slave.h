@@ -153,6 +153,9 @@ public:
     bool           getFireCheckItem(const QString &token, const QString jsonDto, QByteArray &ret);
     bool           getFireCheckForm(const QString &token,const int pageType, const QString areaName,const QString buildingAddress,
                                     const QString createTime, const QString evaluateLevel, const QString organizerName, QByteArray &ret);
+    bool           getFireCheckFormList(const QString &token, const int pageType, const int pageNum, QByteArray &ret);
+    bool           AddFireCheckForm(const QString &token, const int pageType, const QString appContent, const QString corperName,
+                                       const QString corperSign, const QString corperPhone , const int id, QByteArray &ret);
     //![4]
 
     /*

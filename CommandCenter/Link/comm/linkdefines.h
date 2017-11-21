@@ -86,6 +86,8 @@
 #define LINK_ROOT_API_CHECK "firecheck"
 #define LINK_API_CHECK_ADDCHECKITEM "addCheckDangerItem"
 #define LINK_API_CHECK_FORMDETAIL "detail"
+#define LINK_API_CHECK_FORMADD "add"
+#define LINK_API_CHECK_FORM "list"
 /******
  *
  * LOG宏,可以定位到打印的哪个文件和哪一行

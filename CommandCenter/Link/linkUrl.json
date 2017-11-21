@@ -81,8 +81,9 @@
 
     "firecheck":[
         {"api":"addCheckDangerItem", "href":"/api/v1/firecheck/addCheckDangerItem","req":2,"para":{"itemSet":"","pageNum":"","pageSize":"","startRow":"", "description":"", "id":"", "recordID":"", "itemID":"", "itemName":"", "optionID":"", "optionName":"","relatedID":"", "dangerType":"", "checkUserID":"", "superviseID":"", "checkTime":"", "status":"", "handleStatus":""},"des": "新增隐患项"},
-        {"api":"detail", "href":"/api/v1/firecheck/","req":1,"para":{"areaName":"","buildingAddress":"","createTime":"","evaluatedLevel":"", "organizerName":""},"des": "获取消防检查表内容"}
-
+        {"api":"detail", "href":"/api/v1/firecheck/","req":1,"para":{"pageType":"","areaName":"","buildingAddress":"","createTime":"","evaluatedLevel":"", "organizerName":""},"des": "获取消防检查表内容"},
+        {"api":"add", "href":"/api/v1/firecheck/","req":2,"para":{"pageType":"", "appContent":"", "corperName":"", "corperPhone":"", "corperSign":"", "id":""},"des": "新增消防检查表记录"},
+        {"api":"list", "href":"/api/v1/firecheck/","req":2,"para":{"pageType":"", "pageNum":""},"des": "获取已填写消防检查表列表详情"}
     ],
 
     "chat":[

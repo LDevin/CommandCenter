@@ -4,7 +4,7 @@
 #include"slave.h"
 
 
-#define ACCESSTOKEN "b8cdecb2-6f9a-481a-8436-adbf828cd8ad"
+#define ACCESSTOKEN "d6dde889-b1de-48ff-b9b8-f9c367bd91a2"
 
 HsfTestDialog::HsfTestDialog(QWidget *parent) :
     QDialog(parent),
@@ -139,5 +139,21 @@ void HsfTestDialog::on_getCheckContentName_clicked()
     qDebug()<<"on_addCheck_clicked";
     QByteArray ret;
     Link::Slave::slave()->getFireCheckForm(tr(ACCESSTOKEN), 1, "aa","", "", "", "", ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_addFormCheck_clicked()
+{
+    qDebug()<<"on_addCheck_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->AddFireCheckForm(tr(ACCESSTOKEN), 1, "aa", "", "", "", 2, ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_getFormList_clicked()
+{
+    qDebug()<<"on_addCheck_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->getFireCheckFormList(tr(ACCESSTOKEN), 1, 1, ret);
     qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
