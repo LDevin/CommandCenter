@@ -163,7 +163,7 @@ void HsfTestDialog::on_getFormListDetail_clicked()
     qDebug()<<"on_getFormListDetail_clicked";
     QByteArray ret;
     QString jsonStr=QString("{\"areaName\": \"string\", \"bCode\": \"string\", \"bItemType\": \"string\",  "
-                            "\"checkTime\": \"2017-11-22T00:46:20.052Z\", \"dItemType\": \" \",\"evaluateLevel\": \"1\"}");
+                            "\"checkTime\": \"2017-11-22 00:46:20\", \"dItemType\": \" \",\"evaluateLevel\": \"1\"}");
     Link::Slave::slave()->searchFirecheck(tr(ACCESSTOKEN), 1, jsonStr, ret);
     qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
