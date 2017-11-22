@@ -213,7 +213,23 @@ void ZkTestDialog::on_getdevstatelist_clicked()
     QString body;
     body.append(headerData);
 
-    Link::Slave::slave()->getLeaderView(tr("fe2618a6-146c-4c80-9bca-cd4903d92fed"), body, ret);
+    Link::Slave::slave()->getLeaderView(tr("5b12182d-2328-4a84-9a9b-951b388bac69"), body, ret);
+
+    qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void ZkTestDialog::on_getStatushiList_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getStatushisList(tr("5b12182d-2328-4a84-9a9b-951b388bac69"), 555,1, ret);
+
+    qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void ZkTestDialog::on_getSystemTypeList_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getSystemTypeList(tr("5b12182d-2328-4a84-9a9b-951b388bac69"), ret);
 
     qDebug() << "ret " << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }

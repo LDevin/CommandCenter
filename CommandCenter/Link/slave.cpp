@@ -1182,6 +1182,96 @@ bool Slave::getDevStateList(const QString &token, const QString &jsonDto, QByteA
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
+/**************************************************************************
+Description:新增设备处理记录
+Parameter Type: http body
+Data Type:
+{
+  "deviceStatusChangeHistoryID": 0,
+  "exeption": 0,
+  "imgPaths": [
+    "string"
+  ],
+  "remark": "string"
+}
+
+**************************************************************************/
+bool Slave::getDevStatushisAdd(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    if ( jsonDto.isEmpty()){
+        return returnHttpOtherErrMsg("Parameter  is empty!", LINK_RS_INPUT_NULL, ret);
+
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_STATUSHIS_ADD, ret)){
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+/**************************************************************************
+Description:根据设备历史记录id获取工作流记录
+Parameter Name: deviceID
+Parameter Type: http path
+Data Type:long
+
+Parameter Name: pageNum
+Parameter Type: http query
+Data Type:int
+
+**************************************************************************/
+bool Slave::getStatushisList(const QString &token, const long &deviceID, const int pageNum, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_STATUSHIS_LIST, ret)){
+        return RETURN_FALSE;
+    }
+
+    config->setRequestUrl(QUrl(config->urlToString() + tr("%1").arg(deviceID)));
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, tr("?pageNum=%1").arg(pageNum).toLatin1(), ret);
+}
+
+/**************************************************************************
+Description:根据系统类型查看
+Parameter Name: 无传参
+**************************************************************************/
+bool Slave::getSystemTypeList(const QString &token, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_DEV, LINK_API_DEV_SYSTEMTYPE_LIST, ret)){
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, QByteArray(), ret);
+}
+
 bool Slave::getInfoDetailById(const QString &token, int userId, int articleId, QByteArray &ret)
 {
     if ( token.isEmpty() ) {

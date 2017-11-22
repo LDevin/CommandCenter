@@ -69,7 +69,13 @@
         {"api":"fireWorkflow/selectEndTimeByBusinessId", "href":"/api/v1/device/fireWorkflow/selectEndTimeByBusinessId","req":1,"para":{"historyID":0},"des": "设备异常处理完成时间显示"},
         {"api":"leaderview", "href":"/api/v1/device/leaderview","req":2,"para":{"lat": "string","lineID": 0,"lng": "string","pageNum": 0,"queryName": "string","relatedID": 0,"type": "string"},"des": "领导视角数据显示"},
         {"api":"monitor/list", "href":"/api/v1/device/monitor/list/","req":1,"para":{"deviceID":0},"des": "查询设备监控量列表"},
-        {"api":"state/list", "href":"/api/v1/device/state/list","req":2,"para":{ "gatewayID": "string","itemType": "string","lat": "string","lineID": 0,"lng": "string","pageNum": 0,"selectID": 0,"selectName": "string","selectType": "string","state": "string","systemType": "string"},"des": "设备状态列表"}
+        {"api":"state/list", "href":"/api/v1/device/state/list","req":2,"para":{ "gatewayID": "string","itemType": "string","lat": "string","lineID": 0,"lng": "string","pageNum": 0,"selectID": 0,"selectName": "string","selectType": "string","state": "string","systemType": "string"},"des": "设备状态列表"},
+        {"api":"statushis/add", "href":"/api/v1/device/statushis/add","req":2,"para":{"deviceStatusChangeHistoryID": 0,"exeption": 0,"imgPaths": ["string"],"remark": "string"},"des": "新增设备处理记录"},
+        {"api":"statushis/list", "href":"/api/v1/device/statushis/list/","req":1,"para":{ "deviceID": 0,"pageNum": 0},"des": "设备历史记录列表显示"},
+        {"api":"systemtype/list", "href":"/api/v1/device/systemtype/list","req":1,"para":{ },"des": "根据系统类型查看"}
+
+
+
 
 
 
