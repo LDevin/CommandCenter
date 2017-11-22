@@ -149,15 +149,28 @@ public:
     /*
      * @check-form-record-controller : 楼栋和单位消防检查相关接口
     */
-
+    //![4]
+    bool           getFireCheckItem(const QString &token, const QString jsonDto, QByteArray &ret);
+    bool           getFireCheckForm(const QString &token,const int pageType, const QString areaName,const QString buildingAddress,
+                                    const QString createTime, const QString evaluateLevel, const QString organizerName, QByteArray &ret);
+    bool           getFireCheckFormList(const QString &token, const int pageType, const int pageNum, QByteArray &ret);
+    bool           AddFireCheckForm(const QString &token, const int pageType, const QString appContent, const QString corperName,
+                                       const QString corperSign, const QString corperPhone , const int id, QByteArray &ret);
+    bool           searchFirecheck(const QString &token, const int pageType, const QString jsonDto, QByteArray &ret);
+    //![4]
 
     /*
      * @check-controller : 检查表相关接口
     */
+
     bool getCheckFormID(const QString &token, const QString &jsonDto, QByteArray &ret);
     /*
      * @chat-controller : 聊天互动相关接口
     */
+
+    /*
+     * 楼栋和单位消防检查相关接口
+     */
 
 public slots:
     void            slaveFinishedWork();
