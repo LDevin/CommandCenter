@@ -198,6 +198,32 @@
     <string>getDevStateList</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="getStatushiList">
+   <property name="geometry">
+    <rect>
+     <x>234</x>
+     <y>210</y>
+     <width>141</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>getStatushisList</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="getSystemTypeList">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>140</y>
+     <width>141</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>getSystemTypeList</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>

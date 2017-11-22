@@ -43,6 +43,10 @@ private slots:
 
     void on_getdevstatelist_clicked();
 
+    void on_getStatushiList_clicked();
+
+    void on_getSystemTypeList_clicked();
+
 private:
     Ui::ZkTestDialog *ui;
 };

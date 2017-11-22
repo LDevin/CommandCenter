@@ -142,6 +142,10 @@ public:
     bool           getLeaderView(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool           getMonitorList(const QString &token, const long &deviceID, QByteArray &ret);
     bool           getDevStateList(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool           getDevStatushisAdd(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool           getStatushisList(const QString &token, const long &deviceID, const int pageNum, QByteArray &ret);
+    bool           getSystemTypeList(const QString &token, QByteArray &ret);
+
 
 
 

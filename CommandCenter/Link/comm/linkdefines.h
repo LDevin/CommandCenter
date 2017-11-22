@@ -66,6 +66,9 @@
 #define LINK_API_DEV_LEADERVIEW   "leaderview"
 #define LINK_API_DEV_MONITOR_LIST    "monitor/list"
 #define LINK_API_DEV_STATE_LIST     "state/list"
+#define LINK_API_DEV_STATUSHIS_ADD  "statushis/add"
+#define LINK_API_DEV_STATUSHIS_LIST     "statushis/list"
+#define LINK_API_DEV_SYSTEMTYPE_LIST     "systemtype/list"
 
 
 #define LINK_ROOT_API_INFO "info"
