@@ -71,9 +71,11 @@ INCLUDEPATH += $$PWD/../Link/
 DebugBuild {
     LIBS += -L$${DESTDIR} -lLinkd
     LIBS += -L$${DESTDIR} -lUid
+    LIBS += -L$${DESTDIR} -lDbd
 } else {
     LIBS += -L$${DESTDIR} -lLink
     LIBS += -L$${DESTDIR} -lUi
+    LIBS += -L$${DESTDIR} -lDb
 }
 
 include($$PWD/toolbox/toolbox.pri)
