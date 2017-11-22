@@ -1070,8 +1070,41 @@ bool Slave::AddFireCheckForm(const QString &token, const int pageType, const QSt
     Tools::setLinkToken(token, headerData);
     QString ckFormRecord =QString("{\"appContent\": \"%1\", \"corperName\": \"%2\", \"corperPhone\": \"%3\",\"corperSign\": \"%4 \",\"id\": %5}\"}").arg(appContent)
             .arg(corperName).arg(corperSign).arg(corperPhone).arg(id);
-    //QString body = tr("%1/formdetail/add?%2").arg(pageType).arg(ckFormRecord);
+
     return slaveStartLink(link, headerData, ckFormRecord.toLatin1(), ret);
+}
+
+bool Slave::searchFirecheck(const QString &token, const int pageType, const QString jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty()||pageType<0||jsonDto.isEmpty()) {
+        return returnHttpOtherErrMsg("A parameter is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_CHECK, LINK_API_CHECK_SEARCH, ret)){
+        return RETURN_FALSE;
+    }
+
+    QString url=config->urlToString()+tr("%1/search").arg(pageType);
+    config->setRequestUrl(url);
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+   /* HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_CHECK, LINK_API_CHECK_SEARCH, ret)){
+        return RETURN_FALSE;
+    }
+
+    QString url=config->urlToString()+tr("%1/search").arg(pageType);
+    config->setRequestUrl(url);
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);*/
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
 

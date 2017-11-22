@@ -156,6 +156,7 @@ public:
     bool           getFireCheckFormList(const QString &token, const int pageType, const int pageNum, QByteArray &ret);
     bool           AddFireCheckForm(const QString &token, const int pageType, const QString appContent, const QString corperName,
                                        const QString corperSign, const QString corperPhone , const int id, QByteArray &ret);
+    bool           searchFirecheck(const QString &token, const int pageType, const QString jsonDto, QByteArray &ret);
     //![4]
 
     /*

@@ -50,6 +50,8 @@ private slots:
 
     void on_getFormList_clicked();
 
+    void on_getFormListDetail_clicked();
+
 private:
     Ui::HsfTestDialog *ui;
 };

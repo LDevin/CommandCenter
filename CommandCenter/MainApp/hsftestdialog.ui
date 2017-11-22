@@ -275,6 +275,19 @@
      <string>获取已填写取消防检查表列表</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="getFormListDetail">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>10</y>
+      <width>111</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>查询检查表详情</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
