@@ -16,7 +16,7 @@ DbInterface::~DbInterface()
 
 void DbInterface::run()
 {
-
+    LOG("DFDFDF")
 }
 
 void DbInterface::timerEvent(QTimerEvent *event)

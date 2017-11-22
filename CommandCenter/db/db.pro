@@ -11,7 +11,7 @@ QT       -= gui
 TARGET = Db
 TEMPLATE = lib
 
-DEFINES += DB_LIBRARY QMYSQL
+DEFINES += DB_LIBRARY QMYSQL DB_LOG
 
 DebugBuild {
     TARGET  = $${TARGET}d

@@ -97,6 +97,7 @@
  * LOG宏,可以定位到打印的哪个文件和哪一行
  *
 ******/
+#undef LOG
 #if defined(LINK_LOG)
 #   define LOG(...) {\
 qDebug() \

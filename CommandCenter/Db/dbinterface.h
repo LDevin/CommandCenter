@@ -48,7 +48,6 @@ protected:
 
 protected:
     QSqlDatabase                _db;
-    QSqlQuery                   _query;
 
     QString                     _sql;
 
