@@ -4,7 +4,7 @@
 #include"slave.h"
 
 
-#define ACCESSTOKEN "31157be4-8493-42b2-8a55-030de7ddede7"
+#define ACCESSTOKEN "d6dde889-b1de-48ff-b9b8-f9c367bd91a2"
 
 HsfTestDialog::HsfTestDialog(QWidget *parent) :
     QDialog(parent),
@@ -121,5 +121,49 @@ void HsfTestDialog::on_updateReadTimes_clicked()
     qDebug()<<"on_updateReadTimes_clicked";
     QByteArray ret;
     Link::Slave::slave()->updateInfoReadTimes(tr(ACCESSTOKEN),2,1, ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_addCheck_clicked()
+{
+    qDebug()<<"on_addCheck_clicked";
+    QByteArray ret;
+    QString jsonStr=QString("{\"itemSet\":\"\",\"pageNum\":1,\"pageSize\" :5,\"startRow\": 0, \"description\": \"test \",\"id\": \"11\","
+                            " \"recordID\": \"\",\"itemID\":\"\", \"itemName\":\"\",\"relatedID\":\"\",\"dangerType\":\"1\",\"checkUserID\":\"1\"} ");
+    Link::Slave::slave()->getFireCheckItem(tr(ACCESSTOKEN), jsonStr, ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_getCheckContentName_clicked()
+{
+    qDebug()<<"on_addCheck_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->getFireCheckForm(tr(ACCESSTOKEN), 1, "aa","", "", "", "", ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_addFormCheck_clicked()
+{
+    qDebug()<<"on_addCheck_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->AddFireCheckForm(tr(ACCESSTOKEN), 1, "aa", "", "", "", 2, ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_getFormList_clicked()
+{
+    qDebug()<<"on_addCheck_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->getFireCheckFormList(tr(ACCESSTOKEN), 1, 1, ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_getFormListDetail_clicked()
+{
+    qDebug()<<"on_getFormListDetail_clicked";
+    QByteArray ret;
+    QString jsonStr=QString("{\"areaName\": \"string\", \"bCode\": \"string\", \"bItemType\": \"string\",  "
+                            "\"checkTime\": \"2017-11-22 00:46:20\", \"dItemType\": \" \",\"evaluateLevel\": \"1\"}");
+    Link::Slave::slave()->searchFirecheck(tr(ACCESSTOKEN), 1, jsonStr, ret);
     qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
