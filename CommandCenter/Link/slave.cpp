@@ -1092,18 +1092,46 @@ bool Slave::searchFirecheck(const QString &token, const int pageType, const QStr
 
     QByteArray headerData ;
     Tools::setLinkToken(token, headerData);
-   /* HttpConfiguration *config = new HttpConfiguration();
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
 
-    if (!setLinkConfigurationData(config, LINK_ROOT_API_CHECK, LINK_API_CHECK_SEARCH, ret)){
+bool Slave::addChatMessage(const QString &token, const QString content, QByteArray &ret)
+{
+    if ( token.isEmpty()||content.isEmpty()) {
+        return returnHttpOtherErrMsg("has error parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_CHAT, LINK_API_CHAT_MESSAGE, ret)) {
         return RETURN_FALSE;
     }
 
-    QString url=config->urlToString()+tr("%1/search").arg(pageType);
-    config->setRequestUrl(url);
     LinkInterface *link = new HttpLink(config);
-    QByteArray headerData ;
-    Tools::setLinkToken(token, headerData);*/
 
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    QString jsonDto=QString("{\"content\":\"%1\"}").arg(content);
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::addChatMessageComment(const QString &token, const QString ids, const QString content, QByteArray &ret)
+{
+    if ( token.isEmpty()||content.isEmpty()) {
+        return returnHttpOtherErrMsg("has error parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_CHAT, LINK_API_CHAT_COMMENT, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    QString jsonDto=QString("{\"ids\":\"%1\",\"content\":\"%1\"}").arg(ids).arg(content);
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
@@ -1478,7 +1506,7 @@ bool Slave::getInfoNavigation(const QString &token, const int templateId, QByteA
 bool Slave::addInfoComments(const QString &token, const int articleId, const QString content, const int userID, QByteArray &ret)
 {
     if ( token.isEmpty()||articleId<0||userID<0) {
-        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+        return returnHttpOtherErrMsg("has error parameter!", LINK_INVOKE_OTHER_ERR, ret);
     }
 
     HttpConfiguration *config = new HttpConfiguration();

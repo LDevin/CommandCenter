@@ -92,6 +92,11 @@
 #define LINK_API_CHECK_FORMADD "firecheck/addForm"
 #define LINK_API_CHECK_FORM "firecheck/listForm"
 #define LINK_API_CHECK_SEARCH "firecheck/searchForm"
+
+#define LINK_ROOT_API_CHAT "chat"
+#define LINK_API_CHAT_MESSAGE "chat/addmessage"
+#define LINK_API_CHAT_COMMENT "chat/addmessagecomment"
+
 /******
  *
  * LOG宏,可以定位到打印的哪个文件和哪一行

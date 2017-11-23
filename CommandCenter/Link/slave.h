@@ -171,6 +171,8 @@ public:
     /*
      * @chat-controller : 聊天互动相关接口
     */
+    bool         addChatMessage(const QString &token, const QString content, QByteArray &ret);
+    bool         addChatMessageComment(const QString &token,const QString ids, const QString content, QByteArray &ret);
 
     /*
      * 楼栋和单位消防检查相关接口
