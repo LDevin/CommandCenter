@@ -113,6 +113,20 @@ public:
     bool            getResRescureCarList(const QString& token, int rescureId, int pageNum, QByteArray& ret);
     bool            getResRescureDetail(const QString &token, long id, QByteArray &ret);
     bool            getResRescureDeviceview(const QString &token, long supervisorId, QByteArray &ret);
+    bool            addResRescurePerson(const QString &token, long rescureId, const QString &jsonDto, QByteArray &ret);
+    bool            getResRescurePersonDetail(const QString &token, long rescureId, long personId, QByteArray &ret);
+    bool            getResRescurePersonList(const QString &token, long rescureId, int pageNum, QByteArray &ret);
+    bool            updateResRecurePerson(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            updateResRecure(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResRescureList(const QString &token, const QString &name, int type, int pageNum, QByteArray &ret);
+    bool            addResWater(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResWaterDetail(const QString &token, long id, QByteArray &ret);
+    bool            getResWaterDeviceView(const QString &token, long chargerID, QByteArray &ret);
+    bool            getResWaterList(const QString &token, const QString &code, int waterType, const QString &longitude,
+                                    const QString &latitude, int radus, int pageNum, QByteArray &ret);
+    bool            updateResWater(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResZoneByParent(const QString &token, int relativeID, QByteArray &ret);
+    bool            getResFullZone(const QString &token, const QString &relativeID, QByteArray &ret);
     //![2]
 
     /*

@@ -845,6 +845,299 @@ bool Slave::getResRescureDeviceview(const QString &token, long supervisorId, QBy
     return slaveStartLink(link, headerData, QByteArray(), ret);
 }
 
+bool Slave::addResRescurePerson(const QString &token, long rescureId, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() || jsonDto.isEmpty() || rescureId < 1) {
+        return returnHttpOtherErrMsg("has null parameter", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RESCURE_PERSON_ADD, ret)) {
+        return RETURN_FALSE;
+    }
+
+    config->setRequestUrl(QUrl(config->urlToString() + "/" + tr("%1").arg(rescureId)));
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::getResRescurePersonDetail(const QString &token, long rescureId,
+                                      long personId, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RESCURE_PERSON_DETAIL, ret)) {
+        return RETURN_FALSE;
+    }
+
+    config->setRequestUrl(QUrl(config->urlToString() + tr("%1/%2").arg(rescureId).arg(personId)));
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, QByteArray(), ret);
+}
+
+bool Slave::getResRescurePersonList(const QString &token, long rescureId, int pageNum, QByteArray &ret)
+{
+    if ( token.isEmpty() || pageNum < 1 || rescureId < 1) {
+        return returnHttpOtherErrMsg("has null parameter", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RESCURE_CAR_LIST, ret)) {
+        return RETURN_FALSE;
+    }
+    config->setRequestUrl(QUrl(config->urlToString() + tr("%1").arg(rescureId) + tr("?pageNum=%1").arg(pageNum)));
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, QByteArray(), ret);
+}
+
+bool Slave::updateResRecurePerson(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() || jsonDto.isEmpty() ) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RESCURE_PERSON_UPDATE, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::updateResRecure(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() || jsonDto.isEmpty() ) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RESCURE_UPDATE, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::getResRescureList(const QString &token, const QString &name,
+                              int type, int pageNum, QByteArray &ret)
+{
+    if ( token.isEmpty() || pageNum < 1) {
+        return returnHttpOtherErrMsg("token为空或页码错误", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RESOURE_LIST, ret)) {
+        return RETURN_FALSE;
+    }
+
+    config->setContentType(HttpConfiguration::XwwwType);
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    QString body = tr("pageNum=%1").arg(pageNum);
+    if ( !name.isEmpty() ) {
+        body.append(tr("&name=%1").arg(name));
+    }
+
+    if ( type > 0 ) {
+        body.append(tr("&type=%1").arg(type));
+    }
+
+    return slaveStartLink(link, headerData, body.toLatin1(), ret);
+}
+
+bool Slave::addResWater(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() || jsonDto.isEmpty() ) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_WATER_ADD, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+
+bool Slave::getResWaterDetail(const QString &token, long id, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token id empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_WATER_DETAIL, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, tr("%1").arg(id).toLatin1(), ret);
+}
+
+
+bool Slave::getResWaterDeviceView(const QString &token, long chargerID, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_WATER_DEVICEVIEW, ret)) {
+        return RETURN_FALSE;
+    }
+
+    config->setRequestUrl(QUrl(config->urlToString() + tr("?chargerID=%1").arg(chargerID)));
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, QByteArray(), ret);
+}
+
+bool Slave::getResWaterList(const QString &token, const QString &code, int waterType,
+                            const QString &longitude, const QString &latitude, int radus,
+                            int pageNum, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_WATER_LIST, ret)) {
+        return RETURN_FALSE;
+    }
+    QString body = "";
+    if ( pageNum > 0) {
+        body += ( body.isEmpty() ? tr("?pageNum=%1").arg(pageNum) : tr("&pageNum=%1").arg(pageNum));
+    }
+    if ( !code.isEmpty() ) {
+        body += "code=" + code;
+    }
+
+    if ( waterType > 0) {
+        body += ( body.isEmpty() ? tr("?waterType=%1").arg(waterType) : tr("&waterType=%1").arg(waterType));
+    }
+
+    if ( !longitude.isEmpty()) {
+        body += ( body.isEmpty() ? tr("?longitude=%1").arg(longitude) : tr("&longitude=%1").arg(longitude));
+    }
+
+    if ( !latitude.isEmpty()) {
+        body += ( body.isEmpty() ? tr("?latitude=%1").arg(latitude) : tr("&latitude=%1").arg(latitude));
+    }
+
+    if ( radus > 0) {
+        body += ( body.isEmpty() ? tr("?radus=%1").arg(radus) : tr("&radus=%1").arg(radus));
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, body.toLatin1(), ret);
+}
+
+
+bool Slave::updateResWater(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() || jsonDto.isEmpty() ) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_WATER_UPDATE, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+
+bool Slave::getResZoneByParent(const QString &token, int relativeID, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ZONE_GETBYPARENT, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, tr("%1").arg(relativeID).toLatin1(), ret);
+}
+
+bool Slave::getResFullZone(const QString &token, const QString &relativeID, QByteArray &ret)
+{
+    if ( token.isEmpty() ) {
+        return returnHttpOtherErrMsg("token is empty!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ZONE_GETFULLZONE, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, tr("%1").arg(relativeID).toLatin1(), ret);
+}
+
 
 /**************************************************************************
 Description:建筑物（异常）设备汇总

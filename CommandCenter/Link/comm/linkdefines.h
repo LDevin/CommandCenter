@@ -63,6 +63,19 @@
 #define LINK_API_RES_RESCURE_CAR_LIST "rescure/car/list" //查询消防车辆列表
 #define LINK_API_RES_RESCURE_DETAIL "rescure/detail" //查询救援队伍详情
 #define LINK_API_RES_RESCURE_DEVICEVIEW "rescure/deviceview" //统计分析救援队伍
+#define LINK_API_RES_RESCURE_PERSON_ADD "rescure/person/add" //新增救援人员
+#define LINK_API_RES_RESCURE_PERSON_DETAIL "rescure/person/detail" //查询救援人员详情
+#define LINK_API_RES_RESCURE_PERSON_LIST "rescure/person/list" //查询救援人员列表
+#define LINK_API_RES_RESCURE_PERSON_UPDATE "rescure/person/update" //修改救援人员
+#define LINK_API_RES_RESCURE_UPDATE "rescure/update" //修改救援队伍
+#define LINK_API_RES_RESOURE_LIST "resoure/list" //救援队伍列表
+#define LINK_API_RES_WATER_ADD "water/add" //新增消防水源
+#define LINK_API_RES_WATER_DETAIL "water/detail" //获取消防水源详情
+#define LINK_API_RES_WATER_DEVICEVIEW "water/deviceview" //统计分析消防水源
+#define LINK_API_RES_WATER_LIST "water/list" //消防水源列表
+#define LINK_API_RES_WATER_UPDATE "water/update" //修改消防水源信息
+#define LINK_API_RES_ZONE_GETBYPARENT "zone/getByParent" //获取父地域
+#define LINK_API_RES_ZONE_GETFULLZONE "zone/getFullZone" //根据父地域获取子地域
 
 #define LINK_ROOT_API_DEV "device"
 #define LINK_API_DEV_BUILDDEVLIST "buidingdeviceList"

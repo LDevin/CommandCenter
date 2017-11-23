@@ -44,7 +44,22 @@
         {"api":"rescure/car/detail", "href":"/api/v1/resource/rescure/car/detail/","req":1,"para":{"rescureId":"", "equipId":""},"des": "查询消防车辆详情"},
         {"api":"rescure/car/list", "href":"/api/v1/resource/rescure/car/list/","req":1,"para":{"rescureId":"", "pageNum":1},"des": "查询消防车辆列表"},
         {"api":"rescure/detail", "href":"/api/v1/resource/rescure/detail/","req":1,"para":{"id":""},"des": "查询救援队伍详情"},
-        {"api":"rescure/deviceview", "href":"/api/v1/resource/rescure/deviceview","req":2,"para":{"supervisorID":""},"des": "统计分析救援队伍"}
+        {"api":"rescure/deviceview", "href":"/api/v1/resource/rescure/deviceview","req":2,"para":{"supervisorID":""},"des": "统计分析救援队伍"},
+		
+        {"api":"rescure/person/add", "href":"/api/v1/resource/rescure/person/add","req":2,"para":{"rescureId":"","dto":{}},"des": "新增救援人员"},
+        {"api":"rescure/person/detail", "href":"/api/v1/resource/rescure/person/detail/","req":1,"para":{"rescureId":"", "personId":""},"des": "查询救援人员详情"},
+        {"api":"rescure/person/list", "href":"/api/v1/resource/rescure/person/list/","req":1,"para":{"rescureId":"", "pageNum":1},"des": "查询救援人员列表"},
+        {"api":"rescure/person/update", "href":"/api/v1/resource/rescure/person/update","req":2,"para":{"dto":{}},"des": "修改救援人员"},
+        {"api":"rescure/update", "href":"/api/v1/resource/rescure/update","req":2,"para":{"resourceDTO":{}},"des": "修改救援队伍"},
+        {"api":"resoure/list", "href":"/api/v1/resource/resoure/list","req":2,"para":{"name":"", "type":"", "pageNum":1},"des": "救援队伍列表"},
+        {"api":"water/add", "href":"/api/v1/resource/water/add","req":2,"para":{"apiFireWaterDTO":{}},"des": "新增消防水源"},
+        {"api":"water/detail", "href":"/api/v1/resource/water/detail/","req":1,"para":{"id":""},"des": "获取消防水源详情"},
+        {"api":"water/deviceview", "href":"/api/v1/resource/water/deviceview","req":2,"para":{"chargerID":""},"des": "统计分析消防水源"},
+        {"api":"water/list", "href":"/api/v1/resource/water/list","req":2,"para":{"pageNum":"", "code":"", "waterType":"", "longitude":"", "latitude":"", "raidus":""},"des": "消防水源列表"},
+		
+        {"api":"water/update", "href":"/api/v1/resource/water/update","req":2,"para":{"apiFireWaterDTO":{}},"des": "修改消防水源信息"},
+		{"api":"zone/getByParent", "href":"/api/v1/resource/zone/getByParent/","req":1,"para":{"relativeID":""},"des": "获取父地域"},
+		{"api":"zone/getFullZone", "href":"/api/v1/resource/zone/getFullZone/","req":1,"para":{"relativeID":""},"des": "根据父地域获取子地域"}
 
 
     ],

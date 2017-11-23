@@ -278,3 +278,107 @@ void MainWindow::on_pushButton_34_clicked()
     Link::Slave::slave()->getResRescureDeviceview(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 123, ret);
     qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
 }
+
+void MainWindow::on_pushButton_35_clicked()
+{
+    //新增救援人员
+    QByteArray ret;
+    Link::Slave::slave()->addResRescurePerson(tr("cbc5a5c4-e49f-4c29-9cd5-2bd0e30d9502"), 111, "ssfdf", ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_36_clicked()
+{
+    //查询救援人员详情
+    QByteArray ret;
+    Link::Slave::slave()->getResRescurePersonDetail(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 11, 22, ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_37_clicked()
+{
+    //查询救援人员列表
+    QByteArray ret;
+    Link::Slave::slave()->getResRescurePersonList(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 11, 1, ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_38_clicked()
+{
+    //修改救援人员
+    QByteArray ret;
+    Link::Slave::slave()->updateResRecurePerson(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), "sss", ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_39_clicked()
+{
+    //修改救援队伍
+    QByteArray ret;
+    Link::Slave::slave()->updateResRecure(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), "sss", ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_40_clicked()
+{
+    //救援队伍列表
+    QByteArray ret;
+    Link::Slave::slave()->getResRescureList(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), "dfd", 1, 1, ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_41_clicked()
+{
+    //新增消防水源
+    QByteArray ret;
+    Link::Slave::slave()->addResWater(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), "dfd", ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_42_clicked()
+{
+    //获取消防水源详情
+    QByteArray ret;
+    Link::Slave::slave()->getResWaterDetail(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 1000, ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_43_clicked()
+{
+    //统计消防水源
+    QByteArray ret;
+    Link::Slave::slave()->getResWaterDeviceView(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 456, ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_44_clicked()
+{
+    //消防水源列表
+    QByteArray ret;
+    Link::Slave::slave()->getResWaterList(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), "123", 1, "bb", "cc", 4, 1, ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_45_clicked()
+{
+    //修改消防水源信息
+    QByteArray ret;
+    Link::Slave::slave()->updateResWater(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"),"111", ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_46_clicked()
+{
+    //获取父地域
+    QByteArray ret;
+    Link::Slave::slave()->getResZoneByParent(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"),1, ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_47_clicked()
+{
+    //根据父地域获取子地域
+    QByteArray ret;
+    Link::Slave::slave()->getResFullZone(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"),"11", ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
