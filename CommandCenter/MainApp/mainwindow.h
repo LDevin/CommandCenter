@@ -8,7 +8,7 @@
 #include "hsftestdialog.h"
 #include "zktestdialog.h"
 #include "xktestdialog.h"
-
+#include "../Db/dbmanager.h"
 
 namespace Ui {
 class MainWindow;
@@ -69,6 +69,15 @@ private slots:
     void on_pushButton_22_clicked();
 
     void on_pushButton_23_clicked();
+
+//    void dbslots() {
+
+//        DbManager *db = (DbManager*)sender();
+//        qDebug()<<"hahhahaha dbmanger " << db->queryData().size();
+//        qDebug()<<QThread::currentThreadId();
+//        db->deleteLater();
+//        db = Q_NULLPTR;
+//    }
 
 private:
     Ui::MainWindow *ui;

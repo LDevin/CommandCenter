@@ -18,7 +18,7 @@
 class HttpLink : public LinkInterface
 {
 
-  Q_OBJECT
+    Q_OBJECT
 
 public:
                         HttpLink(HttpConfiguration *config);
