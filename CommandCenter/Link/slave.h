@@ -102,6 +102,11 @@ public:
     bool            getResFirePlugDetail(const QString& token, long id, QByteArray& ret);
     bool            getResFirePlugDeviceView(const QString& token, long chargerID, QByteArray& ret);
     bool            getResFirePlugDevMac(const QString& token, long id, QByteArray& ret);
+
+    bool            getResFirePlugDoconern(const QString& token, long id, const QString &devMac, QByteArray& ret);
+    bool            getResFirePlugList(const QString& token, const QString &code, int status, int isRelate, int type,
+                                       const QString& devMac, int pageNum, const QString &longitude, const QString &latitude, int raidus, QByteArray& ret);
+
     bool            getResFirePlugConcernned(const QString& token, const QString &code, const QString &devMac, const int pageNum, QByteArray& ret );
     bool            getResFirePlugUnconcern(const QString& token, const QString &code, const int pageNum, QByteArray& ret );
     bool            updateResFirePlug(const QString &token, const QString &jsonDto, QByteArray &ret);

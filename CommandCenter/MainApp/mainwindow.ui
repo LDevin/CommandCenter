@@ -609,7 +609,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>统计分析消防水源</string>
+     <string>消防水源列表</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_45">
@@ -649,6 +649,32 @@
     </property>
     <property name="text">
      <string>根据父地域获取子地域</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_48">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>210</y>
+      <width>131</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>室外水压关联的消火栓</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_49">
+    <property name="geometry">
+     <rect>
+      <x>600</x>
+      <y>210</y>
+      <width>81</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>消火栓列表</string>
     </property>
    </widget>
   </widget>

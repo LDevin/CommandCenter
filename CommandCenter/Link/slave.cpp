@@ -617,6 +617,81 @@ bool Slave::getResFirePlugDevMac(const QString &token, long id, QByteArray &ret)
     return slaveStartLink(link, headerData, tr("%1").arg(id).toLatin1(), ret);
 }
 
+bool Slave::getResFirePlugDoconern(const QString &token, long id, const QString &devMac, QByteArray &ret)
+{
+    if (token.isEmpty()) {
+        return returnHttpOtherErrMsg("has null parameter!!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_FIREPLUG_DOCONERN, ret)) {
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+    QString body = "";
+    if ( id > 0) {
+        body += ( body.isEmpty() ? tr("?id=%1").arg(id) : tr("&id=%1").arg(id));
+    }
+    if ( !devMac.isEmpty() ) {
+         body += ( body.isEmpty() ? tr("?devMac=%1").arg(devMac) : tr("&devMac=%1").arg(devMac));
+    }
+    return slaveStartLink(link, headerData, body.toLatin1(), ret);
+}
+
+bool Slave::getResFirePlugList(const QString &token, const QString &code, int status, int isRelate,
+                               int type, const QString &devMac,int pageNum, const QString &longitude,
+                               const QString &latitude, int raidus,  QByteArray &ret)
+{
+    if (token.isEmpty() || pageNum < 0) {
+        return returnHttpOtherErrMsg("has null parameter!!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_FIREPLUG_LIST, ret)) {
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    QString body = "";
+
+    if ( !code.isEmpty() ) {
+         body += ( body.isEmpty() ? tr("?code=%1").arg(code) : tr("&code=%1").arg(code));
+    }
+    if ( status > 0) {
+        body += ( body.isEmpty() ? tr("?status=%1").arg(status) : tr("&status=%1").arg(status));
+    }
+    if ( isRelate >= 0) {
+        body += ( body.isEmpty() ? tr("?isRelate=%1").arg(isRelate) : tr("&isRelate=%1").arg(isRelate));
+    }
+    if ( type > 0) {
+        body += ( body.isEmpty() ? tr("?type=%1").arg(type) : tr("&type=%1").arg(type));
+    }
+    if ( !devMac.isEmpty() ) {
+         body += ( body.isEmpty() ? tr("?devMac=%1").arg(devMac) : tr("&devMac=%1").arg(devMac));
+    }
+    if ( pageNum > 0) {
+        body += ( body.isEmpty() ? tr("?pageNum=%1").arg(pageNum) : tr("&pageNum=%1").arg(pageNum));
+    }
+    if ( !longitude.isEmpty() ) {
+         body += ( body.isEmpty() ? tr("?longitude=%1").arg(longitude) : tr("&longitude=%1").arg(longitude));
+    }
+    if ( !latitude.isEmpty() ) {
+         body += ( body.isEmpty() ? tr("?latitude=%1").arg(latitude) : tr("&latitude=%1").arg(latitude));
+    }
+    if ( pageNum > 0) {
+        body += ( body.isEmpty() ? tr("?pageNum=%1").arg(pageNum) : tr("&pageNum=%1").arg(pageNum));
+    }
+
+    return slaveStartLink(link, headerData, body.toLatin1(), ret);
+}
+
 
 bool Slave::getResFirePlugConcernned(const QString &token, const QString &code, const QString &devMac, const int pageNum, QByteArray &ret)
 {
@@ -629,20 +704,23 @@ bool Slave::getResFirePlugConcernned(const QString &token, const QString &code, 
     if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_FIREPLUG_CONCERNNED, ret)) {
         return RETURN_FALSE;
     }
-    config->setRequestUrl(QUrl(config->urlToString() + tr("?pageNum=%1").arg(pageNum)));
-    config->setContentType(HttpConfiguration::XwwwType);
     LinkInterface *link = new HttpLink(config);
-
-    QString body = "";
-    if (!code.isEmpty()) {
-        body += "code=" + code;
-    }
-    if(!devMac.isEmpty()){
-        body += "&devMac=" + devMac;
-    }
 
     QByteArray headerData;
     Tools::setLinkToken(token, headerData);
+
+    QString body = "";
+
+    if ( !code.isEmpty() ) {
+         body += ( body.isEmpty() ? tr("?code=%1").arg(code) : tr("&code=%1").arg(code));
+    }
+    if ( !devMac.isEmpty() ) {
+         body += ( body.isEmpty() ? tr("?devMac=%1").arg(devMac) : tr("&devMac=%1").arg(devMac));
+    }
+    if ( pageNum > 0) {
+        body += ( body.isEmpty() ? tr("?pageNum=%1").arg(pageNum) : tr("&pageNum=%1").arg(pageNum));
+    }
+
     return slaveStartLink(link, headerData, body.toLatin1(), ret);
 }
 
@@ -658,13 +736,15 @@ bool Slave::getResFirePlugUnconcern(const QString &token, const QString &code, c
     if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_FIREPLUG_UNCONCERN, ret)) {
         return RETURN_FALSE;
     }
-    config->setRequestUrl(QUrl(config->urlToString() + tr("?pageNum=%1").arg(pageNum)));
-    config->setContentType(HttpConfiguration::XwwwType);
+
     LinkInterface *link = new HttpLink(config);
 
     QString body = "";
     if ( !code.isEmpty() ) {
         body += "code=" + code;
+    }
+    if ( pageNum > 0 ) {
+        body += ( body.isEmpty() ? tr("?pageNum=%1").arg(pageNum) : tr("&pageNum=%1").arg(pageNum));
     }
 
     QByteArray headerData;
@@ -1052,7 +1132,7 @@ bool Slave::getResWaterList(const QString &token, const QString &code, int water
         body += ( body.isEmpty() ? tr("?pageNum=%1").arg(pageNum) : tr("&pageNum=%1").arg(pageNum));
     }
     if ( !code.isEmpty() ) {
-        body += "code=" + code;
+         body += ( body.isEmpty() ? tr("?code=%1").arg(code) : tr("&code=%1").arg(code));
     }
 
     if ( waterType > 0) {

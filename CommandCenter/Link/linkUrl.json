@@ -33,8 +33,9 @@
         {"api":"fireplug/deviceview", "href":"/api/v1/resource/fireplug/deviceview","req":2,"para":{"chargerID":""},"des": "统计分析消火栓"},
         {"api":"fireplug/devmac", "href":"/api/v1/resource/fireplug/devmac/","req":1,"para":{"id":""},"des": "获取供水压力值"},
         {"api":"fireplug/list", "href":"/api/v1/resource/fireplug/list","req":2,"para":{},"des": "消火栓列表"},
-        {"api":"fireplug/concernned", "href":"/api/v1/resource/fireplug/conernned","req":2,"para":{"code":"","devMac":"","pageNum":1},"des": "室外水压已关联的消防栓列表"},
+        {"api":"fireplug/doconern", "href":"/api/v1/resource/fireplug/doconern","req":2,"para":{"id":"", "devMac":""},"des": "室外水压关联的消火栓"},
 
+        {"api":"fireplug/concernned", "href":"/api/v1/resource/fireplug/conernned","req":2,"para":{"code":"","devMac":"","pageNum":1},"des": "室外水压已关联的消防栓列表"},
         {"api":"fireplug/unconcern", "href":"/api/v1/resource/fireplug/unconern","req":2,"para":{"code":"","pageNum":1},"des": "室外水压未关联的消防栓列表"},
         {"api":"fireplug/update", "href":"/api/v1/resource/fireplug/update","req":2,"para":{"apiFirePlugDTO":{}},"des": "修改消防栓"},
         {"api":"getByKey", "href":"/api/v1/resource/getByKey","req":1,"para":{"key":""},"des": "查询数据字典"},
@@ -44,8 +45,8 @@
         {"api":"rescure/car/detail", "href":"/api/v1/resource/rescure/car/detail/","req":1,"para":{"rescureId":"", "equipId":""},"des": "查询消防车辆详情"},
         {"api":"rescure/car/list", "href":"/api/v1/resource/rescure/car/list/","req":1,"para":{"rescureId":"", "pageNum":1},"des": "查询消防车辆列表"},
         {"api":"rescure/detail", "href":"/api/v1/resource/rescure/detail/","req":1,"para":{"id":""},"des": "查询救援队伍详情"},
-        {"api":"rescure/deviceview", "href":"/api/v1/resource/rescure/deviceview","req":2,"para":{"supervisorID":""},"des": "统计分析救援队伍"},
 		
+        {"api":"rescure/deviceview", "href":"/api/v1/resource/rescure/deviceview","req":2,"para":{"supervisorID":""},"des": "统计分析救援队伍"},
         {"api":"rescure/person/add", "href":"/api/v1/resource/rescure/person/add","req":2,"para":{"rescureId":"","dto":{}},"des": "新增救援人员"},
         {"api":"rescure/person/detail", "href":"/api/v1/resource/rescure/person/detail/","req":1,"para":{"rescureId":"", "personId":""},"des": "查询救援人员详情"},
         {"api":"rescure/person/list", "href":"/api/v1/resource/rescure/person/list/","req":1,"para":{"rescureId":"", "pageNum":1},"des": "查询救援人员列表"},
@@ -55,8 +56,8 @@
         {"api":"water/add", "href":"/api/v1/resource/water/add","req":2,"para":{"apiFireWaterDTO":{}},"des": "新增消防水源"},
         {"api":"water/detail", "href":"/api/v1/resource/water/detail/","req":1,"para":{"id":""},"des": "获取消防水源详情"},
         {"api":"water/deviceview", "href":"/api/v1/resource/water/deviceview","req":2,"para":{"chargerID":""},"des": "统计分析消防水源"},
-        {"api":"water/list", "href":"/api/v1/resource/water/list","req":2,"para":{"pageNum":"", "code":"", "waterType":"", "longitude":"", "latitude":"", "raidus":""},"des": "消防水源列表"},
 		
+        {"api":"water/list", "href":"/api/v1/resource/water/list","req":2,"para":{"pageNum":"", "code":"", "waterType":"", "longitude":"", "latitude":"", "raidus":""},"des": "消防水源列表"},
         {"api":"water/update", "href":"/api/v1/resource/water/update","req":2,"para":{"apiFireWaterDTO":{}},"des": "修改消防水源信息"},
 		{"api":"zone/getByParent", "href":"/api/v1/resource/zone/getByParent/","req":1,"para":{"relativeID":""},"des": "获取父地域"},
 		{"api":"zone/getFullZone", "href":"/api/v1/resource/zone/getFullZone/","req":1,"para":{"relativeID":""},"des": "根据父地域获取子地域"}
@@ -65,7 +66,7 @@
     ],
 
     "info":[
-        {"api":"article/detailByID", "href":"/api/v1/info/article/detailByID/","req":1,"para":{"articleId":"","userID":""},"des": "根据文章id和用户id查询文章详情"},
+        {"api":"article/detailByID", "href":"/api/v1/info/article/detailByID","req":1,"para":{"articleId":"","userID":""},"des": "根据文章id和用户id查询文章详情"},
         {"api":"article/excellentRecommend", "href":"/api/v1/info/article/excellentRecommend/","req":1,"para":{},"des": "查看精彩推荐"},
         {"api":"article/list", "href":"/api/v1/info/article/list/","req":1,"para":{"pageNum":"", "title":"", "classifyID1":"", "classifyID2":""},"des": "根据相关分类类别获取文章列表"},
         {"api":"article/listByClassifyID1", "href":"/api/v1/info/article/listByClassifyID1/","req":1,"para":{"title":"", "classifyID1":""},"des": "根据一级分类id查询文章列表显示"},

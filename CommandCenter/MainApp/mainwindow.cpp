@@ -382,3 +382,19 @@ void MainWindow::on_pushButton_47_clicked()
     Link::Slave::slave()->getResFullZone(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"),"11", ret);
     qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
 }
+
+void MainWindow::on_pushButton_48_clicked()
+{
+    //室外水压关联的消火栓
+    QByteArray ret;
+    Link::Slave::slave()->getResFirePlugDoconern(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"),1000,"11", ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_49_clicked()
+{
+    //室外水压关联的消火栓
+    QByteArray ret;
+    Link::Slave::slave()->getResFirePlugList(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"),"1000", 1, 1, 1, "222", 1, "11", "33", 8, ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
