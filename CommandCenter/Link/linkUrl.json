@@ -32,7 +32,19 @@
         {"api":"fireplug/detail", "href":"/api/v1/resource/fireplug/detail/","req":1,"para":{"id":""},"des": "获取消火栓详情"},
         {"api":"fireplug/deviceview", "href":"/api/v1/resource/fireplug/deviceview","req":2,"para":{"chargerID":""},"des": "统计分析消火栓"},
         {"api":"fireplug/devmac", "href":"/api/v1/resource/fireplug/devmac/","req":1,"para":{"id":""},"des": "获取供水压力值"},
-        {"api":"fireplug/list", "href":"/api/v1/resource/fireplug/list","req":2,"para":{},"des": "消火栓列表"}
+        {"api":"fireplug/list", "href":"/api/v1/resource/fireplug/list","req":2,"para":{},"des": "消火栓列表"},
+        {"api":"fireplug/concernned", "href":"/api/v1/resource/fireplug/conernned","req":2,"para":{"code":"","devMac":"","pageNum":1},"des": "室外水压已关联的消防栓列表"},
+
+        {"api":"fireplug/unconcern", "href":"/api/v1/resource/fireplug/unconern","req":2,"para":{"code":"","pageNum":1},"des": "室外水压未关联的消防栓列表"},
+        {"api":"fireplug/update", "href":"/api/v1/resource/fireplug/update","req":2,"para":{"apiFirePlugDTO":{}},"des": "修改消防栓"},
+        {"api":"getByKey", "href":"/api/v1/resource/getByKey","req":1,"para":{"key":""},"des": "查询数据字典"},
+        {"api":"recure/car/add", "href":"/api/v1/resource/recure/car/add/","req":2,"para":{"rescureId":"","recureCar":{}},"des": "新增消防车辆"},
+        {"api":"recure/car/update", "href":"/api/v1/resource/recure/car/update","req":2,"para":{},"des": "修改消防车辆"},
+        {"api":"rescure/add", "href":"/api/v1/resource/rescure/add","req":2,"para":{"resourceDTO":{}},"des": "新增救援队伍"},
+        {"api":"rescure/car/detail", "href":"/api/v1/resource/rescure/car/detail/","req":1,"para":{"rescureId":"", "equipId":""},"des": "查询消防车辆详情"},
+        {"api":"rescure/car/list", "href":"/api/v1/resource/rescure/car/list/","req":1,"para":{"rescureId":"", "pageNum":1},"des": "查询消防车辆列表"},
+        {"api":"rescure/detail", "href":"/api/v1/resource/rescure/detail/","req":1,"para":{"id":""},"des": "查询救援队伍详情"},
+        {"api":"rescure/deviceview", "href":"/api/v1/resource/rescure/deviceview","req":2,"para":{"supervisorID":""},"des": "统计分析救援队伍"}
 
 
     ],

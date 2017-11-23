@@ -70,6 +70,28 @@ private slots:
 
     void on_pushButton_23_clicked();
 
+    void on_pushButton_24_clicked();
+
+    void on_pushButton_25_clicked();
+
+    void on_pushButton_26_clicked();
+
+    void on_pushButton_27_clicked();
+
+    void on_pushButton_28_clicked();
+
+    void on_pushButton_29_clicked();
+
+    void on_pushButton_30_clicked();
+
+    void on_pushButton_31_clicked();
+
+    void on_pushButton_32_clicked();
+
+    void on_pushButton_33_clicked();
+
+    void on_pushButton_34_clicked();
+
 private:
     Ui::MainWindow *ui;
 

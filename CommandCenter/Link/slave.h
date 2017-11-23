@@ -102,6 +102,17 @@ public:
     bool            getResFirePlugDetail(const QString& token, long id, QByteArray& ret);
     bool            getResFirePlugDeviceView(const QString& token, long chargerID, QByteArray& ret);
     bool            getResFirePlugDevMac(const QString& token, long id, QByteArray& ret);
+    bool            getResFirePlugConcernned(const QString& token, const QString &code, const QString &devMac, const int pageNum, QByteArray& ret );
+    bool            getResFirePlugUnconcern(const QString& token, const QString &code, const int pageNum, QByteArray& ret );
+    bool            updateResFirePlug(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResGetByKey(const QString &token, const QString &key, QByteArray &ret);
+    bool            addResRecureCar(const QString &token, long recureId, const QString &jsonDto, QByteArray &ret);
+    bool            updateResRecureCar(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            addResRescure(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResRescureCarDetail(const QString &token, long rescureId, long equipId, QByteArray &ret);
+    bool            getResRescureCarList(const QString& token, int rescureId, int pageNum, QByteArray& ret);
+    bool            getResRescureDetail(const QString &token, long id, QByteArray &ret);
+    bool            getResRescureDeviceview(const QString &token, long supervisorId, QByteArray &ret);
     //![2]
 
     /*

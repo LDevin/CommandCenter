@@ -71,7 +71,7 @@ void MainWindow::get_formID_clicked(){
 void MainWindow::on_pushButton_8_clicked()
 {
     QByteArray ret;
-    Link::Slave::slave()->getResEnforceDetail(tr("d7fb4aae-439d-45d6-9f9b-0d07f2180e7d"), 895,ret);
+    Link::Slave::slave()->getResEnforceDetail(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 895,ret);
     qDebug() << tr("ret 执法队伍详情 ").toLocal8Bit() << ret;
 }
 
@@ -136,7 +136,7 @@ void MainWindow::on_pushButton_16_clicked()
 {
     //获取执法队伍人员信息列表
     QByteArray ret;
-    Link::Slave::slave()->getResEnforcePersonList(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), 454, "236", 1,ret);
+    Link::Slave::slave()->getResEnforcePersonList(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 454, "236", 1,ret);
     qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
 }
 
@@ -168,7 +168,7 @@ void MainWindow::on_pushButton_20_clicked()
 {
     //灭火器列表
     QByteArray ret;
-    Link::Slave::slave()->getResExtinguisherList(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), "", -1, -1, "", "", 2, ret);
+    Link::Slave::slave()->getResExtinguisherList(tr("e2db273f-e23a-4727-8f70-1d23ac563be1"), "111", -1, -1, "222", "333", 2, ret);
     qDebug() << tr("ret tttt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
 }
 
@@ -195,4 +195,86 @@ void MainWindow::on_pushButton_23_clicked()
     QByteArray ret;
     Link::Slave::slave()->getResFirePlugDevMac(tr("b000481f-fdd6-4877-bbcf-ec5586227008"), 456, ret);
     qDebug() << tr("ret ttt ddt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void MainWindow::on_pushButton_24_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getResFirePlugUnconcern(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), "",1, ret);
+    qDebug() << tr("ret ttt ddt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void MainWindow::on_pushButton_25_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getResFirePlugConcernned(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), "111","222",1, ret);
+    qDebug() << tr("ret ttt ddt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void MainWindow::on_pushButton_26_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->updateResFirePlug(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), "{}", ret);
+    qDebug() << tr("ret ttt ddt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void MainWindow::on_pushButton_27_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->getResGetByKey(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), "aaa", ret);
+    qDebug() << tr("ret ttt ddt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void MainWindow::on_pushButton_28_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->addResRecureCar(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 12345, "{}",ret);
+    qDebug() << tr("ret fffff ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_29_clicked()
+{
+    //修改消防车辆
+    QByteArray ret;
+    Link::Slave::slave()->updateResRecureCar(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), "{}",ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void MainWindow::on_pushButton_30_clicked()
+{
+    QByteArray ret;
+    Link::Slave::slave()->addResRescure(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), "{}",ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void MainWindow::on_pushButton_31_clicked()
+{
+    //查询消防车辆详情
+    QByteArray ret;
+    Link::Slave::slave()->getResRescureCarDetail(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 455, 456,ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_32_clicked()
+{
+    //查询消防车辆列表
+    QByteArray ret;
+    Link::Slave::slave()->getResRescureCarList(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 111, 1,ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_33_clicked()
+{
+    //查询救援队伍详情
+    QByteArray ret;
+    Link::Slave::slave()->getResRescureDetail(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 545,ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_34_clicked()
+{
+    //统计分析救援队伍
+    QByteArray ret;
+    Link::Slave::slave()->getResRescureDeviceview(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"), 123, ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
 }

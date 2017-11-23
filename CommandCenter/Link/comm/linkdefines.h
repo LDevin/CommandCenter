@@ -51,6 +51,18 @@
 #define LINK_API_RES_FIREPLUG_DETAIL "fireplug/detail" //消火栓详情
 #define LINK_API_RES_FIREPLUG_DEVICEVIEW "fireplug/deviceview" //统计分析消火栓
 #define LINK_API_RES_FIREPLUG_DEVMAC "fireplug/devmac" //获取供水压力值
+#define LINK_API_RES_FIREPLUG_CONCERNNED "fireplug/concernned" //查询室外水压已关联的消火栓列表
+#define LINK_API_RES_FIREPLUG_UNCONCERN "fireplug/unconcern" //查询室外水压未关联的消火栓列表
+#define LINK_API_RES_FIREPLUG_UPDATE "fireplug/update" //修改消防栓
+#define LINK_API_RES_GETBYKEY "getByKey" //查询数据字典
+
+#define LINK_API_RES_RECURE_CAR_ADD "recure/car/add" //新增消防车辆
+#define LINK_API_RES_RECURE_CAR_UPDATE "recure/car/update" //修改消防车辆
+#define LINK_API_RES_RESCURE_ADD "rescure/add" //新增救援队伍
+#define LINK_API_RES_RESCURE_CAR_DETAIL "rescure/car/detail" //查询消防车辆详情
+#define LINK_API_RES_RESCURE_CAR_LIST "rescure/car/list" //查询消防车辆列表
+#define LINK_API_RES_RESCURE_DETAIL "rescure/detail" //查询救援队伍详情
+#define LINK_API_RES_RESCURE_DEVICEVIEW "rescure/deviceview" //统计分析救援队伍
 
 #define LINK_ROOT_API_DEV "device"
 #define LINK_API_DEV_BUILDDEVLIST "buidingdeviceList"
