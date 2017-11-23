@@ -3,12 +3,17 @@
 #include "QDebug"
 
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     connect(ui->fromID,SIGNAL(clicked(bool)),this,SLOT(get_formID_clicked()));
+
+    QString msg;
+    DbManager::manager()->executeQuery("SELECT * FROM `T_BUILDING`", QJsonArray(), msg);
+    LOG("MSG: " + msg);
 }
 
 MainWindow::~MainWindow()

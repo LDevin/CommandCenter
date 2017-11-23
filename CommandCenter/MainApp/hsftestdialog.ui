@@ -288,6 +288,32 @@
      <string>查询检查表详情</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="addMessage">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>50</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>新增公告</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addComment">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>80</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>新增互动信息</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

@@ -4,7 +4,7 @@
 #include"slave.h"
 
 
-#define ACCESSTOKEN "d6dde889-b1de-48ff-b9b8-f9c367bd91a2"
+#define ACCESSTOKEN "cef4811d-f76c-4573-98ca-2c2834321d23"
 
 HsfTestDialog::HsfTestDialog(QWidget *parent) :
     QDialog(parent),
@@ -165,5 +165,21 @@ void HsfTestDialog::on_getFormListDetail_clicked()
     QString jsonStr=QString("{\"areaName\": \"string\", \"bCode\": \"string\", \"bItemType\": \"string\",  "
                             "\"checkTime\": \"2017-11-22 00:46:20\", \"dItemType\": \" \",\"evaluateLevel\": \"1\"}");
     Link::Slave::slave()->searchFirecheck(tr(ACCESSTOKEN), 1, jsonStr, ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_addMessage_clicked()
+{
+    qDebug()<<"on_addMessage_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->addChatMessage(tr(ACCESSTOKEN), "chat message 11111  ", ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_addComment_clicked()
+{
+    qDebug()<<"on_addComment_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->addChatMessageComment(tr(ACCESSTOKEN), "1","chat message 11111  ", ret);
     qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
 }

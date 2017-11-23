@@ -32,14 +32,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        slave.cpp \
-    dbinterface.cpp
+    dbinterface.cpp \
+    dbutils.cpp \
+    dbmanager.cpp
 
 HEADERS += \
-        slave.h \
         db_global.h \ 
     dbdefines.h \
-    dbinterface.h
+    dbinterface.h \
+    dbutils.h \
+    dbmanager.h
 
 unix {
     target.path = /usr/lib
