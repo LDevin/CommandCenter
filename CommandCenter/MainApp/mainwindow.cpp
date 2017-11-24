@@ -435,17 +435,3 @@ void MainWindow::on_pushButton_53_clicked()
     Link::Slave::slave()->updateResEnforcePerson(tr("6f0e37fe-3fb7-43a5-b8ad-cf58280de780"),"ss", ret);
     qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
 }
-
-void MainWindow::on_pushButton_54_clicked()
-{
-    QString msg;
-    DbManager::manager()->executeQuery("SELECT * FROM `T_BUILDING`", QJsonArray(), msg);
-    LOG("MSG: " + msg);
-}
-
-void MainWindow::on_pushButton_55_clicked()
-{
-    QString msg;
-    DbManager::manager()->executeQuery("SELECT * FROM `T_ORGGROUP`", QJsonArray(), msg);
-    LOG("MSG: " + msg);
-}

@@ -41,14 +41,17 @@ bool DbUtils::executeQuery()
     isVaild = setDataBase(_db, DB_DRIVER_TYPE, connection, DB_HOST_NAME, DB_PORT,
                           DB_NAME, DB_USER_NAME, DB_PASSWORD);
 
-    LOG(isVaild);
+    if (!isVaild) {
+        setQuit(true);
+        return parseDbManageMsg(QSqlError::UnknownError + 2, tr("database is invaild!"));
+    }
 
     //[0]
     if (!_db.isOpen()) {
         if (!_db.open()) {
             setQuit(true);
-            LOG(_db.lastError().text())
-                    return parseDbManageMsg(_db.lastError().type(), _db.lastError().text());
+            LOG(_db.lastError().text());
+            return parseDbManageMsg(_db.lastError().type(), _db.lastError().text());
         }
     }
     //[0]
