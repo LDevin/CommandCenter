@@ -58,7 +58,7 @@ bool DbUtils::executeQuery()
 
         _db.close();
         setQuit(true);
-
+        removeDataBase();
         return parseDbManageMsg(query->lastError().type(), query->lastError().text());
     }
 
