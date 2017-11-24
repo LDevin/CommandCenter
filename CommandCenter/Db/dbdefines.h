@@ -63,6 +63,6 @@ qDebug() \
 /**
   * 数据库处理操作出现的错误
 **/
-#define DB_MANAGE_MSG "{\"code\":-200,\"msg\":\"operation is false!\"}"
+#define DB_MANAGE_MSG "{\"code\":-200,\"msg\":\"operation is failed!\"}"
 
 #endif // DBDEFINES_H

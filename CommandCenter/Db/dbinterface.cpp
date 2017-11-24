@@ -4,8 +4,7 @@ DbInterface::DbInterface()
     : _waitTimeout(DB_QUERY_TIME_OUT),
       _quit(false), _timeOut(false), _timerOutId(-1)
 {
-    _db = QSqlDatabase::addDatabase(DB_DRIVER_TYPE);
-    initDb();
+
 }
 
 DbInterface::~DbInterface()
@@ -15,14 +14,28 @@ DbInterface::~DbInterface()
     quit();
 }
 
-void DbInterface::initDb()
+bool DbInterface::setDataBase(QSqlDatabase &db, const QString &driver, const QString &connection,
+                              const QString &host, int p, const QString &dbName,
+                              const QString &user, const QString &ps)
 {
-    _db.setHostName(DB_HOST_NAME);
-    _db.setPort(DB_PORT);
-    _db.setDatabaseName(DB_NAME);
-    _db.setUserName(DB_USER_NAME);
-    _db.setPassword(DB_PASSWORD);
-    LOG(_db.connectionName())
+    db = QSqlDatabase::addDatabase(driver, connection);
+
+    setHostName(db, host);
+    setPort(db, p);
+    setDatabaseName(db, dbName);
+    setUserName(db, user);
+    setPassword(db, ps);
+
+    return db.isValid();
+}
+
+void DbInterface::removeDataBase()
+{
+    QString name;
+    {
+        name = QSqlDatabase::database().connectionName();
+    }
+    QSqlDatabase::removeDatabase(name);
 }
 
 /***

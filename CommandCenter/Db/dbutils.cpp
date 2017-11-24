@@ -34,6 +34,13 @@ bool DbUtils::executeQuery()
         return parseDbManageMsg(QSqlError::UnknownError + 1, tr("sql is empty!"));
     }
 
+    QString connection = tr("zdst_db_command_%1").arg((int)QThread::currentThreadId());
+
+    QSqlDatabase _db;
+    bool isVaild = setDataBase(_db, DB_DRIVER_TYPE, connection, DB_HOST_NAME, DB_PORT,
+                               DB_NAME, DB_USER_NAME, DB_PASSWORD);
+
+    LOG(isVaild)
     //[0]
     if (!_db.isOpen()) {
         if (!_db.open()) {
@@ -73,11 +80,13 @@ bool DbUtils::executeQuery()
 
     } while(query->nextResult());
 
+    query->finish();
     delete query;
     query = NULL;
 
     _db.close();
-    QSqlDatabase::removeDatabase("qt_sql_default_connection");
+
+    removeDataBase();
 
     setQueryData(jsonArray);
     setQuit(true);

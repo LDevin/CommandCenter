@@ -39,13 +39,17 @@ public:
 
     void                        resetTimer();
 
-    void                        setDatabaseName(const QString& name) {_db.setDatabaseName(name);}
-    void                        setUserName(const QString& name) {_db.setUserName(name);}
-    void                        setPassword(const QString& password) {_db.setPassword(password);}
-    void                        setHostName(const QString& host) {_db.setHostName(host);}
-    void                        setPort(int p) {_db.setPort(p);}
+    void                        setDatabaseName(QSqlDatabase& db, const QString& name) {db.setDatabaseName(name);}
+    void                        setUserName(QSqlDatabase& db, const QString& name) {db.setUserName(name);}
+    void                        setPassword(QSqlDatabase& db, const QString& password) {db.setPassword(password);}
+    void                        setHostName(QSqlDatabase& db, const QString& host) {db.setHostName(host);}
+    void                        setPort(QSqlDatabase& db, int p) {db.setPort(p);}
 
-    void                        initDb();
+    bool                        setDataBase(QSqlDatabase &db, const QString& driver, const QString& connection,
+                                            const QString& host, int p, const QString& dbName,
+                                            const QString& user, const QString& ps);
+
+    void                        removeDataBase();
 
     void                        setSql(const QString& sql) { _sql = sql; }
     QString                     sql() const { return _sql; }
@@ -67,9 +71,6 @@ protected:
                                                  QString& msg = tr(""));
 
 protected:
-    QSqlDatabase                _db;
-
-
     QString                     _sql;
     QString                     _errorMsg;
     QJsonArray                  _queryData;
