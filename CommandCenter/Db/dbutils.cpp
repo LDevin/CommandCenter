@@ -28,25 +28,27 @@ void DbUtils::startRun()
 bool DbUtils::executeQuery()
 {
     LOG("SQL: " + sql())
-    LOG(QThread::currentThreadId())
-    if ( sql().isEmpty() ) {
+            LOG(QThread::currentThreadId())
+            if ( sql().isEmpty() ) {
         setQuit(true);
         return parseDbManageMsg(QSqlError::UnknownError + 1, tr("sql is empty!"));
     }
 
-    QString connection = tr("zdst_db_command_%1").arg((int)QThread::currentThreadId());
+    QString connection = tr("zdst_db_command_%1").arg((quintptr)(QThread::currentThreadId()));
 
     QSqlDatabase _db;
-    bool isVaild = setDataBase(_db, DB_DRIVER_TYPE, connection, DB_HOST_NAME, DB_PORT,
-                               DB_NAME, DB_USER_NAME, DB_PASSWORD);
+    bool isVaild = false;
+    isVaild = setDataBase(_db, DB_DRIVER_TYPE, connection, DB_HOST_NAME, DB_PORT,
+                          DB_NAME, DB_USER_NAME, DB_PASSWORD);
 
-    LOG(isVaild)
+    LOG(isVaild);
+
     //[0]
     if (!_db.isOpen()) {
         if (!_db.open()) {
             setQuit(true);
             LOG(_db.lastError().text())
-            return parseDbManageMsg(_db.lastError().type(), _db.lastError().text());
+                    return parseDbManageMsg(_db.lastError().type(), _db.lastError().text());
         }
     }
     //[0]
@@ -54,7 +56,7 @@ bool DbUtils::executeQuery()
     QSqlQuery *query = new QSqlQuery(_db);
 
     if (!query->exec(sql())) {
-        LOG(query->lastError().text())
+        LOG(query->lastError().text());
 
         _db.close();
         setQuit(true);

@@ -9,7 +9,7 @@
 #include <QObject>
 #include "helper/jsonhelper.h"
 #include "comm/config.h"
-#include "linkdefines.h"
+#include "link_defines.h"
 
 
 namespace Link {
@@ -28,8 +28,6 @@ private:
    static Tools* s_tools;
 
 public:
-    static bool openFile(QByteArray &data, QString fileName);
-
     static bool loadLinkUrl(QByteArray &content);
     static bool loadLinkUrl(QJsonObject &content);
 

@@ -66,13 +66,15 @@ FORMS += \
     xktestdialog.ui
 
 
-INCLUDEPATH += $$PWD/../Link/
+INCLUDEPATH += $$PWD/../Link/ $$PWD/../Utils/
 
 DebugBuild {
+    LIBS += -L$${DESTDIR} -lUtilsd
     LIBS += -L$${DESTDIR} -lLinkd
     LIBS += -L$${DESTDIR} -lUid
     LIBS += -L$${DESTDIR} -lDbd
 } else {
+    LIBS += -L$${DESTDIR} -lUtils
     LIBS += -L$${DESTDIR} -lLink
     LIBS += -L$${DESTDIR} -lUi
     LIBS += -L$${DESTDIR} -lDb

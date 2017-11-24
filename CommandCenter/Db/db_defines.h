@@ -6,25 +6,6 @@
 
 #ifndef  DBDEFINES_H
 #define  DBDEFINES_H
-#include <QDebug>
-
-/******
- *
- * LOG宏,可以定位到打印的哪个文件和哪一行
- *
-******/
-#undef LOG
-#if defined(DB_LOG)
-#   define LOG(...) {\
-qDebug() \
-<< __VA_ARGS__ \
-<< "(File:" << __FILE__ << ", " \
-<< "Line:" << __LINE__ << ")\n\t";\
-}
-#else
-#   define LOG(...) ;
-#endif
-
 
 /**
   * 数据库驱动

@@ -10,9 +10,10 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include "utils_global.h"
 
 
-class JsonHelper
+class UTILSSHARED_EXPORT JsonHelper
 {
 public:
     static bool isObject(const QString &str);

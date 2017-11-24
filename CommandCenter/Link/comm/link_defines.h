@@ -1,6 +1,11 @@
-﻿#ifndef LINKDEFINES_H
+﻿/*
+ * @author DevinLai
+ * @email  laidawang@zds-t.com
+ * @date   2017/11/06
+*/
+
+#ifndef LINKDEFINES_H
 #define LINKDEFINES_H
-#include <QDebug>
 
 #define LINK_URL_FILE ":/link/linkUrl.json"
 #define LINK_TOOLS_FILE ":/tool/tools.json"
@@ -123,25 +128,6 @@
 #define LINK_ROOT_API_CHAT "chat"
 #define LINK_API_CHAT_MESSAGE "chat/addmessage"
 #define LINK_API_CHAT_COMMENT "chat/addmessagecomment"
-
-/******
- *
- * LOG宏,可以定位到打印的哪个文件和哪一行
- *
-******/
-#undef LOG
-#if defined(LINK_LOG)
-#   define LOG(...) {\
-qDebug() \
-<< __VA_ARGS__ \
-<< "(File:" << __FILE__ << ", " \
-<< "Line:" << __LINE__ << ")\n\t";\
-}
-#else
-#   define LOG(...) ;
-#endif
-
-
 
 /******
  *

@@ -1,7 +1,5 @@
 ﻿#include "tools.h"
-#include <QFile>
-#include <QDebug>
-
+#include "utils.h"
 
 namespace Link {
 
@@ -22,7 +20,7 @@ Tools::Tools()
 
     QByteArray data;
 
-    if (openFile(data, LINK_URL_FILE)) {
+    if (Utils::openFile(data, LINK_URL_FILE)) {
         QJsonObject content;
 
         if (JsonHelper::toObject(data, content)) {
@@ -33,7 +31,7 @@ Tools::Tools()
 
     }
 
-    if (openFile(data, LINK_TOOLS_FILE)) {
+    if (Utils::openFile(data, LINK_TOOLS_FILE)) {
         QJsonObject content;
         if (JsonHelper::toObject(data, content)) {
             loadToolsJson(content);
@@ -47,20 +45,6 @@ Tools::Tools()
 Tools::~Tools()
 {
 
-}
-
-bool Tools::openFile(QByteArray &data, QString fileName)
-{
-    if (fileName.isEmpty()) return false;
-
-    QFile file(fileName);
-    if (!file.open(QIODevice::ReadOnly)) {
-        return false;
-    }
-    data = file.readAll();
-    file.close();
-
-    return true;
 }
 
 bool Tools::loadLinkUrl(QByteArray &content)

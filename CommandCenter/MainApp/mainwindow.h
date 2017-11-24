@@ -9,6 +9,8 @@
 #include "zktestdialog.h"
 #include "xktestdialog.h"
 #include "../Db/dbmanager.h"
+#include "utils_defines.h"
+
 
 namespace Ui {
 class MainWindow;

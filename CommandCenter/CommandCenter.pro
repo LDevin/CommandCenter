@@ -1,7 +1,11 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    MainApp \
+    Utils \
     Link \
+    Db \
     Ui \
-    Db
+    MainApp
+
+
+

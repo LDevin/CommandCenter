@@ -12,8 +12,8 @@
 
 namespace Link {
 
-#define REQ_HEAD_SET_FLAG 1
-#define REQ_HEAD_NOT_SET_FLAG 0
+#define REQ_HEAD_SET_FLAG       1
+#define REQ_HEAD_NOT_SET_FLAG   0
 
 typedef struct {
     QString fullUrl;

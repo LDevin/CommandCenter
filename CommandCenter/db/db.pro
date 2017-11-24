@@ -11,7 +11,7 @@ QT       -= gui
 TARGET = Db
 TEMPLATE = lib
 
-DEFINES += DB_LIBRARY QMYSQL DB_LOG
+DEFINES += DB_LIBRARY QMYSQL
 
 DebugBuild {
     TARGET  = $${TARGET}d
@@ -38,12 +38,20 @@ SOURCES += \
 
 HEADERS += \
         db_global.h \ 
-    dbdefines.h \
     dbinterface.h \
     dbutils.h \
-    dbmanager.h
+    dbmanager.h \
+    db_defines.h
 
 unix {
     target.path = /usr/lib
     INSTALLS += target
+}
+
+INCLUDEPATH += $$PWD/../Utils/
+
+DebugBuild {
+    LIBS += -L$${DESTDIR} -lUtilsd
+} else {
+    LIBS += -L$${DESTDIR} -lUtils
 }

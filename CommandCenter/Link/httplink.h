@@ -13,6 +13,7 @@
 #include <QNetworkReply>
 #include <QTimerEvent>
 #include <QHttpMultiPart>
+#include "utils_defines.h"
 
 
 class HttpLink : public LinkInterface
