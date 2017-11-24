@@ -22,6 +22,7 @@ void DbInterface::initDb()
     _db.setDatabaseName(DB_NAME);
     _db.setUserName(DB_USER_NAME);
     _db.setPassword(DB_PASSWORD);
+    LOG(_db.connectionName())
 }
 
 /***

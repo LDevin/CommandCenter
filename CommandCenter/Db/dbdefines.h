@@ -58,7 +58,7 @@ qDebug() \
   * 数据库超时
 **/
 
-#define DB_QUERY_TIME_OUT        1000 * 5 //15s
+#define DB_QUERY_TIME_OUT        1000 * 15 //15s
 
 /**
   * 数据库处理操作出现的错误

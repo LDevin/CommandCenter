@@ -76,6 +76,9 @@ bool DbUtils::executeQuery()
     delete query;
     query = NULL;
 
+    _db.close();
+    QSqlDatabase::removeDatabase("qt_sql_default_connection");
+
     setQueryData(jsonArray);
     setQuit(true);
 
