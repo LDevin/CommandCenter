@@ -48,7 +48,7 @@ void DbInterface::timerEvent(QTimerEvent *event)
         killTimer(timerOutId());
 
         if ( isRunning() ) {
-            LOG("TIME OUT!")
+            LOG("TIME OUT!");
         }
     }
 }

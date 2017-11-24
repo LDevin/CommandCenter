@@ -17,7 +17,8 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
-#include "dbdefines.h"
+#include "db_defines.h"
+#include "utils_defines.h"
 
 
 class DbInterface : public QThread
