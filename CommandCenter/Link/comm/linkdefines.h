@@ -29,17 +29,22 @@
 #define LINK_ROOT_API_RES "resource"
 #define LINK_API_RES_BUILD_BASIC_DETAIL "building/basic/detail"
 #define LINK_API_RES_BUILD_SCH_BY_NAME "building/search"
+#define LINK_API_RES_BUILD_ADD "building/addBuilding" //新增楼栋
+#define LINK_API_RES_BUILD_LIST "building/list" //楼栋列表
+#define LINK_API_RES_BUILD_UPDATE "building/update" //修改楼栋
+
 #define LINK_API_RES_ENFORCE_ADD "enforce/add"
 #define LINK_API_RES_ENFORCE_DETAIL "enforce/detail"
 
 
 #define LINK_API_RES_ENFORCE_DEVICEVIEW "enforce/deviceview"
 #define LINK_API_RES_ENFORCE_LIST "enforce/list"
-#define LINK_API_RES_ENFORCE_PERSON_UPDATE "enforce/update"
+#define LINK_API_RES_ENFORCE_UPDATE "enforce/update"
 
 #define LINK_API_RES_ENFORCE_PERSON_ADD "enforce/person/add"
 #define LINK_API_RES_ENFORCE_PERSON_LIST "enforce/person/list"
 #define LINK_API_RES_ENFORCE_PERSON_DETAIL "enforce/person/detail"
+#define LINK_API_RES_ENFORCE_PERSON_UPDATE "enforce/person/update" //修改执法人员
 
 
 #define LINK_API_RES_EXTINGUISHER_ADD "extinguisher/add" //新增灭火器
@@ -58,8 +63,8 @@
 #define LINK_API_RES_FIREPLUG_UPDATE "fireplug/update" //修改消防栓
 #define LINK_API_RES_GETBYKEY "getByKey" //查询数据字典
 
-#define LINK_API_RES_RECURE_CAR_ADD "recure/car/add" //新增消防车辆
-#define LINK_API_RES_RECURE_CAR_UPDATE "recure/car/update" //修改消防车辆
+#define LINK_API_RES_RESCURE_CAR_ADD "recure/car/add" //新增消防车辆
+#define LINK_API_RES_RESCURE_CAR_UPDATE "recure/car/update" //修改消防车辆
 #define LINK_API_RES_RESCURE_ADD "rescure/add" //新增救援队伍
 #define LINK_API_RES_RESCURE_CAR_DETAIL "rescure/car/detail" //查询消防车辆详情
 #define LINK_API_RES_RESCURE_CAR_LIST "rescure/car/list" //查询消防车辆列表
@@ -70,7 +75,7 @@
 #define LINK_API_RES_RESCURE_PERSON_LIST "rescure/person/list" //查询救援人员列表
 #define LINK_API_RES_RESCURE_PERSON_UPDATE "rescure/person/update" //修改救援人员
 #define LINK_API_RES_RESCURE_UPDATE "rescure/update" //修改救援队伍
-#define LINK_API_RES_RESOURE_LIST "resoure/list" //救援队伍列表
+#define LINK_API_RES_RESCURE_LIST "resoure/list" //救援队伍列表
 #define LINK_API_RES_WATER_ADD "water/add" //新增消防水源
 #define LINK_API_RES_WATER_DETAIL "water/detail" //获取消防水源详情
 #define LINK_API_RES_WATER_DEVICEVIEW "water/deviceview" //统计分析消防水源

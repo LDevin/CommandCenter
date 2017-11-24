@@ -67,6 +67,10 @@ public:
     */
 
     //![2]
+
+    bool            addResBuilding(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResBuildingList(const QString &token, int pageNum, QByteArray &ret);
+    bool            updateResBuilding(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool            getResBuildBasicDetailById(const QString &token, long id, QByteArray &ret);
     bool            getResBuildByName(const QString &token, const QString &name, QByteArray &ret);
     bool            addResEnforce(const QString &token, const QString &jsonDto, QByteArray &ret);
@@ -86,6 +90,7 @@ public:
     bool            getResEnforcePersonDetail(const QString& token, long enforceid,
                                               long personid, QByteArray& ret);
 
+    bool            updateResEnforcePerson(const QString &token, const QString &jsonDto, QByteArray &ret);
     bool            updateResEnforce(const QString& token, const QString &jsonDto, QByteArray& ret);
 
     bool            addResExtinguisher(const QString& token, const QString &jsonDto, QByteArray& ret);

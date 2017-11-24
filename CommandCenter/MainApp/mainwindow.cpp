@@ -403,3 +403,35 @@ void MainWindow::on_pushButton_49_clicked()
     Link::Slave::slave()->getResFirePlugList(tr("25d09553-0107-4105-9fbc-be65b00a3ba0"),"1000", 1, 1, 1, "222", 1, "11", "33", 8, ret);
     qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
 }
+
+void MainWindow::on_pushButton_50_clicked()
+{
+    //新增楼栋
+    QByteArray ret;
+    Link::Slave::slave()->addResBuilding(tr("6f0e37fe-3fb7-43a5-b8ad-cf58280de780"),"sdf", ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_51_clicked()
+{
+    //获取楼栋列表
+    QByteArray ret;
+    Link::Slave::slave()->getResBuildingList(tr("6f0e37fe-3fb7-43a5-b8ad-cf58280de780"),1, ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_52_clicked()
+{
+    //修改楼栋
+    QByteArray ret;
+    Link::Slave::slave()->updateResBuilding(tr("6f0e37fe-3fb7-43a5-b8ad-cf58280de780"),"ss", ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_53_clicked()
+{
+    //修改楼栋
+    QByteArray ret;
+    Link::Slave::slave()->updateResEnforcePerson(tr("6f0e37fe-3fb7-43a5-b8ad-cf58280de780"),"ss", ret);
+    qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}

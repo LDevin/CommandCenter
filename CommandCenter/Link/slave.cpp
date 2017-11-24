@@ -213,6 +213,53 @@ bool Slave::getDatalinelist(const QString &token, QByteArray &ret)
     return slaveStartLink(link, headerData, QByteArray(), ret);
 }
 
+
+bool Slave::addResBuilding(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if(token.isEmpty()){
+        return returnHttpOtherErrMsg("token为空", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    HttpConfiguration *config = new HttpConfiguration();
+    if(!setLinkConfigurationData(config, LINK_ROOT_API_RES,LINK_API_RES_BUILD_ADD, ret)){
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::getResBuildingList(const QString &token, int pageNum, QByteArray &ret)
+{
+    if(token.isEmpty()){
+        return returnHttpOtherErrMsg("token为空", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    HttpConfiguration *config = new HttpConfiguration();
+    if(!setLinkConfigurationData(config, LINK_ROOT_API_RES,LINK_API_RES_BUILD_LIST, ret)){
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+    return slaveStartLink(link, headerData, tr("&pageNum=%1").arg(pageNum).toLatin1(), ret);
+}
+
+
+bool Slave::updateResBuilding(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if(token.isEmpty()){
+        return returnHttpOtherErrMsg("token为空", LINK_INVOKE_OTHER_ERR, ret);
+    }
+    HttpConfiguration *config = new HttpConfiguration();
+    if(!setLinkConfigurationData(config, LINK_ROOT_API_RES,LINK_API_RES_BUILD_UPDATE, ret)){
+        return RETURN_FALSE;
+    }
+    LinkInterface *link = new HttpLink(config);
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
 bool Slave::getResBuildBasicDetailById(const QString &token, long id, QByteArray &ret)
 {
     if ( token.isEmpty() ) {
@@ -415,7 +462,7 @@ bool Slave::getResEnforcePersonDetail(const QString &token, long enforceid,
     return slaveStartLink(link, headerData, QByteArray(), ret);
 }
 
-bool Slave::updateResEnforce(const QString &token, const QString &jsonDto, QByteArray &ret)
+bool Slave::updateResEnforcePerson(const QString &token, const QString &jsonDto, QByteArray &ret)
 {
     if ( token.isEmpty() || jsonDto.isEmpty() ) {
         return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
@@ -423,6 +470,25 @@ bool Slave::updateResEnforce(const QString &token, const QString &jsonDto, QByte
 
     HttpConfiguration *config = new HttpConfiguration();
     if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_PERSON_UPDATE, ret)) {
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
+}
+
+bool Slave::updateResEnforce(const QString &token, const QString &jsonDto, QByteArray &ret)
+{
+    if ( token.isEmpty() || jsonDto.isEmpty() ) {
+        return returnHttpOtherErrMsg("has null parameter!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_ENFORCE_UPDATE, ret)) {
         return RETURN_FALSE;
     }
 
@@ -794,7 +860,7 @@ bool Slave::addResRecureCar(const QString &token, long rescureId,
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RECURE_CAR_ADD, ret)) {
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RESCURE_CAR_ADD, ret)) {
         return RETURN_FALSE;
     }
 
@@ -814,7 +880,7 @@ bool Slave::updateResRecureCar(const QString &token, const QString &jsonDto, QBy
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RECURE_CAR_UPDATE, ret)) {
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RESCURE_CAR_UPDATE, ret)) {
         return RETURN_FALSE;
     }
 
@@ -1033,7 +1099,7 @@ bool Slave::getResRescureList(const QString &token, const QString &name,
     }
 
     HttpConfiguration *config = new HttpConfiguration();
-    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RESOURE_LIST, ret)) {
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_RES, LINK_API_RES_RESCURE_LIST, ret)) {
         return RETURN_FALSE;
     }
 

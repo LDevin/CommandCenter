@@ -13,6 +13,12 @@
     ],
 
     "resource":[
+        {"api":"building/addBuilding", "href":"/api/v1/resource/building/addBuilding","req":2,"para":{"dto":{}},"des": "新增楼栋"},
+        {"api":"building/list", "href":"/api/v1/resource/building/list","req":2,"para":{"pageNum":""},"des": "楼栋列表"},
+        {"api":"building/update", "href":"/api/v1/resource/building/update","req":2,"para":{"dto":{}},"des": "修改楼栋"},
+        {"api":"enforce/person/update", "href":"/api/v1/resource/enforce/person/update","req":2,"para":{"dto":{}},"des": "修改执法人员"},
+
+
         {"api":"building/basic/detail", "href":"/api/v1/resource/building/basic/detail/","req":1,"para":{"id":""},"des": "根据楼栋ID查询楼栋信息"},
         {"api":"building/search", "href":"/api/v1/resource/building/search/","req":1,"para":{"name":""},"des": "查询楼栋名称"},
         {"api":"enforce/add", "href":"/api/v1/resource/enforce/add","req":2,"para":{"dto":{}},"des": "新增执法队伍"},
