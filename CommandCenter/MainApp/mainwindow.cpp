@@ -10,10 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->fromID,SIGNAL(clicked(bool)),this,SLOT(get_formID_clicked()));
-
-    QString msg;
-    DbManager::manager()->executeQuery("SELECT * FROM `T_BUILDING`", QJsonArray(), msg);
-    LOG("MSG: " + msg);
 }
 
 MainWindow::~MainWindow()
@@ -434,4 +430,12 @@ void MainWindow::on_pushButton_53_clicked()
     QByteArray ret;
     Link::Slave::slave()->updateResEnforcePerson(tr("6f0e37fe-3fb7-43a5-b8ad-cf58280de780"),"ss", ret);
     qDebug() << tr("ret tttt ").toLocal8Bit() << ret;
+}
+
+void MainWindow::on_pushButton_54_clicked()
+{
+
+    QString msg;
+    DbManager::manager()->executeQuery("select * from `T_FIREPLUG`", QJsonArray(), msg);
+    LOG("MSG: " + msg);
 }
