@@ -12,11 +12,11 @@ DbUtils::~DbUtils()
 
 void DbUtils::run()
 {
-    LOG("start run db thread");
+    LOG(tr("db thread_%1 starting").arg((quintptr)(QThread::currentThreadId())));
 
     executeQuery();
 
-    LOG("db thread exit");
+    LOG(tr("db thread_%1 exited").arg((quintptr)(QThread::currentThreadId())));
 }
 
 void DbUtils::startRun()
@@ -27,9 +27,9 @@ void DbUtils::startRun()
 
 bool DbUtils::executeQuery()
 {
-    LOG("SQL: " + sql())
-            LOG(QThread::currentThreadId())
-            if ( sql().isEmpty() ) {
+    LOG("SQL: " + sql());
+
+    if ( sql().isEmpty() ) {
         setQuit(true);
         return parseDbManageMsg(QSqlError::UnknownError + 1, tr("sql is empty!"));
     }
