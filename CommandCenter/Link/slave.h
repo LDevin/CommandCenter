@@ -102,6 +102,36 @@ public:
     bool            getResFirePlugDetail(const QString& token, long id, QByteArray& ret);
     bool            getResFirePlugDeviceView(const QString& token, long chargerID, QByteArray& ret);
     bool            getResFirePlugDevMac(const QString& token, long id, QByteArray& ret);
+
+    bool            getResFirePlugDoconern(const QString& token, long id, const QString &devMac, QByteArray& ret);
+    bool            getResFirePlugList(const QString& token, const QString &code, int status, int isRelate, int type,
+                                       const QString& devMac, int pageNum, const QString &longitude, const QString &latitude, int raidus, QByteArray& ret);
+
+    bool            getResFirePlugConcernned(const QString& token, const QString &code, const QString &devMac, const int pageNum, QByteArray& ret );
+    bool            getResFirePlugUnconcern(const QString& token, const QString &code, const int pageNum, QByteArray& ret );
+    bool            updateResFirePlug(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResGetByKey(const QString &token, const QString &key, QByteArray &ret);
+    bool            addResRecureCar(const QString &token, long recureId, const QString &jsonDto, QByteArray &ret);
+    bool            updateResRecureCar(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            addResRescure(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResRescureCarDetail(const QString &token, long rescureId, long equipId, QByteArray &ret);
+    bool            getResRescureCarList(const QString& token, int rescureId, int pageNum, QByteArray& ret);
+    bool            getResRescureDetail(const QString &token, long id, QByteArray &ret);
+    bool            getResRescureDeviceview(const QString &token, long supervisorId, QByteArray &ret);
+    bool            addResRescurePerson(const QString &token, long rescureId, const QString &jsonDto, QByteArray &ret);
+    bool            getResRescurePersonDetail(const QString &token, long rescureId, long personId, QByteArray &ret);
+    bool            getResRescurePersonList(const QString &token, long rescureId, int pageNum, QByteArray &ret);
+    bool            updateResRecurePerson(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            updateResRecure(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResRescureList(const QString &token, const QString &name, int type, int pageNum, QByteArray &ret);
+    bool            addResWater(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResWaterDetail(const QString &token, long id, QByteArray &ret);
+    bool            getResWaterDeviceView(const QString &token, long chargerID, QByteArray &ret);
+    bool            getResWaterList(const QString &token, const QString &code, int waterType, const QString &longitude,
+                                    const QString &latitude, int radus, int pageNum, QByteArray &ret);
+    bool            updateResWater(const QString &token, const QString &jsonDto, QByteArray &ret);
+    bool            getResZoneByParent(const QString &token, int relativeID, QByteArray &ret);
+    bool            getResFullZone(const QString &token, const QString &relativeID, QByteArray &ret);
     //![2]
 
     /*
