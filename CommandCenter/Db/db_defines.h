@@ -39,11 +39,12 @@
   * 数据库超时
 **/
 
-#define DB_QUERY_TIME_OUT        1000 * 15 //15s
+#define DB_QUERY_TIME_OUT        1000 * 5 //15s
 
 /**
   * 数据库处理操作出现的错误
 **/
-#define DB_MANAGE_MSG "{\"code\":-200,\"msg\":\"operation is failed!\"}"
+#define DB_MANAGE_TIME_OUT_CODE -200
+#define DB_MANAGE_MSG           "{\"code\":-200,\"msg\":\"operation is failed!\"}"
 
 #endif // DBDEFINES_H

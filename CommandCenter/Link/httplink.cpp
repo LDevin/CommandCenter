@@ -70,7 +70,7 @@ void HttpLink::startHttpRequest(const QByteArray &data)
 
     if (isRunning()) return;
     resetTimer();
-
+    qDebug()<<"link current threadid: "<<QThread::currentThreadId();
     setContentType(_config->contentType());
 
     QNetworkReply *reply;

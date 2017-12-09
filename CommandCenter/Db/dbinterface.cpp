@@ -49,6 +49,8 @@ void DbInterface::timerEvent(QTimerEvent *event)
 
         if ( isRunning() ) {
             LOG("TIME OUT!");
+            parseDbManageMsg(DB_MANAGE_TIME_OUT_CODE, tr("database manage time out!"));
+            emit timeOutSignal();
         }
     }
 }

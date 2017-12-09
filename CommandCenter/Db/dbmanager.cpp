@@ -23,6 +23,7 @@ DbManager::~DbManager()
 void DbManager::destroyDbUtils(DbUtils *utils)
 {
     if ( utils ) {
+        utils->terminate();
         utils->deleteLater();
     }
 
@@ -36,6 +37,7 @@ bool DbManager::executeQuery(const QString &sql, QJsonArray &data,  QString &err
 
     QEventLoop eventLoop;
     connect(dbUtils, &DbUtils::finished, &eventLoop, &QEventLoop::quit);
+    connect(dbUtils, &DbUtils::timeOutSignal, &eventLoop, &QEventLoop::quit);
 
     dbUtils->queryTableData(sql);
 
@@ -44,7 +46,11 @@ bool DbManager::executeQuery(const QString &sql, QJsonArray &data,  QString &err
 
     data = dbUtils->queryData();
     error = dbUtils->errorMsg();
-    LOG("error: " + error)
+
+    LOG("error: " + error);
+    if (dbUtils->isRunning()) {
+        dbUtils->terminate();
+    }
     destroyDbUtils(dbUtils);
 
     return RETURN_OK;

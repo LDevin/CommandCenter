@@ -62,6 +62,7 @@ void MainWindow::on_pushButton_7_clicked()
     QByteArray ret;
     Link::Slave::slave()->getOauthToken("admin", "admin", "client",ret);
     qDebug() << "ret " << ret;
+    qDebug()<<"main current threadid: "<<QThread::currentThreadId();
 }
 
 //----------get--form id------
@@ -434,8 +435,9 @@ void MainWindow::on_pushButton_53_clicked()
 
 void MainWindow::on_pushButton_54_clicked()
 {
+    QJsonArray data;
+    QString error;
 
-    QString msg;
-    DbManager::manager()->executeQuery("select * from `T_FIREPLUG`", QJsonArray(), msg);
-    LOG("MSG: " + msg);
+    DbManager::manager()->executeQuery("SELECT * FROM `T_FIREPLUG`", data, error);
+    qDebug()<<"error: "<<error;
 }
