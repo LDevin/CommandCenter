@@ -208,6 +208,8 @@ public:
     */
     bool         addChatMessage(const QString &token, const QString content, QByteArray &ret);
     bool         addChatMessageComment(const QString &token,const QString ids, const QString content, QByteArray &ret);
+    bool         getChatBoxInfo(const QString &token,const QString userId, QByteArray &ret);
+     bool        getChatMessage(const QString &token,const QString id, QByteArray &ret);
 
     /*
      * 楼栋和单位消防检查相关接口

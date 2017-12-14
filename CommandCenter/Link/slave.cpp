@@ -1802,6 +1802,44 @@ bool Slave::addChatMessageComment(const QString &token, const QString ids, const
     return slaveStartLink(link, headerData, jsonDto.toLatin1(), ret);
 }
 
+bool Slave::getChatBoxInfo(const QString &token, const QString userId, QByteArray &ret)
+{
+    if ( token.isEmpty() ||userId.isEmpty()) {
+        return returnHttpOtherErrMsg("You has error parameters!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_CHAT, LINK_API_CHAT_CHATBOXINFO, ret)){
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, tr("?userId=%1").arg(userId).toLatin1(), ret);
+}
+
+bool Slave::getChatMessage(const QString &token, const QString id, QByteArray &ret)
+{
+    if ( token.isEmpty() ||id.isEmpty()) {
+        return returnHttpOtherErrMsg("You has error parameters!", LINK_INVOKE_OTHER_ERR, ret);
+    }
+
+    HttpConfiguration *config = new HttpConfiguration();
+    if (!setLinkConfigurationData(config, LINK_ROOT_API_CHAT, LINK_API_CHAT_MESSAGE, ret)){
+        return RETURN_FALSE;
+    }
+
+    LinkInterface *link = new HttpLink(config);
+
+    QByteArray headerData ;
+    Tools::setLinkToken(token, headerData);
+
+    return slaveStartLink(link, headerData, tr("?id=%1").arg(id).toLatin1(), ret);
+}
+
 
 
 

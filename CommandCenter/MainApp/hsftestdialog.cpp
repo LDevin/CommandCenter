@@ -4,7 +4,7 @@
 #include"slave.h"
 
 
-#define ACCESSTOKEN "cef4811d-f76c-4573-98ca-2c2834321d23"
+#define ACCESSTOKEN "2d25ee2e-4ccf-4af5-be11-e78408efb069"
 
 HsfTestDialog::HsfTestDialog(QWidget *parent) :
     QDialog(parent),
@@ -181,5 +181,21 @@ void HsfTestDialog::on_addComment_clicked()
     qDebug()<<"on_addComment_clicked";
     QByteArray ret;
     Link::Slave::slave()->addChatMessageComment(tr(ACCESSTOKEN), "1","chat message 11111  ", ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_getBoxInfo_clicked()
+{
+    qDebug()<<"on_getBoxInfo_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->getChatBoxInfo(tr(ACCESSTOKEN), "1", ret);
+    qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
+}
+
+void HsfTestDialog::on_getMessage_clicked()
+{
+    qDebug()<<"on_getBoxInfo_clicked";
+    QByteArray ret;
+    Link::Slave::slave()->getChatMessage(tr(ACCESSTOKEN), "1", ret);
     qDebug() << "ret "<<ret <<QJsonDocument::fromJson(ret).object()["msg"].toString();
 }

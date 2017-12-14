@@ -56,6 +56,10 @@ private slots:
 
     void on_addComment_clicked();
 
+    void on_getBoxInfo_clicked();
+
+    void on_getMessage_clicked();
+
 private:
     Ui::HsfTestDialog *ui;
 };

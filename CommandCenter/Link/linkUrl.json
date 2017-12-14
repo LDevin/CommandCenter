@@ -129,7 +129,9 @@
 
     "chat":[
         {"api":"chat/addmessage", "href":"/api/v1/chat/addmessage/","req":2,"para":{ "content":""},"des": "新增公告"},
-        {"api":"chat/addmessagecomment", "href":"/api/v1/chat/addmessagecomment/","req":2,"para":{"ids":"", "content":""},"des": "新增互动信息"}
+        {"api":"chat/addmessagecomment", "href":"/api/v1/chat/addmessagecomment/","req":2,"para":{"ids":"", "content":""},"des": "新增互动信息"},
+        {"api":"chat/chatboxinfo", "href":"/api/v1/chat/chatboxinfo","req":1,"para":{"userID":""},"des": "查询聊天窗口信息"},
+        {"api":"chat/getmessage", "href":"/api/v1/chat/getmessage","req":1,"para":{"id":""},"des": "获取互动信息"}
 
     ]
 }

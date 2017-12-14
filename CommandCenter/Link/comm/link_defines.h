@@ -133,6 +133,8 @@
 #define LINK_ROOT_API_CHAT "chat"
 #define LINK_API_CHAT_MESSAGE "chat/addmessage"
 #define LINK_API_CHAT_COMMENT "chat/addmessagecomment"
+#define LINK_API_CHAT_CHATBOXINFO "chat/chatboxinfo"
+#define LINK_API_CHAT_GETMESSAGE "chat/getmessage"
 
 /******
  *
