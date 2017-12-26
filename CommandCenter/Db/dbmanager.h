@@ -11,6 +11,7 @@
 #include <QObject>
 #include <QEventLoop>
 #include "dbutils.h"
+#include "templates.h"
 
 
 #define RETURN_OK       true
@@ -21,21 +22,23 @@ class DBSHARED_EXPORT DbManager : public QObject
     Q_OBJECT
 
 public:
-   static DbManager*            manager();
+  // static DbManager*            manager();
 
    bool                         executeQuery(const QString& sql,
                                              QJsonArray& data = QJsonArray(),
                                              QString& error = QString());
 
-protected:
+public:
                                 DbManager();
                                 ~DbManager();
 
 private:
-    static DbManager*           _manager;
+   // static DbManager*           _manager;
 
     void                        destroyDbUtils(DbUtils* utils);
 };
 
+
+#define DB_MANAGER Singleton<DbManager>::instance()
 
 #endif // DBMANAGER_H

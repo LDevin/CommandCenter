@@ -36,7 +36,8 @@ SOURCES += \
 HEADERS += \
         utils.h \
         utils_global.h \ 
-    utils_defines.h
+    utils_defines.h \
+    templates.h
 
 unix {
     target.path = /usr/lib

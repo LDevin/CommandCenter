@@ -1,15 +1,15 @@
 ﻿#include "dbmanager.h"
 
 
-DbManager* DbManager::_manager = Q_NULLPTR;
+//DbManager* DbManager::_manager = Q_NULLPTR;
 
-DbManager* DbManager::manager()
-{
-    if ( Q_NULLPTR != _manager ) {
-        _manager = new DbManager();
-    }
-    return _manager;
-}
+//DbManager* DbManager::manager()
+//{
+//    if ( Q_NULLPTR != _manager ) {
+//        _manager = new DbManager();
+//    }
+//    return _manager;
+//}
 
 DbManager::DbManager()
 {
@@ -37,7 +37,8 @@ bool DbManager::executeQuery(const QString &sql, QJsonArray &data,  QString &err
 
     QEventLoop eventLoop;
     connect(dbUtils, &DbUtils::finished, &eventLoop, &QEventLoop::quit);
-    connect(dbUtils, &DbUtils::timeOutSignal, &eventLoop, &QEventLoop::quit);
+    /***修改****/
+   // connect(dbUtils, &DbUtils::timeOutSignal, &eventLoop, &QEventLoop::quit);
 
     dbUtils->queryTableData(sql);
 

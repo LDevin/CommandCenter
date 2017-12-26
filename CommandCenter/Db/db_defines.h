@@ -47,4 +47,5 @@
 #define DB_MANAGE_TIME_OUT_CODE -200
 #define DB_MANAGE_MSG           "{\"code\":-200,\"msg\":\"operation is failed!\"}"
 
+
 #endif // DBDEFINES_H

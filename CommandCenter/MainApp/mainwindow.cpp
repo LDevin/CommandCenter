@@ -438,6 +438,6 @@ void MainWindow::on_pushButton_54_clicked()
     QJsonArray data;
     QString error;
 
-    DbManager::manager()->executeQuery("SELECT * FROM `T_FIREPLUG`", data, error);
+    DB_MANAGER->executeQuery("SELECT * FROM `T_FIREPLUG`", data, error);
     qDebug()<<"error: "<<error;
 }
