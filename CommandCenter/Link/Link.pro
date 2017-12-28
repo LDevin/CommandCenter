@@ -13,6 +13,8 @@ QT          -= gui
 TARGET      = Link
 TEMPLATE    = lib
 
+CONFIG      += c++11
+
 DEFINES     += LINK_LIBRARY
 
 DebugBuild {

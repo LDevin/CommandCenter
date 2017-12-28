@@ -237,6 +237,9 @@ private:
     void            setHttpApiOtherErrMsg(const QString &msg, int code, QByteArray &ret);
     bool            returnHttpOtherErrMsg(const QString &msg, int code, QByteArray &ret);
 };
+
 }
+
+#define LINK(N,...) Link::Slave::slave()->##N(__VA_ARGS__);
 
 #endif // SLAVE_H

@@ -15,7 +15,7 @@
 ******/
 #   define LOG(...) {\
 qDebug() \
-<< __VA_ARGS__ \
+<< ##__VA_ARGS__ \
 << "(File:" << __FILE__ << ", " \
 << "Line:" << __LINE__ << ")\n\t";\
 }

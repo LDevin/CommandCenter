@@ -3,7 +3,6 @@
 #include "QDebug"
 
 
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -59,9 +58,17 @@ void MainWindow::on_pushButton_6_clicked()
 
 void MainWindow::on_pushButton_7_clicked()
 {
+   // QByteArray ret;
+   // Link::Slave::slave()->getOauthToken("admin", "admin", "client",ret);
+    //qDebug() << "ret " << ret;
+    //qDebug()<<"main current threadid: "<<QThread::currentThreadId();
+
     QByteArray ret;
-    Link::Slave::slave()->getOauthToken("admin", "admin", "client",ret);
-    qDebug() << "ret " << ret;
+   // Link::Slave::slave()->getOauthToken("admin", "admin", "client",ret);
+
+
+    LINK(getOauthToken, "admin", "admin", "client",ret);
+    qDebug() << "rett " << ret;
     qDebug()<<"main current threadid: "<<QThread::currentThreadId();
 }
 
