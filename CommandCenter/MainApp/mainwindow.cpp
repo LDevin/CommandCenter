@@ -448,3 +448,8 @@ void MainWindow::on_pushButton_54_clicked()
     DB_MANAGER->executeQuery("SELECT * FROM `T_FIREPLUG`", data, error);
     qDebug()<<"error: "<<error;
 }
+
+void MainWindow::on_pushButton_55_clicked()
+{
+
+}
